@@ -1,6 +1,6 @@
 ---
 const {code, startFrom=1, lineNumbers="", stretch=false, language="js", dataId=null} = Astro.props;
-const escaped = code.code.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const escaped = code.code//code.code.replace(/</g,"&lt;").replace(/>/g,"&gt;");
 /*
    data-noescape 
 */
