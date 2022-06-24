@@ -1,0 +1,136 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+import AboutMe from "../../../components/AboutMe.astro"
+import AgendaSection from "../../../components/AgendaSection.astro"
+import SlideControls from "../../../components/SlideControls.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("digital-design/1.introduktion",[
+    "card.html",
+    "cards.html",
+    "Card.svelte",
+    "Cards.svelte",
+    "Cards2.svelte",
+    "calculator.html",
+    "Calculator.svelte",
+])
+
+---
+
+<SlideLayout title="Introduktion" lang="da">
+    <AgendaSection header="Svelte" h2="Introduktion" p="jofh@kea.dk">
+        <section>
+          <AboutMe /> 
+        </section>
+        <section>
+          <SlideControls />
+        </section>
+        
+        <Goal>
+          <ol>
+            <li>Forstå hvad Svelte er</li>
+            <li>Indsigt i hvilke problemstillinger Svelte løser</li>
+            <li>Kende lidt til alternativer</li>
+          </ol>
+        </Goal>
+        
+    </AgendaSection>
+    <AgendaSection header="Øvelse">
+      <section>
+        <ol class="alternate">
+          <li>Clone det her repo: <a href="https://github.com/jonasholbech/epi-rip-off/">https://github.com/jonasholbech/epi-rip-off/</a></li>
+          <li>Åbn i VS Code</li>
+          <li>Kør <code>npm install</code></li>
+          <li>Kør <code>npm run dev</code> for at se hvad sitet er</li>
+          <li>Kig på koden (Start med <code>src/App.svelte</code>) og overvej <ul class="alternate">
+            <li>WTF?</li>
+            <li class="fragment">Nej, seriøst, kan i regne ud hvordan det hænger sammen?</li>
+          </ul></li>
+        </ol>
+      </section>
+    </AgendaSection>
+    <AgendaSection header="Hvad er Svelte?">
+      <section>
+        <p><a href="https://svelte.dev/">https://svelte.dev/</a></p>
+        <ol>
+          <li class="fragment">Write less code</li>
+          <li class="fragment">No virtual DOM</li>
+          <li class="fragment">Truly Reactive</li>
+        </ol>
+      </section>
+    </AgendaSection>
+    <AgendaSection header="Write less code">
+      <section>
+        <p>Lad os forestille os vi har den her komponent</p>
+        <div class="flex-grid">
+          <div class="col-3"><img src="/assets/digital-design/1.introduktion/card.png" alt=""></div>
+          <div class="col-9 fragment">
+            <Code code={snippets["card.html"]} />
+          </div>
+        </div>
+      </section>
+      <section>
+      <p>Hvad sker der når vi vil have flere?</p>
+      <p class="fragment">Hvad sker der når vi vil ændre i koden?</p>
+      <p class="fragment">Er det let at genbruge?</p>
+      <p class="fragment">Kan andre designere let finde ud af hvor de skal copy paste?</p>
+      </section>
+      <section data-auto-animate>
+        <p>Fra markup til components, #1</p>
+        <Code dataId="markup2comp" code={snippets["cards.html"]} />
+        <p>Vi starter med (for meget) HTML</p>
+      </section>
+      <section data-auto-animate>
+        <p>Fra markup til components, #2</p>
+        <Code dataId="markup2comp" code={snippets["Card.svelte"]} />
+        <p>Vi bryder HTML'en ned i components og putter hver component i en ny fil. Her <code>Card.svelte</code></p>
+      </section>
+      <section data-auto-animate>
+        <p>Fra markup til components, #3</p>
+        <Code dataId="markup2comp" code={snippets["Cards.svelte"]} />
+        <p>Og så kan vi bruge vores component lidt som om det var HTML</p>
+      </section>
+      <section data-auto-animate>
+        <p>Fra markup til components, #4</p>
+        <Code dataId="markup2comp" code={snippets["Cards2.svelte"]} />
+        <p>Og på sigt give dem attributter (props) så de får forskelligt indhold</p>
+      </section>
+    </AgendaSection>
+    <AgendaSection header="No virtual DOM">
+      <section>
+        <p>Den her er lidt mere abstrakt, men i korte træk</p>
+        <ul>
+          <li class="fragment">Andre frameworks tilføjer meget JavaScript</li>
+          <li class="fragment">Svelte gør ikke</li>
+          <li class="fragment">Andre frameworks bruger "Virtual DOM"</li>
+          <li class="fragment">Svelte gør ikke</li>
+        </ul>
+      </section>
+    </AgendaSection>
+    <AgendaSection header="Truly Reactive">
+      <section>
+        <p>Lad os lege med et eksempel</p>
+        <p>En simpel lommeregner</p>
+        <iframe style="background: #FFFFFF;"  src="/snippets/digital-design/1.introduktion/calculator.html"></iframe>
+      </section>
+      <section data-auto-animate>
+        <h2 data-id="h2">Vanilla</h2>
+        <Code dataId="calculator" code={snippets["calculator.html"]} stretch />
+      </section>
+      <section data-auto-animate>
+        <h2 data-id="h2">Svelte</h2>
+        <Code dataId="calculator" code={snippets["Calculator.svelte"]}  stretch />
+      </section>
+    </AgendaSection>
+    <AgendaSection h2="Alternativer">
+      <section>
+        <p>Svelte er langt fra det mest brugte</p>
+        <p>Men det er det letteste at bruge</p>
+        <p>Der er tons af alternativer, hvor React er den mest brugte</p>
+        <p><a href="https://2021.stateofjs.com/en-US/libraries/front-end-frameworks">https://2021.stateofjs.com/en-US/libraries/front-end-frameworks</a></p>
+      </section>
+    </AgendaSection>
+    <section><h1>Lad os kigge på vores mål</h1></section>
+</SlideLayout>

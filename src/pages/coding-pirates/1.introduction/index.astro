@@ -1,0 +1,123 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+import AgendaSection from "../../../components/AgendaSection.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("coding-pirates/1.introduction",[
+   "basic.txt",
+   "basic2.txt",
+   "basic3.txt",
+   "css1.txt",
+   "css2.css",
+   "css3.css",
+   "css4.css",
+   "css5.css",
+])
+
+---
+
+<SlideLayout title="Introduktion" lang="da">
+    <AgendaSection header="Velkommen">
+        <section>
+            <ol>
+                <li>Hvem er vi?</li>
+                <li>Hvem er i?</li>
+            </ol>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Install Time">
+        <section>
+            <p>Vi skal lige have installeret et par ting</p>
+            <ol>
+                <li>Visual Studio Code <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></li>
+                <li>Chrome eller Firefox</li>
+                <li>Live Server Plugin i VS Code</li>
+            </ol>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Hvad er web?">
+        <section>
+            <p>Tre teknologier</p>
+            <ol>
+                <li class="fragment">HTML</li>
+                <li class="fragment">CSS</li>
+                <li class="fragment">JavaScript</li>
+            </ol>
+        </section>
+        <section>
+            <p>Developer Tools</p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Start et nyt projekt">
+        <section>
+            <p>Live</p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="HTML">
+        <section>
+            <ol>
+                <li>Hver side på en hjemmeside, er en fil der hedder <code>.html</code> til sidst</li>
+                <li>Og forsiden hedder altid <code>index.html</code></li>
+                <li>Lad os skrive vores første side</li>
+            </ol>
+        </section>
+        <section>
+            <p>Jeg gør det først, så gør i det</p>
+            <ol>
+                <li>Ny fil =&gt; <code>index.html</code></li>
+                <li><kbd>!</kbd>, <kbd>Tab</kbd></li>
+                <li>Ret <code>&lt;title&gt;</code></li>
+                <li>Tilføj noget a la følgende til <code>&lt;body&gt;</code><br>
+                <pre><code class="html">&lt;h1&gt;Hej Verden!!!&lt;/h1&gt;</code></pre>
+                </li>
+                <li>Og klik på "Go Live"</li>
+            </ol>
+        </section>
+        <section>
+            <p>HTML er grundstenen, vores indhold</p>
+            <p>HTML er bygget op af "tags" som vi kan stykke sammen til hele sider</p>
+            <p>Der er mange HTML tags, vi starter med et par stykker</p>
+        </section>
+        <section data-auto-animate>
+            <Code dataId="basic" code={snippets["basic.txt"]} language="html" />
+        </section>
+        <section data-auto-animate>
+            <Code dataId="basic" code={snippets["basic2.txt"]} language="html" lineNumbers="9-11" />
+            <p>Al vores indhold skal være i <code>&lt;body&gt;</code></p>
+            <p>Her er det <code>&lt;h1&gt;</code>, sidens vigtigste indhold</p>
+        </section>
+        <section data-auto-animate>
+            <Code dataId="basic" code={snippets["basic3.txt"]} language="html" />
+            <p>Et par af de øvrige tags vi får brug for</p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="CSS">
+        <section data-auto-animate>
+            <p>Vores hjemmesider er lidt kedelige, det problem løser CSS</p>
+            <p>Vi starter simpelt</p>
+            <p>Lige før <code>&lt;body&gt;</code> lukker, laver vi en style blok</p>
+            <Code dataId="css" code={snippets["css1.txt"]} language="html" />
+        </section>
+        <section data-auto-animate>
+            <Code dataId="css" code={snippets["css2.css"]} language="css" />
+            <p>CSS virker ved at vi skriver navnet på et tag</p>
+        </section>
+        <section data-auto-animate>
+            <Code dataId="css" code={snippets["css3.css"]} language="css" />
+            <p>Åbner og lukker krølle-paratenser</p>
+        </section>
+        <section data-auto-animate>
+            <Code dataId="css" code={snippets["css4.css"]} language="css" />
+            <p>Og skriver de regler der skal gælde for tagget mellem dem</p>
+        </section>
+        <section>
+            <h2>Lad os lige prøve</h2>
+        </section>
+        <section>
+            <p>Jeres tur, her er regler i kan lege med</p>
+            <Code dataId="css" code={snippets["css5.css"]} language="css" />
+        </section>
+    </AgendaSection>
+</SlideLayout>

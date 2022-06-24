@@ -1,0 +1,134 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro";
+import Goal from "../../../components/Goal.astro";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("react/6.forms",[
+    "useRef.js",
+    "controlledComponentWithHooks.jsx",
+    "form-validation-use-effect.js",
+    
+])
+
+---
+
+<SlideLayout title="Forms">
+    <section>
+        <h1>React</h1>
+        <img src='/assets/react/0.need-to-know-js/react.png'  alt="" />
+    </section>
+    <Goal>
+        <ol>
+            <li>Understand how <code>useRef</code> works</li>
+            <li>Understand how forms work with state (controlled)</li>
+            <li>Understand how forms work without state (uncontrolled)</li>
+        </ol>
+    </Goal>
+
+    <section>
+        <h3>Agenda</h3>
+        <ol>
+            <li>Mini Case: Forms and controlled components</li>
+            <li><code>useRef</code></li>
+            <li>Forms
+                <ul>
+                    <li>uncontrolled with <code>useRef</code></li>
+                    <li>controlled with <code>useState</code></li>
+                    <li>form validation with <code>useEffect</code>?</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <AgendaSection header="<code>useRef</code>">
+      
+      <section>
+        <ul class="striped">
+            <li><a href="https://reactjs.org/docs/hooks-reference.html#useref">https://reactjs.org/docs/hooks-reference.html#useref</a></li>
+            <li><a href="https://beta.reactjs.org/learn/referencing-values-with-refs">https://beta.reactjs.org/learn/referencing-values-with-refs</a></li>
+            <li class="fragment">The returned object will persist for the full lifetime of the component.</li>
+            <li class="fragment">A common use case is to access a child imperatively</li>
+            <li class="fragment">Or to store a value between renders</li>
+        </ul>  
+      </section>
+      <section>
+        <ul class="striped">
+            <li>If you pass a ref object to React with <code>&lt;div ref={`{myRef}`}/></code>, React will set its <code>.current</code> property to the corresponding DOM node whenever that node changes.</li>
+            <li class="fragment">We use it when we really need to go into the DOM</li>
+            <li class="fragment">Like for forms</li>
+        </ul>
+      </section>
+      <section>
+        <p><code>useRef</code> vs <code>useState</code></p>
+        <table>
+          <thead>
+              <tr>
+                  <th><code>useRef</code></th>
+                  <th><code>useState</code></th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Doesn’t trigger re-render when you change it.</td>
+                  <td>Triggers re-render when you change it.</td>
+              </tr>
+              <tr>
+                <td>Mutable—you can modify and update current’s value</td>
+                <td>“Immutable”—you must use the state setting function</td>
+              </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <Code code={snippets["useRef.js"]} />
+      </section>
+      <section>
+        <p>Using <code>useRef</code> as a "global variable"</p>
+        <p>If the component is rerendered, the id is persisted</p>
+        <iframe src="https://codesandbox.io/embed/timer-useref-f2030l?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="Timer useRef"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+      </section>
+  </AgendaSection>
+  <section>
+    <section>
+      <h1>Forms</h1>
+    </section>
+    <section>
+      <p><a href="https://reactjs.org/docs/forms.html">https://reactjs.org/docs/forms.html</a></p>
+      <p class="fragment">What? class NameForm extends React.Component? </p>
+      </section>
+      <section>
+          <p>Working with forms is quite different in React</p>
+          <ol>
+              <li class="fragment">We store the initial value of each field in <code>state</code></li>
+              <li class="fragment">We set the <code>value</code> of each field to it's matching <code>state</code></li>
+              <li class="fragment">We attach an <code>onChange</code> listener to each field</li>
+              <li class="fragment">Whenever the event fires, we update <code>state</code></li>
+              <li class="fragment"><code>onSubmit</code> we use state as the values (remember, we don't have direct access to the DOM)</li>
+          </ol>
+      </section>
+      <section>
+              <Code code={snippets["controlledComponentWithHooks.jsx"]} lineNumbers="4-5|7-12|27,29,36,38|41|13-19" />
+      </section>
+  </section>
+
+  <section>
+      <section>
+          <h1>Form validation w useEffect</h1>
+      </section>
+      <section>
+        <Code code={snippets["form-validation-use-effect.js"]} />
+      </section>
+  </section>
+
+    <AgendaSection header="+3/4">
+       
+    </AgendaSection>
+</SlideLayout>

@@ -1,0 +1,281 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Tree from "./components/Tree.astro";
+
+---
+
+<SlideLayout title="Git, branches">
+<section>
+    <h1><code>Git</code></h1>
+    <h2>Branches</h2>
+    <h6>jofh@kea.dk</h6>
+</section>
+<section>
+  <section>
+    <Tree />
+  </section>
+  <section>
+    <p><code>git</code> is organized into "branches"</p>
+    <p>
+      The main one is called "main" or "master", and it's the only one we've been using
+    </p>
+    <p><img data-src="/assets/t7/7.git-branches/master-branch.png" alt="" /></p>
+    
+    <p><small>You can see your current branch in the bottom left corner</small></p>
+  </section>
+  <section>
+    <h3>the idea</h3>
+    <p>
+      The idea is: whenever you wish to experiment, start on a new feature,
+      section etc
+    </p>
+    <p>you "snap a branch", which means, create a new branch</p>
+    <p>A branch is a copy of the repository at a certain point in time</p>
+    <p>Each branch has it's own commit history</p>
+  </section>
+  <section>
+    <p>You can always switch back and forth between branches</p>
+    <p>But your files will change</p>
+    <p>Nothing will be lost, it will just be on a different branch</p>
+    <p>Working on branches also prevents unnecessary "conflicts"</p>
+    <p>Once you're done, you can "merge" the branch back in to "main"</p>
+  </section>
+  <section>
+    <p><img data-src="/assets/t7/7.git-branches/git_branching.png" alt="" /></p>
+  </section>
+  <section>
+    <p>When you create a branch you tell git what branch to base it off</p>
+    <p>
+      We're gonna go with <code>main</code> always, but starting from other
+      branches is totally ok
+    </p>
+    <p>When we switch branches, we also call it "checkout"</p>
+  </section>
+  <section>
+    <h2>Let's see basic branching in action</h2>
+  </section>
+  <section>
+    <ol>
+      <li>
+        <p>This is where you manipulate branches</p>
+        <img data-src="/assets/t7/7.git-branches/master-branch.png" alt="" />
+        <p><small>(or Shift + Cmd + P and then "create new branch")</small></p>
+      </li>
+      <li>
+        <p>Create a new branch</p>
+        <img data-src="/assets/t7/7.git-branches/create-branch.png" alt="" />
+      </li>
+    </ol>
+  </section>
+  <section>
+    <ol start="3">
+      <li>
+        <p>Give it a unique name, without spaces</p>
+        <img data-src="/assets/t7/7.git-branches/name-your-branch.png" alt="" />
+      </li>
+    </ol>
+  </section>
+  <section>
+    <ol start="4">
+      <li>
+        <p>It has now switched to that branch</p>
+        <img data-src="/assets/t7/7.git-branches/branching-see-it.png" alt="" />
+      </li>
+      <li>
+        <p>And you can switch back and forth between branches</p>
+        <img data-src="/assets/t7/7.git-branches/checkout-branch.png" alt="" />
+      </li>
+    </ol>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>General Thoughts</h1>
+    <h3>Part 2</h3>
+  </section>
+  <section class="small">
+    <h3>Daily flow</h3>
+    <ol>
+      <li>Setup the project (as shown earlier)</li>
+      <li>Find a "feature" you wanna work on</li>
+      <li>Create a new <code>branch</code> for that feature</li>
+      <li><code>checkout</code> the feature <code>branch</code></li>
+      <li>
+        <ol>
+          <li>code</li>
+          <li>add</li>
+          <li>commit</li>
+          <li>push</li>
+          <li>go to 5.1</li>
+        </ol>
+      </li>
+      <li>
+        <code>merge</code> the feature <code>branch</code> into
+        <code>main</code>
+      </li>
+      <li>go to 2</li>
+    </ol>
+  </section>
+
+  <section>
+    <p>Whiteboard</p>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Merging</h1>
+  </section>
+  <section>
+    <h2>So many ways</h2>
+    <p>But two main places we can do it</p>
+    <ol>
+      <li>Merging our own local branches</li>
+      <li><del>Merging two branches through github</del></li>
+    </ol>
+    <p>If we've done as we're supposed to do, there should be no problems</p>
+  </section>
+  <section>
+    <p>Let's try it</p>
+  </section>
+  <section>
+    <ol>
+      <li>
+        <p>
+          Checkout the branch you want to merge in to (usually
+          <code>main</code>)
+        </p>
+      </li>
+      <li>
+        <p>press <kbd>Cmd + Shift + P</kbd> to open the Command Palette and find "Git: Merge Branch..."
+        </p>
+        <p>Select it</p>
+      </li>
+      <li>The select the branch that should go in to main<br>
+      <img data-src="/assets/t7/7.git-branches/select-branch-to-merge-from.png" /> 
+
+      </li>
+    </ol>
+  </section>
+  <section>
+    <ol start="3">
+      <li>
+        We might get asked a question here, just pick "merge"
+      </li>
+    </ol>
+  </section>
+  <section>
+    <ol start="4">
+      <li>
+        Unless we messed up, the <code>main</code> branch is now identical to
+        the branch we merged in
+      </li>
+    </ol>
+  </section>
+</section>
+<section>
+  <h1>Exercise</h1>
+  <p>Fronter: 1. Branches</p>
+</section>
+<section>
+  <section><h1>"Rules"</h1></section>
+  <section>
+    <ol>
+      <li>Implement one feature per branch</li>
+      <li class="fragment">Do "one thing" per commit</li>
+      <li class="fragment">
+        Never work directly on main
+      </li>
+      <li class="fragment">
+        Make you commit messages meaningfull<br />
+        <small>("changed stuff" is bad, "add the modal" is good)</small>
+      </li>
+      <li class="fragment">
+        Have a standard for commit messages<br />
+        <small
+          >(usually, imagine it says "this commit will" in front of the
+          message)</small
+        >
+      </li>
+      <li class="fragment">
+        You can always ignore a branch, use this to test crazy stuff out without
+        destroying anything
+      </li>
+    </ol>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>Dictionary</h1>
+  </section>
+  <section>
+    <dl>
+      <dt>Add</dt>
+      <dd class="fragment">
+        Mark the file to be part of a commit (in brackets, that's checking off
+        the file)
+      </dd>
+      <dt>Branch</dt>
+      <dd class="fragment">
+        Create a new timeline for your project. Can be discarded / ignored if
+        not needed
+      </dd>
+      <dt>Checkout (of a branch)</dt>
+      <dd class="fragment">Jump to a different branch</dd>
+
+      <dt>Commit</dt>
+      <dd class="fragment">A save game</dd>
+    </dl>
+  </section>
+  <section>
+    <dl>
+      <dt>Feature</dt>
+      <dd class="fragment">
+        Not a git word, more of a concept. An isolated part of the app that
+        deserves it's own branch(es)
+      </dd>
+      <dt>git</dt>
+      <dd class="fragment">The version control system</dd>
+      <dt>github</dt>
+      <dd class="fragment">
+        A website, where we can store/backup/share our code
+      </dd>
+      <dt>Init</dt>
+      <dd class="fragment">
+        Initialize the repository (done once)
+      </dd>
+    </dl>
+  </section>
+  <section>
+    <dl>
+      <dt>main</dt>
+      <dd class="fragment">
+        The main branch in our repository
+      </dd>
+      <dt>Merge</dt>
+      <dd class="fragment">
+        Merge two branches together into one
+      </dd>
+      <dt>Push</dt>
+      <dd class="fragment">Put your commits (and code) to the remote</dd>
+      <dt>Remote</dt>
+      <dd class="fragment">
+        An external place where our code is stored, often GitHub
+      </dd>
+      <dt>Repository</dt>
+      <dd class="fragment">A folder, monitored by git</dd>
+    </dl>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Let's try</h1>
+  </section>
+  <section>
+    <p>Depending on what I just did</p>
+    <p>I just want to make sure you've seen it :-)</p>
+  </section>
+</section>
+</SlideLayout>

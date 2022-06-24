@@ -1,0 +1,105 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+
+import AgendaSection from "../../../components/AgendaSection.astro"
+
+import Explainer from "../../../components/Explainer.svelte"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("digital-design/2.setup",[
+    "settings.json",
+    "install.sh",
+    "App.svelte"
+])
+
+---
+
+<SlideLayout title="Setup" lang="da">
+    <AgendaSection header="Svelte" h2="Setup" p="jofh@kea.dk">
+        
+        <Goal>
+        <ol>
+            <li>Vide hvordan man starter et nyt projekt</li>
+            <li>Installere plugins til VS Code</li>
+        </ol>
+        </Goal>
+    
+    </AgendaSection>
+    <AgendaSection header="Plugins">
+        <section>
+            <h3>VS Code</h3>
+            <ol>
+                <li>Prettier - Code formatter (burde i have)</li>   
+            </ol>
+            
+        </section>
+        <section>
+            <h3>VS Code</h3>
+            <ol start="2">
+                <li>Svelte for VS Code</li>
+            </ol>
+            <p>Plugin'et skal konfigureres</p>
+            <ol>
+                <li>Åbn settings (<kbd>Cmd + Shift + P)</kbd></li>
+                <li>Find: <code>Preferences: Open Settings (JSON)</code></li>
+                <li>Tilføj følgende:</li>
+            </ol>
+            <Code code={snippets["settings.json"]} />
+        </section>
+        <section>
+             <h3>Browseren</h3>
+            <ol>
+                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/svelte-devtools/">Firefox</a></li>
+                <li><a href="https://chrome.google.com/webstore/detail/svelte-devtools/ckolcbmkjpjmangdbmnkpjigpkddpogn">Chrome</a></li>
+            </ol>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Lyn-Øvelse" p="Instalér de to plugins" />
+    <AgendaSection header="Start et nyt projekt">
+        <section>
+            <p><a href="https://svelte.dev/">https://svelte.dev/</a></p>
+            <Code code={snippets["install.sh"]}  lineNumbers="1-3|1|2|3"/>
+            <p class="fragment">Det vil lave en ny folder (<code>my-svelte-project</code>) og installere de nødvendige ting</p>
+            <p class="fragment">du kan selvfølgelig kalde dit projekt noget andet</p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Start / Stop">
+        <section>
+            <p>Du starter din server med <code>npm run dev</code></p>
+            <p>Og stopper den ved at trykke <kbd>ctrl + c</kbd></p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Øvelse">
+        <section>
+            <ol>
+                <li>Start et nyt projekt, åbn det i VS Code og kig rundt</li>
+                <li>Hvor er <code>&lt;html&gt;</code> og <code>&lt;head&gt;</code>?</li>
+                <li>Hvor er dit stylesheet?</li>
+                <li>Ret lidt i <code>App.svelte</code> og tjek at den opdaterer</li>
+                <li>Tilføj følgende til <code>App.svelte</code> for at få en lille idé om hvad svelte kan</li>
+            </ol>
+            <Code code={snippets["App.svelte"]} />
+        </section>
+    </AgendaSection>
+    <section>
+        <h3>folder structure</h3>
+        <dl>
+            <dt><code>public/</code></dt>
+            <dd>Her lægger vi al css, billeder, fonte etc<br><code>global.css</code> er vores overordnede stylesheet</dd>
+            <dt><code>src/</code></dt>
+            <dd>her lægger vi vores Svelte components</dd>
+        </dl>
+    </section>
+    <section>
+        <p>Lad os lige prøve</p>
+        <ol>
+            <li>Starte et projekt</li>
+            <li>Bruge et billede</li>
+        </ol>
+    </section>
+    <section><h1>Lad os kigge på vores mål</h1></section>
+</SlideLayout>

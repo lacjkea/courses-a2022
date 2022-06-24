@@ -1,0 +1,157 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import SlideControls from "../../../components/SlideControls.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("t7/1.introduction",[
+    "jens.js",
+    "jonas.js",
+    "stine.js",
+    "lasse.js",
+    
+])
+
+---
+
+<SlideLayout title="Introduction">
+<section>
+  <h1>User Interfaces</h1>
+  <h2>S2022</h2>
+</section>
+
+<section>
+  <section>
+    <SlideControls />
+  </section>
+
+  <section>
+    <h1>Awesome, right?</h1>
+  </section>
+</section>
+
+<section>
+  <h3><code>about</code></h3>
+  <ul>
+    <li><code>about.tutors</code></li>
+    <li><code>about.theTheme</code></li>
+    <li><code>about.theModules</code></li>
+    <li><code>about.us</code></li>
+  </ul>
+</section>
+
+<section>
+  <h3><code>about.tutors</code></h3>
+  <p>The Tutors are available every Wednesday, 9-16</p>
+  <ul>
+    <li>At GBG A360</li>
+    <li>and on <a
+      href="https://teams.microsoft.com/l/team/19%3abea3533f661642c687ae08dffb4d3c5d%40thread.tacv2/conversations?groupId=8f66e5c0-632d-454b-9672-d4269568f2c0&tenantId=d10c3c6e-c228-4944-8b6a-6067c6afe3c9">Teams</a>
+    </li>
+  </ul>
+  <p>Could you please check if it works?</p>
+</section>
+
+<section>
+  <h3><code>about.theTheme</code></h3>
+  <ol>
+    <li>6 weeks</li>
+    <li><blockquote>This theme is about creating dynamic, user centered web sites. Where you have previously made static web pages, this time, the content will be fetched from a database. You need to develop a web solution that can display content that varies without changing the HTML file; a dynamic web solution in other words. </blockquote></li>
+  </ol>
+</section>
+
+<section>
+  <h3><code>about.theModules</code></h3>
+  <h4>The first two weeks (module 1)</h4>
+  <ul>
+    <li>JavaScript &amp; API's</li>
+    <li>Mostly individual</li>
+  </ul>
+  <blockquote>
+    Learn about JavaScript, git and data structures through an example case
+  </blockquote>
+  <p class="fragment">
+    <small>(Actually, we're going to build a site with 44.000 products/pages)</small>
+  </p>
+</section>
+<section>
+  <h3><code>about.theModules</code></h3>
+  <h4>The third week (module 2)</h4>
+  <ul>
+    <li>Try out you new found skills in a small group project</li>
+  </ul>
+  <blockquote>Practise working in groups</blockquote>
+</section>
+<section>
+  <h3><code>about.theModules</code></h3>
+  <h4>Week 4-5 (module 3)</h4>
+  <ul>
+    <li>Design research</li>
+    <li>Design Programs</li>
+  </ul>
+</section>
+<section>
+  <h3><code>about.theModules</code></h3>
+  <h4>Week 6 (module 4)</h4>
+  <ul>
+    <li>Client case, front end re-design</li>
+  </ul>
+</section>
+<section>
+  <section>
+    <h1><code>about.us</code></h1>
+  </section>
+  <section>
+    <h3><code>about.jens</code></h3>
+    <Code code={snippets["jens.js"]} language="js"/>
+  </section>
+
+  <section>
+    <h3><code>about.lasse</code></h3>
+    <Code code={snippets["lasse.js"]} language="js"/>
+  </section>
+  <section>
+    <h3><code>about.stine</code></h3>
+    <Code code={snippets["stine.js"]} language="js"/>
+  </section>
+  <section>
+    <h3><code>about.jonas</code></h3>
+    <Code code={snippets["jonas.js"]} language="js"/>
+  </section>
+</section>
+
+<section>
+  <h2>
+    <a
+      href="https://kea-fronter.itslearning.com/ContentArea/ContentArea.aspx?LocationID=4620&LocationType=1">Theme Description</a>
+  </h2>
+</section>
+<section>
+  <section>
+    <h2>Introduction to the assignment</h2>
+  </section>
+  <section>
+    <h2>The elephant in the room</h2>
+    <p class="fragment"><code>JS</code></p>
+    <p class="fragment">How bad is it?</p>
+    <p class="fragment"><var>Git</var></p>
+    <p class="fragment">How bad is it?</p>
+  </section>
+  <section>
+    <p>Let's look at the</p>
+    <ol>
+      <li>Install day (fronter)<br />(including, what is it)</li>
+      <li>JS Recap (fronter)</li>
+      <li>Static Product Assignment (fronter)</li>
+      <li>
+        <a href="https://kea-alt-del.dk/t7/example-site/">Example site</a>
+      </li>
+      <li>
+        The database (<a href="https://kea-alt-del.dk/t7/api/sample">Sample</a>)
+      </li>
+      <li>and talk about filters/categories</li>
+      
+    </ol>
+  </section>
+</section>
+</SlideLayout>

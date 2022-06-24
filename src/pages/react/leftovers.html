@@ -1,0 +1,700 @@
+
+  
+  
+  
+  <section>
+    <section>
+      <h1>A little styling</h1>
+    </section>
+    <section>
+      <p>A lot of options exists</p>
+      <ul>
+        <li>Vanilla CSS</li>
+        <li>Inline CSS</li>
+        <li><del>CSS-in-JS</del></li>
+        <li><del>SASS</del></li>
+        <li>
+          <del>CSS Modules</del>
+          <a
+            href="https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/"
+            >Read More</a
+          >
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>Vanilla CSS</h3>
+      <p>
+        In React we do not write <code>class</code>, it's <code>className</code>
+      </p>
+    </section>
+    <section>
+      <h3>Inline Styles</h3>
+      <pre
+        class="stretch"
+      ><code class="js" data-source="2021/styling-inline.js"></code></pre>
+    </section>
+  </section>
+  
+  
+  
+  <section>
+    <section>
+      <h1>State</h1>
+    </section>
+    <section>
+      <ol>
+        <li>State is "the state of our application at any given point"</li>
+        <li class="fragment">
+          or some smaller part of our app, like
+          <ul>
+            <li class="fragment">
+              <code class="js">let menuOpen = false;</code>
+            </li>
+            <li class="fragment">
+              <code class="js">let userSignedIn = true;</code>
+            </li>
+            <li class="fragment"><code class="js">let blogPosts=[];</code></li>
+            <li class="fragment"><code class="js">let valueInForm=42;</code></li>
+          </ul>
+        </li>
+        <li class="fragment">
+          So we can think of it as variables that describe the "state of our UI"
+        </li>
+        <li class="fragment">
+          <code>props</code> is a special kind of state that is inherited from a
+          parent
+        </li>
+      </ol>
+    </section>
+    <section>
+      <h3>The React promise</h3>
+      <ol>
+        <li>
+          Whenever state changes, react will "re-render" anything dependent on
+          that state
+        </li>
+        <li>
+          Whenever props change, react will "re-render" anything dependent on
+          those props
+        </li>
+      </ol>
+    </section>
+    <section>
+      <ul>
+        <li>
+          In practice, that means, that, whenever we change state, all components,
+          that uses that state, either directly, or through props, will update
+          automatically!!!
+        </li>
+        <li class="fragment">
+          Did the user log out? Just change a variable, and all components that
+          knows about the user will update as needed
+        </li>
+        <li class="fragment">
+          Did we remove something from an array? Just update state
+        </li>
+      </ul>
+    </section>
+    <section class="alternate">
+      <p><code>props</code> are passed down from the parent</p>
+      <p><code>state</code> lives inside a component</p>
+      <p>
+        When either of these change, the affected components are "re-rendered"
+      </p>
+      <p>(meaning the function runs again)</p>
+    </section>
+    <section>
+      <h4>a "stateful" component</h4>
+      <p>Stateful components consists of a few things</p>
+      <ol>
+        <li>
+          We import <code>useState</code><br />
+          <pre><code class="js">import {useState} from "react";</code></pre>
+        </li>
+        <li>
+          <code>useState</code> is a function that, once called returns an array
+          with two things, a state variable, and an "updater function"
+        </li>
+        <li>
+          When calling <code>useState</code> we pass the initial value for our
+          state variable<br />
+          <pre><code class="js">const [myVar, myUpdater] = useState(initialValue)</code></pre>
+        </li>
+      </ol>
+    </section>
+    <section>
+      <ol start="4">
+        <li>
+          We use the "updater function" to modify state to force a re-render
+        </li>
+        <li>
+          We use the "state variable" in our UI, as a condition, or simply data
+        </li>
+      </ol>
+    </section>
+    <section>
+      <p>
+        Remember, every time "state" or "props" change, the UI is updated. So all
+        we have to do is update state......
+      </p>
+      <p>It's quite strange initially, but SO powerful once you get it</p>
+    </section>
+    <section>
+      <h3><code>useState, #1</code></h3>
+      <h4>Initial setup</h4>
+      <pre><code class="js" data-source="2021/stateful-component-1.js"></code></pre>
+      <p>And we can use the <code>count</code> variable</p>
+      <pre><code class="js" data-source="2021/stateful-component-2.js"></code></pre>
+    </section>
+    <section>
+      <h3><code>useState, #2</code></h3>
+      <ul>
+        <li>
+          But the power comes from the "magic of React"
+          <ol>
+            <li>When state changes, React updates (sorry)</li>
+            <li><code>useState</code> gives us an updater function</li>
+            <li>In our case, we called it <code>setCount()</code></li>
+          </ol>
+        </li>
+        <li>
+          Calling our function will modify state, thereby forcing a re-render
+        </li>
+      </ul>
+    </section>
+    <section>
+        <h3><code>useState, #3</code></h3>
+        <ul>
+            <li>In <code>useState</code> we pass a function that:
+              <ul>
+                <li>receives the current state</li>
+                <li>Must return the new state</li>
+              </ul>
+          </li>
+          <pre><code class="js" data-source="2021/stateful-component-3.js"></code></pre> 
+    </section>
+    <section>
+        <h3>"Rules of Hooks"</h3>
+        <p><a href="https://reactjs.org/docs/hooks-rules.html">https://reactjs.org/docs/hooks-rules.html</a></p>
+        <blockquote>Don’t call Hooks inside loops, conditions, or nested functions</blockquote>
+        <p>In general, only call <code>useState</code> in callbacks (events / useEffect)</p>
+    </section>
+    <section>
+      <h3><code>useState, #5</code></h3>
+      <pre><code class="js" data-source="2021/stateful-component-4.js"></code></pre>
+    </section>
+    <section>Let's look at Dev Tools</section>
+  </section>
+  
+  <section>
+    <section>
+      <h1>Exercise #8</h1>
+      <iframe
+        src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=600"
+        width="300"
+        height="400"
+      ></iframe>
+    </section>
+    <section>
+      <ol>
+        <li>
+          In <code>Product</code> component, delete the button and the
+          eventhandler
+        </li>
+        <li>
+          Make the component "stateful"<br />
+  
+          <pre><code class="js">import {useState} from "react"</code></pre>
+        </li>
+        <li>
+          Create a new state variable called <code>amount</code> and a "state
+          updater function" called setAmount
+          <pre><code class="js">const [stateVariable, updaterFunction] = useState(initial)</code></pre>
+        </li>
+        <li>Show the state variable somewhere</li>
+        <li>Add a button the increments the variable</li>
+        <li>Add a button the decrements the variable</li>
+      </ol>
+    </section>
+  </section>
+  
+  <section>
+    <section>
+      <h1><code>map</code>'ing</h1>
+      <h2>Rendering Arrays</h2>
+    </section>
+  
+    <section>
+      <ul>
+        <li>We have an array of data</li>
+        <li>We want to render components based on that data</li>
+        <li>
+          React already knows what to do with an array of components / DOM
+          elements
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>Baby step #1</h3>
+      <pre><code class="js" data-source="2021/rendering-arrays-1.js"></code></pre>
+    </section>
+    <section>
+      <h3>Baby step #2</h3>
+      <p>We can ++ it, and use components</p>
+      <pre><code class="js" data-source="2021/rendering-arrays-2.js"></code></pre>
+    </section>
+    <section>
+      <ul>
+        <li>But mostly, we have a "simple" array with data</li>
+        <li><code>.map</code> to the rescue</li>
+        <li>Remember, map works on an array, and returns a new array for us</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Baby step #3</h3>
+      <p>We can <code>.map</code> it, and use components</p>
+      <pre><code class="js" data-source="2021/rendering-arrays-3.js"></code></pre>
+    </section>
+  </section>
+  
+  <section>
+    <section>
+      <h1>Exercise #10</h1>
+      <p><small>This is the big one</small></p>
+      <iframe
+        src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=900"
+        width="300"
+        height="400"
+      ></iframe>
+    </section>
+    <section>
+      <ol>
+        <li>In <code>App</code> remove the variable <code>product</code></li>
+        <li>
+          Add a new variable called <code>products</code> that contains
+          <a target="_blank" href="snippets/exercises/products.js">this data</a>
+        </li>
+        <li>Pass the data down to <code>ProductList</code></li>
+        <li>
+          In <code>ProductList</code> remove the <code>&lt;Product /></code>'s
+        </li>
+        <li>
+          map through the <code>productlist</code> and return a
+          <code>&lt;Product /></code> for each entry
+        </li>
+        <li>Use the new array where you had your <code>&lt;Product /></code></li>
+      </ol>
+    </section>
+  </section>
+  
+  
+  
+  <section>
+    <section>
+      <h1><code>useState</code> with arrays</h1>
+      <h2>states gone wild</h2>
+    </section>
+    <section>
+      <ul>
+        <li>At a certain point (not yet) React becomes easy</li>
+        <li>Certain things are still hard</li>
+        <li>But breaking a design into components is easy enough</li>
+        <li>
+          But our state has been pretty simple so far, that's not always the case
+        </li>
+        <li><a href="https://reactjs.org/docs/hooks-reference.html#usestate">https://reactjs.org/docs/hooks-reference.html#usestate</a></li>    
+      </ul>
+    </section>
+    <section>
+      <p>Repeat after me</p>
+      <h2 class="fragment">I must never modify state directly</h2>
+      <h3 class="fragment">I must never modify state directly</h3>
+      <h4 class="fragment">I must never modify state directly</h4>
+      <p class="fragment">I must never modify state directly</p>
+      <p class="fragment">Always use the "updater" function</p>
+    </section>
+    <section>
+      <p>are these <span class="fragment highlight-green">Good</span> or <span class="fragment highlight-red">Bad</span>?</p>
+      <ul>
+        <li>
+          <code>.push</code><span class="fragment" style="color:#ff2c2d;"> is BAD, it modifies the original</span>
+        </li>
+        <li><code>.concat</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy</span></li>
+        <li>
+          <code>[...orig, newThing]</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy
+        </span></li>
+        <li>
+          <code>{...orig, newThing}</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy
+        </span></li>
+        <li>
+          <code>.splice</code><span class="fragment" style="color:#ff2c2d;"> is BAD, it modifies the original
+        </span></li>
+        <li><code>.slice</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy</span></li>
+        <li>
+          <code>.sort</code><span class="fragment" style="color:#ff2c2d;"> is BAD, it modifies the original
+        </span></li>
+        <li><code>.filter</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy</span></li>
+        <li>
+          <code>myState[x]="Stuff"</code><span class="fragment" style="color:#ff2c2d;"> is BAD, it modifies the original
+        </span></li>
+        <li><code>.map</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy</span></li>
+      </ul>
+    </section>
+    <section>
+      <p>Adding an item to a state-array</p>
+      <pre
+        class="stretch"
+      ><code class="js" data-source="2021/concat-state.js"></code></pre>
+    </section>
+  </section>
+  
+  <section>
+    <section>
+      <h1>Exercise #12</h1>
+      <p>The magic one</p>
+      <iframe
+        src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=900"
+        width="300"
+        height="400"
+      ></iframe>
+    </section>
+    <section>
+      <ol>
+        <li>make <code>App</code> stateful</li>
+        <li>Change the <code>products</code> so it is now "state"</li>
+        <li>
+          Create a button in App.js that updates (add a new product) state as in
+          <a href="snippets/2021/concat-state.js" target="_blank"
+            >the previous example</a
+          >
+        </li>
+        <li>Modify the data so it looks like a product</li>
+        <li>Be amazed || frustrated</li>
+      </ol>
+    </section>
+  </section>
+  
+  <section>
+    <section>
+      <h1>Uni-directional data flow</h1>
+    </section>
+    <section>
+      <h3>Uni-directional data flow</h3>
+      <ul>
+        <li>
+          <strong>Data is sent down the tree</strong>, as props <br />(Parent =>
+          Child)
+        </li>
+        <li class="fragment">
+          <strong>Data can be sent back up</strong> <br />(Child => Parent)
+        </li>
+        <li class="fragment">
+          <strong>Data can NOT be sent sideways</strong> <br /><del
+            >(Sibling => Sibling)</del
+          >
+        </li>
+        <li class="fragment">
+          <strong
+            >In that case we need to go up, and then down to the sibling
+            component</strong
+          >
+          <br />(Child => Parent => Child)
+        </li>
+      </ul>
+    </section>
+    <section>
+      <iframe
+        style="background: white; height: 300px"
+        width="100%"
+        heigth="100%"
+        data-src="samples/shop.html"
+      ></iframe>
+      <ul>
+        <li>Where are the siblings?</li>
+        <li>Where are the parent/child relations</li>
+        <li>What's the flow from App to Product</li>
+        <li>and from Product to MyBasket</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Placing state</h3>
+      <ol>
+        <li>Each piece of "state" should be owned by one component</li>
+        <li>
+          A single component above all the components that need the state in the
+          hierarchy
+        </li>
+      </ol>
+      <p>So who would need to know if the Nav is open or closed?</p>
+      <p>Which components should know about the tasks?</p>
+    </section>
+    <section>
+      <p><a href="https://twitter.com/kentcdodds/status/1176546888859844608/photo/1">Where do you put state then?</a></p>
+  </section>
+  </section>
+  
+  <section>
+    <section>
+      <h1>Passing callbacks</h1>
+      <h2>going up the chain</h2>
+    </section>
+    <section>
+      <p>We've seen how to pass <code>props</code> from parent to child</p>
+      <p>
+        If we want to pass events/data from a child to a parent, we need to use
+        <code>callbacks</code>
+      </p>
+    </section>
+    <section>
+      <pre><code class="js" data-source="2021/passing-events.js"></code></pre>
+    </section>
+  </section>
+  <section>
+      <section>
+        <h1>Exercise #13</h1>
+        <p>The repetetive one</p>
+      </section>
+      <section class="small">
+          <div class="g">
+        <ol class="gs8">
+          <li>In <code>App</code> make <code>basket</code> stateful</li>
+          <li>Create a function that adds an item (whatever is passed) to the basket (e.g. setBasket)</li>
+          <li>Pass the function as a prop down to <code>Product</code></li>
+          <li>In <code>Product</code> add a new button (Buy/Add to basket)</li>
+          <li>Hook up an <code>onClick</code> listener to the button, that when called calls the callback passed down from <code>App</code></li>
+          <li>Pass relevant info from the product to the basket (id, price, productdisplayname)</li>
+        </ol>
+        <iframe
+        class="gs4"
+          src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=900"
+          width="300"
+          height="400"
+        ></iframe>
+        </div>
+      </section>
+    </section>
+  <section>
+    <section>
+      <h1><code>useEffect()</code></h1>
+      <p>...and how to avoid an infinite loop</p>
+    </section>
+    <section>
+      <h3>The problem</h3>
+      <ol>
+        <li>We would like to fetch some data, right?</li>
+        <li>That data should go in state, so we can utilize React properly</li>
+        <li>
+          But what happens when state is updated? React re-renders, meaning, we go
+          back to 1, which in turn...
+        </li>
+        <li>So now we have an infinite loop</li>
+      </ol>
+    </section>
+    <section>
+      <h3>The Solution</h3>
+      <ol>
+        <li>We need to tell React to do a thing ONCE</li>
+        <li>That's what the "hook" <code>useEffect</code> is for</li>
+        <li>
+          <a href="https://reactjs.org/docs/hooks-effect.html"
+            >https://reactjs.org/docs/hooks-effect.html</a
+          >
+        </li>
+      </ol>
+      <blockquote>
+        Data fetching, setting up a subscription, and manually changing the DOM in
+        React components are all examples of side effects. Whether or not you’re
+        used to calling these operations “side effects” (or just “effects”), ...
+      </blockquote>
+    </section>
+    <section>
+      <h3>The Syntax</h3>
+      <pre class="stretch"><code class="js" data-source="2021/useEffect-syntax-basic.js"></code></pre>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        id="useEffectBasic"
+        data-fragment-index="1"
+        class="fragment explanation"
+        width="1000"
+        height="600"
+        style="top: 0"
+      >
+        <defs>
+          <marker
+            id="arrow"
+            markerWidth="13"
+            markerHeight="13"
+            refx="2"
+            refy="6"
+            orient="auto"
+          >
+            <path d="M2,2 L2,11 L10,6 L2,2" style="fill: red" />
+          </marker>
+        </defs>
+        <g class="fragment" data-fragment-index="1">
+          <text x="70" y="40">We import useEffect</text>
+          <path d="M190,50 L220,80" />
+        </g>
+        <g class="fragment">
+          <text x="70" y="300">The function to run</text>
+          <path d="M160,280 L230,220" />
+        </g>
+        <g class="fragment">
+          <text x="370" y="290">
+            Every time any avariable in this array changes
+          </text>
+          <path d="M460,270 L400,220" />
+        </g>
+      </svg>
+      <p class="fragment" style="transform: translateY(200px)">
+        Which means, we often use an empty <code>dependencies</code> array
+      </p>
+    </section>
+    <section>
+      <h3>Full example</h3>
+      <pre
+        class="stretch"
+      ><code class="js" data-source="2021/useEffect-syntax-full.js"></code></pre>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        id="useEffectFull"
+        data-fragment-index="1"
+        class="fragment explanation"
+        width="1000"
+        height="600"
+        style="top: 0"
+      >
+        <defs>
+          <marker
+            id="arrow"
+            markerWidth="13"
+            markerHeight="13"
+            refx="2"
+            refy="6"
+            orient="auto"
+          >
+            <path d="M2,2 L2,11 L10,6 L2,2" style="fill: red" />
+          </marker>
+        </defs>
+        <g class="fragment" data-fragment-index="1">
+          <text x="629" y="227">We create a state, and set it to []</text>
+          <path d="M623,220 L582,205" />
+        </g>
+        <g class="fragment">
+          <text x="505" y="269">use an arrow function for the callback</text>
+          <path d="M495,263 L250,240" />
+        </g>
+        <g class="fragment">
+          <text x="315" y="400">
+            set state, which will trigger the render again
+          </text>
+          <path d="M310,394 L200,360" />
+        </g>
+        <g class="fragment">
+          <text x="480" y="500">This one is automatic</text>
+          <path d="M470,500 L367,487" />
+        </g>
+      </svg>
+    </section>
+  </section>
+  <section>
+      <section>
+      <h1>Exercise #14</h1>
+      <p>Data Fetching</p>
+    </section>
+    <section class="small">
+        <div class="g">
+      <ol class="gs8">
+        <li>In <code>App</code> set up you code so it fetches the products from this endpoint https://kea-alt-del.dk/t7/api/products</li>
+        <li>Remember to use <code>useEffect</code></li>
+        <li>pass the data you receive to <code>setProducts</code> </li>
+      </ol>
+      <iframe
+      class="gs4"
+        src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=900"
+        width="300"
+        height="400"
+      ></iframe>
+      </div>
+    </section>
+  </section>
+  <section>
+    <section>
+      <h1>Conditional Rendering</h1>
+    </section>
+    <section>
+      <ul>
+        <li>
+          We (I) call it "conditional rendering" when we render stuff based on
+          conditions
+        </li>
+        <li>We have a few options, let's highlight three common patterns</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Single return</h3>
+      <p>Remember what <code>return</code> does in a function?</p>
+      <p>
+        It, surprise, returns something, AND stops the function from proceeding
+      </p>
+      <p>So, once we return, nothing else happens, we can use that</p>
+      <pre><code class="js" data-source="2021/conditional-rendering-single-return.js"></code></pre>
+    </section>
+    <section>
+      <h3>Short Circuit Evaluation</h3>
+      <ul>
+        <li>
+          If statements are read from left to right, the moment JS figures out
+          that something can not be true, it stops
+        </li>
+        <li>
+          React won't render <code>null</code>, <code>undefined</code> and
+          <code>[]</code> (empty arrays)
+        </li>
+      </ul>
+      <pre><code class="js" data-source="2021/conditional-rendering-short-circuit.js"></code></pre>
+    </section>
+    <section>
+      <h3>Ternary operator</h3>
+      <pre><code class="js">const result = condition ? ifTrue : ifFalse</code></pre>
+      <p>The ternary operator is commonly used for minor stuff</p>
+      <pre><code class="js" data-source="2021/conditional-rendering-ternary.js"></code></pre>
+    </section>
+  </section>
+  
+  <section>
+      <section>
+      <h1>Exercise #15</h1>
+      <p>Conditional Rendering</p>
+    </section>
+    <section class="small">
+        <div class="g">
+      <ol class="gs8">
+        <li>Just play with it, where do we need it?</li>
+        <li>Can you hide the form if the basket is empty?</li>
+      </ol>
+      <iframe
+      class="gs4"
+        src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=900"
+        width="300"
+        height="400"
+      ></iframe>
+      </div>
+    </section>
+  </section>
+ 
+  
+  
+
+  <section>
+      <h1>Left-Overs</h1>
+      <ul>
+          <li>Post to a database (RestDB?)</li>
+          <li>Clear state</li>
+          <li>Pagination</li>
+          <li>Design</li>
+          <li>The minus button</li>
+          <li>A million other things</li>
+      </ul>
+  </section>

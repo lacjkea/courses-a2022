@@ -1,0 +1,19 @@
+/* padding based off a single variable */
+.card {
+  padding: calc(var(--base-padding) / 2);
+}
+
+/* fluid typography */
+html {
+  font-size: 16px;
+}
+@media screen and (min-width: 320px) {
+  html {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
+}
+@media screen and (min-width: 1000px) {
+  html {
+    font-size: 22px;
+  }
+}

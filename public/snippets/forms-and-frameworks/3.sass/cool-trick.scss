@@ -1,0 +1,13 @@
+@mixin bp-large {
+  @media only screen and (min-width: 1140px) {
+    @content;
+  }
+}
+nav {
+  a {
+    color: red;
+    @include bp-large {
+      color: black;
+    }
+  }
+}

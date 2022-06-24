@@ -1,0 +1,1 @@
+users.forEach(console.log);

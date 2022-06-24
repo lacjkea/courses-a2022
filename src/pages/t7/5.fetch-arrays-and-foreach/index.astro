@@ -1,0 +1,433 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+const snippets = await codeFetcher("t7/5.fetch-arrays-and-foreach",[
+    "full-fetch.js",
+    "fetches6.js",
+    "callbacks-simple.js",
+    "callbacks-simple-2.js",
+    "callbacks-simple-3.js",
+    "callbacks-simple-4.js",
+    "callbacks-simple-5.js",
+    "arrays-intro.js",
+    "array-objects.js",
+    "arrays-zero-index.js",
+    "arrays-foreach.js",
+    "arrays-foreach2.js",
+    "array-foreach-template.js",
+    "fetch-in-steps-part-1.js",
+    "fetch-in-steps-part-2.js",
+    "fetch-in-steps-part-3.js",
+    "fetch-in-steps-part-4.js",
+    "fetch-in-steps-part-5.js",
+    "fetch-in-steps-part-6.js",
+    "fetch-in-steps-part-7.js",
+])
+
+---
+
+<SlideLayout title="Fetch, Arrays and forEach">
+<section>
+  
+    <h1>Arrays &amp; forEach</h1>
+    <h3>jofh@kea.dk</h3>
+</section>
+
+<section>
+  <Goal>
+    <ol>
+      <li>A basic Understanding of what an API is</li>
+      <li>A basic Understanding of what JSON is</li>
+      <li>Understand the need for <code>fetch</code></li>
+      <li>and knowing what to change in the fetch-code</li>
+      <li>Know what arrays are</li>
+      <li>Experience playing with arrays</li>
+    </ol>
+  </Goal>
+</section>
+<section>
+  <h2>Agenda</h2>
+  <ul>
+        <li>Introduction to API's</li>
+        <li>JSON</li>
+        <li>Exercise: Superhero info</li>
+        <li>links in ressources</li>
+        <li>AJAX</li>
+        <li>The Product API</li>
+        <li>Making our product site dynamic</li>
+        <li>JSON & the &lt;template&gt;</li>
+        <li>arrays & forEach</li>
+        <li>Exercise: Superhero list</li>
+  </ul>
+</section>
+
+
+<section>
+    <section>
+        <h1><small>Introduction to API's</small></h1>
+    </section>
+    <section>
+        <h2>Application Programming Interfaces</h2>
+    </section>
+    <section>
+        <blockquote>
+        <p>In computer programming, an application programming interface (API) is a set of subroutine definitions, communication protocols, and tools for building software. <span class="fragment highlight-blue">In general terms, it is a set of clearly defined methods of communication among various components.</span> A good API makes it easier to develop a computer program by providing all the building blocks, which are then put together by the programmer. </p>
+        </blockquote>
+        <cite><a href="https://en.wikipedia.org/wiki/Application_programming_interface">https://en.wikipedia.org/wiki/Application_programming_interface</a></cite>
+    </section>
+    <section>
+        <h3>In plainer english</h3>
+        <ul>
+            <li>It's a service, someone built we can interact with</li>
+            <li>Commonly, it's a database system</li>
+            <li>Or some code others built, that we can use</li>
+            <li>It's also what they call a lot of browser features</li>
+        </ul>
+        <p><a href="https://developer.mozilla.org/en-US/docs/Web/API">https://developer.mozilla.org/en-US/docs/Web/API</a></p>
+    </section>
+    <section>
+        <h3>In programming</h3>
+        <ul>
+            <li>When you use a library someone else wrote (jQuery, React etc)</li>
+            <li>They have "exposed" a set of functions/methods that you can use (interface with)</li>
+            <li>That's the API</li>
+        </ul>
+    </section>
+    <section>
+        <h3>In databases</h3>
+        <ul>
+            <li>The authors/owners of the DB will have exposed certain parts of the data</li>
+            <li>Using various techniques (often <code>fetch</code>) you can query the database</li>
+            <li>Most data-API's will allow you to READ data, few will allow you to POST data</li>
+        </ul>
+    </section>
+</section>
+<section>
+    <section>
+        <h1>Example, JS library</h1>
+        <p><a href="https://github.com/jonasholbech/t7-gsap-api-example">Let's look at what we cloned the other day</a></p>
+    </section>
+</section>
+<AgendaSection header="JSON">
+    <section>
+        <ul>
+            <li>JSON is a syntax for storing and exchanging data.</li>
+            <li>JSON is text written with JavaScript Object Notation.</li>
+            <li>Used to send data between different API's</li>
+            <li>We can convert any JavaScript object into JSON, and send JSON to the server.</li>
+            <li>We can also convert any JSON received from a server into JavaScript objects.</li>
+        </ul>
+    </section>
+    <section class="small">
+    <h3>JSON Syntax Rules</h3>
+    <ul>
+        <li>JSON syntax is derived from JavaScript object notation
+            <ul>
+                <li>Data is in name/value pairs</li>
+                <li>Data is separated by commas</li>
+                <li>Curly braces hold objects</li>
+                <li>Square brackets hold arrays</li>
+            </ul>
+        </li>
+        <li>A name/value pair consists of a field name (in double quotes), followed by a colon, followed by a value:<br>
+        <pre><code>{`{ "name": "Jonas" }`}</code></pre></li>
+<li>In JSON, keys must be strings, written with double quotes!<br>
+In JavaScript, keys can be strings, numbers, or identifier names:<br>
+<pre><code>{`{ name: "Jonas" }`}</code></pre></li>
+    </ul>
+
+    </section>
+    <section class="small">
+    <h3>JSON Syntax Rules</h3>
+    <ul>
+        <li>In JSON, values must be one of the following data types:
+            <ul> 
+                <li>a string</li>
+                <li>a number</li>
+                <li>an object (JSON object)</li>
+                <li>an array</li>
+                <li>a boolean</li>
+                <li>null</li>
+            </ul>
+        </li>
+        <li>In JavaScript values can be all of the above, plus any other valid JavaScript expression, including:
+            <ul>
+                <li>a function</li>
+                <li>a date</li>
+                <li>undefined</li>
+            </ul>
+        </li>
+    </ul>
+    </section>
+</AgendaSection>
+<AgendaSection header="Exercise: Superhero info">
+  <section>
+    <h2>Two parts</h2>
+    <ol>
+      <li>First <strong>we</strong> create an object</li>
+      <li>Then you do it</li>
+    </ol>
+    <p>So let's model a superhero</p>
+  </section>
+  <section>
+    <h2>Your turn</h2>
+    <ol>
+      <li>Create an object following our model</li>
+      <li>Save it as <kbd>my-superhero-name.json</kbd> <br>(e.g. <kbd>lord-destroyer-van-der-doom.json</kbd>)</li>
+      <li>Upload it to fronter<br>
+        <small>Plans &gt; Activities &gt; 2. Superhero Info, part 1</small>
+      </li>
+      <li>Then take a break</li>
+    </ol>
+    <p>Horribly wrong files will not be used</p>
+  </section>
+</AgendaSection>
+
+
+
+
+<AgendaSection header="<code>fetch</code>">
+  <section><h1>One slide to rule them all</h1>
+    <p class="fragment">Ready?</p>
+  </section>
+  <section>
+    <p>This is the full, advanced version</p>
+    <Code code={snippets["full-fetch.js"]} stretch/>
+    
+    <p>We probably won't get there</p>
+  </section>
+</AgendaSection>
+
+<section>
+  <section>
+    <h1>AJAX</h1>
+    <h3>A synchronous JavaScript and XML</h3>
+  </section>
+  <section>
+    <blockquote>
+    AJAX allows web pages to be updated asynchronously
+by exchanging data with a web server behind the
+scenes. This means that it is possible to update parts
+of a web page, without reloading the whole page.
+    </blockquote>
+  </section>
+  <section>
+    <h3>AJAX - the developer's dream</h3>
+    <p>because you can:</p>
+    <ul>
+      <li>Update a web page without reloading the page.</li>
+      <li>Request data from a server after the page has loaded.</li>
+      <li>Receive data from a server after the page has loaded.</li>
+      <li>Send data to a server in the background.</li>
+    </ul>
+    <p>Think Facebook / Google docs / auto complete / any website with snappy UI / UX basically</p>
+  </section>
+  <section>
+    <p>So, how does clients &amp; servers actually talk?</p>
+    <img data-src="/assets/t7/5.fetch-arrays-and-foreach/client-server.png" alt="">
+    <p>What is a</p>
+    <ol>
+      <li>Client</li>
+      <li>Server</li>
+      <li>Response header</li>
+    </ol>
+  </section>
+</section>
+
+<AgendaSection header="(Too) many ways to use a callback">
+  <section>
+    <p>What is a callback?</p>
+  </section>
+  <section data-auto-animate>
+    <p>Let's start simple</p>
+    <Code dataId="fetch" code={snippets["callbacks-simple.js"]} stretch/>
+  </section>
+  <section data-auto-animate>
+    <p>We can do it without creating a variable for the button</p>
+    <Code dataId="fetch" code={snippets["callbacks-simple-2.js"]} stretch/>
+  </section>
+  <section data-auto-animate>
+    <p>We can define the function directly in the callback</p>
+    <Code dataId="fetch" code={snippets["callbacks-simple-3.js"]} stretch/>
+  </section>
+  <section data-auto-animate>
+    <p>When used like that, we don't need the name</p>
+    <Code dataId="fetch" code={snippets["callbacks-simple-4.js"]} stretch/>
+  </section>
+  <section data-auto-animate>
+    <p>And since "ES6" we can use arrow functions</p>
+    <Code dataId="fetch" code={snippets["callbacks-simple-5.js"]} stretch/>
+  </section>
+</AgendaSection>
+
+<AgendaSection header="AJAX in action - <code>fetch</code>">
+  <section>
+    <h3><code>fetch</code></h3>
+    <p><code>fetch</code> is one of the ways we can work with AJAX in JS</p>
+    <p>It is the easiest, if we can accept a bit of "black boxing"</p>
+  </section>
+  <section>
+    <p>The process could be worse</p>
+    <ol>
+      <li>We send a request for something</li>
+      <li>We get a response (headers)</li>
+      <li>We extract the JSON from the response</li>
+      <li>We get the data</li>
+    </ol>
+    <p>(if all goes well)</p>
+  </section>
+  <section>
+    <h3>I promise you something</h3>
+    <p>The hard part comes as the process is asynchronous</p>
+    <p>It can take time before we get the response</p>
+    <p>It can take time before we get the JSON out</p>
+    <p>Which gives us a new syntax to learn</p>
+  </section>
+  <section data-auto-animate>
+    <h3>The syntax</h3>
+    <Code dataId="fetch-in-steps" code={snippets["fetch-in-steps-part-1.js"]}/>
+    <p>We specifify what url to grab</p>
+  </section>
+  <section data-auto-animate>
+    <h3>The syntax</h3>
+    <Code dataId="fetch-in-steps" code={snippets["fetch-in-steps-part-2.js"]} stretch/>
+    <p>Once we get the "headers", we pull out the JSON</p>
+  </section>
+  <section data-auto-animate>
+    <h3>The syntax</h3>
+    <Code dataId="fetch-in-steps" code={snippets["fetch-in-steps-part-3.js"]} stretch/>
+    <p>and THEN we get the data</p>
+    <p>Now our code actually works, but...</p>
+  </section>
+  <section data-auto-animate>
+    <h3>The syntax</h3>
+    <Code dataId="fetch-in-steps" code={snippets["fetch-in-steps-part-4.js"]} stretch/>
+    <p>Since we won't need <code>headersReceived</code> anywhere else, we CAN move it up</p>
+  </section>
+  <section data-auto-animate>
+    <h3>The syntax</h3>
+    <Code dataId="fetch-in-steps" code={snippets["fetch-in-steps-part-5.js"]} stretch/>
+    <p>And just to confuse everyone, we do not need the name for the function</p>
+  </section>
+  <section data-auto-animate>
+    <h3>The syntax</h3>
+    <Code dataId="fetch-in-steps" code={snippets["fetch-in-steps-part-6.js"]} stretch/>
+    <p>And why not turn it into an arrow function?</p>
+  </section>
+  <section data-auto-animate>
+    <h3>The syntax</h3>
+    <Code dataId="fetch-in-steps"code={snippets["fetch-in-steps-part-7.js"]} stretch/>
+    <p>And why not use an implicit return?</p>
+    <p class="fragment">Don't worry, this is just crazy for now</p>
+  </section>
+  
+</AgendaSection>
+
+<AgendaSection header="Making our site dynamic">
+  <section>
+    <p><strong>This is our API</strong></p>
+    <p><a href="https://kea-alt-del.dk/t7/api/">https://kea-alt-del.dk/t7/api/</a></p>
+    <p><strong>This is my repo</strong></p>
+    <p><a href="https://github.com/jonasholbech/static-site-v2">https://github.com/jonasholbech/static-site-v2</a></p>
+  </section>
+</AgendaSection>
+
+<section>
+  <section>
+    <h1>Exercise</h1>
+    <p>Fronter: "3. The product page, v1"</p>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1><code>arrays</code> &amp; <code>forEach</code></h1>
+  </section>
+  <section>
+  <p>An array is a special variable, which can hold more than one value at a time.</p>
+  </section>
+  <section>
+    <h4>Declaring arrays</h4>
+    <Code code={snippets["arrays-intro.js"]}/>
+  </section>
+  <section>
+    <h4>Declaring arrays, advanced</h4>
+    <Code code={snippets["array-objects.js"]} />
+  </section>
+  <section>
+    <h4>Using arrays</h4>
+    <p>We access arrays using a "zero based index"</p>
+    <Code code={snippets['arrays-zero-index.js']} />
+  </section>
+  
+  <section>
+  <h4>Using arrays</h4>
+    <p>or by "looping" through them one at a time</p>
+    <Code code={snippets["arrays-foreach.js"]} />
+  </section>
+
+  <section>
+      <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">developer.mozilla.org/.../Array/forEach</a></p>
+      <p>Other syntaxes exists</p>
+  </section>
+  
+  <section>
+    <p>What if it was an array of objects?</p>
+    <p>Easy, peasy</p>
+    <Code code={snippets["arrays-foreach2.js"]} stretch />
+  </section>
+</section>
+
+
+  <AgendaSection header="Arrays, Objects &amp; the <code>template</code>">
+    <section>
+      <p>We have all the pieces</p>
+      <ol>
+        <li>Create a template</li>
+        <li>Loop through the data</li>
+        <li><code>forEach</code> item in the data:
+          <ol>
+            <li>Grab the template</li>
+            <li>clone the template</li>
+            <li>change some content</li>
+            <li>grap the parent</li>
+            <li>append the clone</li>
+          </ol>
+        </li>
+      </ol>
+    </section>
+    <section>
+      <Code code={snippets["array-foreach-template.js"]} stretch />
+    </section>
+  </AgendaSection>
+
+  <AgendaSection header="Exercise" p={'Fronter: "4. Superhero list, #2"'}>
+    <section>
+      <h2>Bonus exercise</h2>
+      <p>Aren't you lucky</p>
+      <ul>
+        <li>If you forked before you cloned you can now <var>add =&gt; commit =&gt; push</var> directly</li>
+        <li>DO IT</li>
+        <li>Since it's now YOUR repository, we can turn on GitHub Pages</li>
+        <li><a href="https://youtu.be/DSfIkMgDUo0">Follow the instructions in this link</a></li>
+      </ul>
+    </section>
+  </AgendaSection>
+  <AgendaSection header="Let's review the goals" />
+  <AgendaSection header="+2">
+    
+    <section>
+      <h2>Your +2</h2>
+    <ol>
+      <li class="fragment">Article: Labels are a last resort</li>
+      <li class="fragment">Article: Steve Schoeger Tweets</li>
+      <li class="fragment">Video: "The Google History of a High-Paid Sr. Engineer</li>
+      <li class="fragment">Task: Exploring templates</li>
+    </ol>
+    </section>
+  </AgendaSection>
+</SlideLayout>

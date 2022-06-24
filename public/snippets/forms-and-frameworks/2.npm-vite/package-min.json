@@ -1,0 +1,15 @@
+{
+  "name": "frontend-elective",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "live-server",
+    "minify-js": "minify index.js > dist/index.min.js",
+    "minify-html": "minify index.html > dist/index.html",
+    "minify-css": "minify main.css > main.min.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

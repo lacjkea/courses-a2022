@@ -1,0 +1,462 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+---
+
+<SlideLayout title="Git">
+  <section>
+    <h1><code>git</code></h1>
+  </section>
+  <Goal>
+    <ol>
+      <li>TODO: revert instead of reset?</li>  
+      <li class="fragment">Understand the need for Git</li>
+      <li class="fragment">Memorize Git specific keywords and flows</li>
+      <li class="fragment">Connect a project to gihub</li>
+      <li class="fragment">Use the commands <code>add, commit, push</code> fluently</li>
+      <li class="fragment">Know that <code>checkout</code>,<code>pull</code> &amp; <code>reset</code> exists</li>
+      <li class="fragment">Know what <code>fork</code>ing and <code>clone</code>ing does, and what the difference is</li>
+    </ol>
+  </Goal>
+<section>
+  <h3>Today</h3>
+  <ol class="small" style="column-count: 2; column-gap: 6rem">
+    <li>git, what is it</li>
+    <li>Prerequisites</li>
+    <li>A short interactive tour</li>
+    <li>Let's memorize some words</li>
+    <li>Setting up a project</li>
+    <li>Adding & commiting</li>
+    <li>Pushing</li>
+    <li>Checkout</li>
+    <li>Resetting</li>
+
+    <li class="stricken">Branches</li>
+    <li class="stricken">Merging</li>
+    <li class="stricken">Checkout</li>
+    <li class="stricken">Dictionary</li>
+  </ol>
+</section>
+<AgendaSection header="git, what is it">
+  
+  <section>
+    <p>Git is as "version control system"</p>
+    <p>That means we can store our "project" in different versions</p>
+    <p>And we can go back to previous versions</p>
+  </section>
+  <section>
+    <img data-src="https://imgs.xkcd.com/comics/git.png" alt="" />
+    <p class="fragment small">
+      It's a joke, but seriously, a lot of people work this way
+    </p>
+    <p class="fragment small">And as long as we do not loose work, I'm happy</p>
+  </section>
+  <section>
+    <img src='/assets/t7/2.git/git-meme1.jpg'  alt="" />
+    <p class="fragment">No, but you do cry when you loose all your work</p>
+    <p class="fragment">You just need to memorize a few work-processes</p>
+    <p class="fragment">
+      just like <kbd>cmd+s, cmd+tab, cmd+r</kbd> or
+      <kbd>ctrl+s, alt+tab, ctrl+r</kbd>
+    </p>
+  </section>
+  <section>
+    <h3>But first</h3>
+    <p>Is git really worth all of this trouble?</p>
+    <ol>
+      <li class="fragment">YES, and it's what the cool kids use</li>
+      <li class="fragment">
+        YES, it allows us to try something out without risking anything
+      </li>
+      <li class="fragment">YES, and it's not that hard, it's just confusing</li>
+      <li class="fragment">YES, In teams, it's a life saver</li>
+    </ol>
+  </section>
+</AgendaSection>
+<AgendaSection header="Install time">
+  <section>
+    <h2>Prerequisites</h2>
+    <p>Instructions on fronter (Install Day)</p>
+    <div class="flex-grid">
+    <div class="col-6">
+        <ol>
+        <li>VSCode</li>
+        <li>Git</li>
+        <li>GitHub account</li>
+        <li>Live Server</li>
+        <li>GitLens</li>
+        <li>axe Accessibility Linter</li>
+        <li>Error Lens</li>
+        <li>Prettier</li>
+        </ol>
+    </div>
+    <div class="col-6">
+        <p>
+        <video
+        data-src='/assets/t7/2.git/install-extensions.mov.mp4'
+            height="200"
+            controls
+        ></video>
+        </p>
+    </div>
+    </div>
+  </section>
+</AgendaSection>
+
+<section>
+  <section><h2>A short inter&shy;­active tour</h2><h3>Exercise #1</h3></section>
+  <section>
+    <h2>gitfographic&lt;3</h2>
+    <p>
+      <a href="https://jonasholbech.github.io/gitfographic3/"
+        >https://jonasholbech.github.io/gitfographic3/</a
+      >
+    </p>
+    <p>Complete the following levels</p>
+    <ol>
+      <li>Introduction</li>
+      <li>Overview</li>
+      <li>.gitignore</li>
+      <li>Commits</li>
+    </ol>
+    <p>30 minutes</p>
+    <p>Try to define the following keywords</p>
+  </section>
+  <section class="small">
+    <ul>
+      <li><code>add</code></li>
+      <li><code>commit</code></li>
+      <li><code>git</code></li>
+      <li><code>staging area</code></li>
+      <li><code>push</code></li>
+      <li><code>init</code></li>
+      <li><code>repository</code></li>
+      <li><code>pull</code></li>
+      <li><code>remote</code></li>
+      <li><code>local</code></li>
+      <li><code>.gitignore</code></li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Setting up a project</h1>
+    <p class="fragment">Locally</p>
+    <p class="fragment">New or old</p>
+  </section>
+  <section>
+    <ol>
+      <li>
+        Create a new project in VS Code
+        <ul>
+          <li>Add a few files / folders</li>
+        </ul>
+      </li>
+    </ol>
+    <p>
+      <video
+      data-src='/assets/t7/2.git/create-project.mov.mp4'
+        height="300"
+        controls
+      ></video>
+    </p>
+  </section>
+  <section>
+    <ol start="2">
+      <li>
+        Initialize it as a git project
+        <ul>
+          <li>Open the "Git Tab"</li>
+          <li>Click "Initialize Repository"</li>
+        </ul>
+      </li>
+    </ol>
+    <p><small>Sorry about the sound :-)</small></p>
+    <p>
+      <video
+      data-src='/assets/t7/2.git/initialize-repository.mov.mp4'
+        height="400"
+        controls
+      ></video>
+    </p>
+  </section>
+  <section>
+    <ol start="3">
+      <li>In VS Code, <code>add</code> (+) all the files you need</li>
+      <li>Write a meaningfull message and click <code>commit</code> (V)</li>
+    </ol>
+    <video data-src='/assets/t7/2.git/first-commit.mov.mp4' height="300" controls></video>
+  </section>
+  <section>
+    <p>Now you have version control locally.</p>
+    <p>Unless your harddisk dies, you've got a snapshot of your code</p>
+  </section>
+</section>
+<section>
+  <section><h1>Exercise #2</h1></section>
+  <section>
+    <ol class="striped">
+      <li>Split into groups (2-3 people)</li>
+      <li>
+        Player A: follow the steps above, talk each other
+        through the process. Then...
+      </li>
+      <li>
+        Player B: follow the steps above, talk each other
+        through the process. Then ...
+      </li>
+      <li>
+        Player C: follow the steps above, talk each other
+        through the process
+      </li>
+    </ol>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>Hooking it up to GitHub</h1>
+    <p class="fragment">Backing up</p>
+    <p class="fragment">Preparing for collaboration</p>
+  </section>
+  <section>
+    <p>We need to create a remote repository to store our code</p>
+    <p>
+      There are several ways we can do this, but this is what I found to be the
+      easiest
+    </p>
+  </section>
+  <section>
+    <ol start="5">
+      <li>
+        In VS Code, press <kbd>Cmd/Ctrl + Shift + P</kbd> to open the Command
+        Palette
+      </li>
+      <li>
+        Start typing "Publish to GitHub" and select the option when it
+        appears<br />
+        You probably have to login.
+      </li>
+      <li>
+        Choose either a <del>private</del> or <strong>public</strong> repository
+      </li>
+      <li>You can click "Open in GitHub" to see you new repository</li>
+    </ol>
+    <video
+    data-src='/assets/t7/2.git/publish-to-github.mov.mp4'
+      height="300"
+      controls
+    ></video>
+  </section>
+
+  <section>
+    <ul start="9">
+      <li>This will also issue your first <code>push</code></li>
+      <li>Now your code is backed up on GitHub</li>
+      <li>Your project is set up, congrats</li>
+    </ul>
+    <p>That was the setup, with practice, this can be done in 5 minutes</p>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>Exercise #3</h1>
+  </section>
+  <section>
+    <p>We'll spread out into groups again</p>
+    <p>All members try to connect their repository to GitHub</p>
+    <p>
+      My suggestion: Player A goes first and the other to help out. When
+      the first one is working, the other two do it
+    </p>
+  </section>
+</section>
+<section>
+  <section><h2>A short interactive tour</h2><h3>Exercise #4</h3></section>
+  <section>
+    <h2>gitfographic&lt;3</h2>
+    <p>
+      <a href="https://jonasholbech.github.io/gitfographic3/"
+        >https://jonasholbech.github.io/gitfographic3/</a
+      >
+    </p>
+    <p>Complete the rest</p>
+
+    <p>30 minutes, go through it now</p>
+    <p>Try to define the following words</p>
+  </section>
+  <section>
+  <ul>
+      <li><code>branch</code></li>
+      <li><code>merge</code></li>
+      <li><code>reset</code></li>
+      <li><code>checkout</code></li>
+      <li><code>feature</code> (not a git word)</li>
+      <li><code>commit message</code></li>
+      <li><code>GitHub</code></li>
+      <li><code>clone</code></li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h1>Working with Git, alone</h1>
+</section>
+<section>
+  <section>
+    <h1>Managing a single timeline</h1>
+  </section>
+  <section>
+    <ol>
+      <li>add</li>
+      <li>commit</li>
+      <li>push</li>
+      <li>checkout</li>
+      <li>reset</li>
+    </ol>
+  </section>
+  <section>
+    <h3><code>add</code></h3>
+    <p>Do you get it?</p>
+  </section>
+  <section>
+    <h3><code>commit</code></h3>
+    <p>Do you get it?</p>
+  </section>
+  <section>
+    <h3><code>push</code></h3>
+    <p>Do you get it?</p>
+  </section>
+  <section>
+    <h3>DEMO?</h3>
+    <ol>
+      <li>add</li>
+      <li>commit</li>
+      <li>push</li>
+    </ol>
+  </section>
+  <section>
+    <h3><code>checkout</code></h3>
+    <p>Looking at a point in time</p>
+    <p>You can look, but you can't (shouldn't) touch</p>
+    <video height="200" data-src='/assets/t7/2.git/checkout.mov.mp4' controls></video>
+    <p><small>(No audio)</small></p>
+  </section>
+  <section>
+    <h3>Going back to our timeline</h3>
+    <p>Once we've looked, we can go back to our own timeline (master)</p>
+    <video
+      height="200"
+      data-src='/assets/t7/2.git/back-to-master.mov.mp4'
+      controls
+    ></video>
+    <p><small>(this one has audio)</small></p>
+  </section>
+  <section>
+    <h3><code>reset</code></h3>
+    <p>Reset was destructive, so that means move back permanently (sort of)</p>
+    <video height="200" data-src="/assets/t7/2.git/reset.mov.mp4" controls></video>
+    <p><small>(this one has audio)</small></p>
+    <p><code>reset</code> is a "last option" other (and better) ways exists</p>
+  </section>
+  <section>
+    <h3><code>push --force</code></h3>
+    <p>Let's imagine we've pushed everything</p>
+    <p>Then we reset locally</p>
+    <p>Now the local and remote repos are out of sync</p>
+    <p>If we try to push again we get an error</p>
+    <p>If we are REALLY sure we want to go back</p>
+    <p>We can do a forced push</p>
+    <p>But that's not for now</p>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>General Thoughts, part #1</h1>
+  </section>
+
+  <section>
+    <h3>"Save games"</h3>
+    <p>Commits are points in history we can go back to</p>
+    <p>That's called checking out or resetting</p>
+    <div class="fragment">
+      <p>In general, if something is working, do a commit</p>
+      <p>Try to do one thing per commit</p>
+      <!-- user stories?-->
+    </div>
+  </section>
+
+  <section>
+    <p>If we haven't already, let's do it</p>
+    <p>Let's go to the whiteboard</p>
+
+    <p class="fragment">
+      Any code produced in this example is not really important, focus on git
+    </p>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Forking and cloning</h1>
+  </section>
+  <section>
+    <h3>Cloning</h3>
+    <p>Cloning downloads a copy of a GitHub repository</p>
+    <p>If it's <strong>your</strong> repo, you can now push</p>
+    <p>If it's someone elses, you can <strong>not</strong> push</p>
+    <h3>Forking</h3>
+    <p>Forking (technically not a git thing) means:</p>
+    <p>"Copy this cool repository to my profile so that it is now mine"</p>
+    <hr />
+    <p>What's the difference then?</p>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>Forking</h1>
+  </section>
+  <section>
+  <video
+      height="600"
+      data-src="/assets/t7/2.git/forking.mov.mp4"
+      controls
+    ></video>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>Cloning</h1>
+  </section>  
+  <section>
+    <p>To <code>clone</code> is to take all code from a GitHub repository and downloading it</p>
+    <p>It's THE best way to share code</p>
+    <p>And it's not hard</p>
+  </section>
+  <section>
+    <ol>
+      <li>Find the repository you would like to clone</li>
+      <li>Grab the <code>.git</code> url</li>
+      <li>In VSC type <kbd>Cmd/Ctrl + Shift + P</kbd> and find <br><code>Git: clone</code></li>
+      <li>Paste in the URL</li>
+      <li>Find a folder you would like to store the code in</li>
+      <li>That's it</li>
+      <li> =&gt; </li>
+    </ol>
+  </section>
+  <section>
+  <p>
+      <video
+      data-src="/assets/t7/2.git/cloning.mov.mp4"
+        height="600"
+        controls
+      ></video>
+    </p>
+  </section>
+</section>
+<section>
+  <h2>Let's review the goals</h2>
+</section>
+</SlideLayout>

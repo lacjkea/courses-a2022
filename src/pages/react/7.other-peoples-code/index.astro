@@ -1,0 +1,241 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro";
+import Goal from "../../../components/Goal.astro";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import Timer from "../../../components/Timer.svelte"
+const snippets = await codeFetcher("react/7.other-peoples-code",[
+    
+])
+
+---
+
+<SlideLayout title="Using other people's code">
+  <section>
+    <h1>React</h1>
+      <img src='/assets/react/0.need-to-know-js/react.png'  alt="" />
+  </section>
+  <Goal>
+    <ol>
+      <li>Explore the vast React eco system</li>
+      <li>Try out various "prebuilt" components</li>
+      <li>Be amazed</li>
+    </ol>
+  </Goal>
+
+  <AgendaSection header="What?">
+    <section>
+      <p>The React eco system is HUGE</p>
+      <p>No matter what you want, someone has made it for you</p>
+    </section>
+    <section>
+      <p>One of my favorite things in React</p>
+      <blockquote class="fragment"><p>Good Artists Copy; Great Artists Steal<p>
+      <footer>by <cite><a href="https://quoteinvestigator.com/2013/03/06/artists-steal/">disputed</a></cite></footer</blockquote>
+      </blockquote>
+      <blockquote class="fragment"><p>Hell is other people's code</p>
+        <footer>
+        by <cite>Jean-Paul Sartre / Peter Lind</cite>
+        </footer>
+      </blockquote>
+    </section>
+    <section>
+      <p>There are thousands of React components we can install and use</p>
+      <p>Some are easy, some are horrible</p>
+      <blockquote class="twitter-tweet" data-lang="en">
+        <p lang="en" dir="ltr">
+          Remember, a few hours of trial and error can save you several minutes of
+          looking at the README.
+        </p>
+        &mdash; I Am Devloper (@iamdevloper)
+        <a
+          href="https://twitter.com/iamdevloper/status/1060067235316809729?ref_src=twsrc%5Etfw"
+          >November 7, 2018</a
+        >
+      </blockquote>
+      <script
+        async
+        src="https://platform.twitter.com/widgets.js"
+        charset="utf-8"
+      ></script>
+    </section>
+  </AgendaSection>
+  
+  <AgendaSection header="What can we get?">
+    <section>
+      <h3>Components</h3>
+      <p><a href="https://reactjsexample.com/">A collection of components</a></p>
+      <p>
+        <a href="https://www.npmjs.com/package/react-spinners">React-spinners</a>
+      </p>
+     
+    </section>
+    <section>
+      <h3>UI Kits / Design Systems</h3>
+      <p><a href="https://mui.com/">Material Design</a></p>
+      <p><a href="https://ant.design/">Ant Design</a></p>
+      <p><a href="https://designrevision.com/downloads/shards-react/">Shards React</a></p>
+      <p><a href="https://rsuitejs.com/">React Suite</a></p>
+      <p><a href="https://primefaces.org/primereact/">Prime React</a></p>
+      <p><a href="https://onsen.io/">Onsen UI</a></p>
+      <p><a href="https://react-bootstrap.github.io/">Rwct Bootstrap</a></p>
+      <p><a href="https://chakra-ui.com/">Chakra</a></p>
+      
+
+
+    </section>
+    <section>
+      <h3>Functionality</h3>
+      <p><a href="https://reactrouter.com/">React Router</a></p>
+      <p><a href="https://github.com/jon-sully/react-netlify-identity-gotrue">Authentication</a></p>
+      <p><a href="https://nikgraf.github.io/react-hooks/">hooks</a></p>
+      <p><a href="https://react-query.tanstack.com/">React Query</a></p>
+    </section>
+    <section>
+      <h3>Frameworks</h3>
+      <p><a href="https://nextjs.org/">Next.js</a></p>
+      <p><a href="https://www.gatsbyjs.com/">Gatsby</a></p>
+    </section>
+  </AgendaSection>
+
+  <AgendaSection header="First encounter" p="a loader">
+    <section>
+      <p>
+        <a href="https://www.npmjs.com/package/react-loader-spinner"
+          >https://www.npmjs.com/package/react-loader-spinner</a
+        >
+      </p>
+      <p>Let's take a look</p>
+      <ul class="fragment">
+        <li>What demo?</li>
+      </ul>
+      <p>And try it</p>
+    </section>
+  </AgendaSection>
+
+  <AgendaSection header="Exercise #1">
+    <section class="small">
+      <p>Exercise: Pick one, make it work</p>
+      <ul>
+        <li>
+          <a href="https://www.npmjs.com/package/react-card-flip"
+            >https://www.npmjs.com/package/react-card-flip</a>
+        </li>
+        <li>
+          <a href="https://github.com/brillout/awesome-react-components"
+            >https://github.com/brillout/awesome-react-components</a>
+        </li>
+        <li>
+          <a href="https://reactjsexample.com/">A collection of components</a>
+        </li>
+        <li>
+          <a href="https://www.npmjs.com/package/react-loading-skeleton"
+            >react-loading-skeleton</a>
+        </li>
+        <li>
+          <a href="http://www.davidhu.io/react-spinners/">React Spinners</a>
+        </li>
+        <li>
+          <a href="https://www.npmjs.com/package/react-id-swiper"
+            >react-id-swiper</a>
+        </li>
+        <li>
+          <a href="https://github.com/gorangajic/react-svg-morph/"
+            >React SVG Morph</a>
+        </li>
+        <li>
+          <a
+            href="https://www.npmjs.com/package/@sandstreamdev/react-swipeable-list"
+            >react-swipable-list</a>
+        </li>
+      </ul>
+      <p>Run create-react-app again to create a new project</p>
+      <iframe
+        class="gs4"
+        src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=1200"
+        width="300"
+        height="400"
+      ></iframe>
+    </section>
+  </AgendaSection>
+
+  <AgendaSection header="UI Frameworks" p=":-)">
+    <section>
+        <p>Besides getting components that fullfill a single need, we can also install entire design systems</p>
+    </section>
+    <section>
+      <h3><code>Ant Design</code></h3>
+      <p><a href="https://ant.design/">https://ant.design/</a></p>
+      <p>Let's start by looking at the documentation</p>
+      <p>
+        <a href="https://ant.design/docs/react/use-with-create-react-app"
+          >https://ant.design/docs/react/use-with-create-react-app</a
+        >
+      </p>
+    </section>
+  
+    <section>
+      <h3>My 2 cents</h3>
+      <ul>
+        <li>Don't use grid frameworks</li>
+      </ul>
+    </section>
+  </AgendaSection>
+
+  <AgendaSection header="Exercise #2">
+    <section class="small">
+      <div class="g">
+        <div class="gs8">
+          <ol>
+            <li>Make a new branch or start a new project</li>
+            <li>Install antd</li>
+            <li>Play, try out the components</li>
+            <li>Try switching out your form</li>
+            <li>What can you do with the cards?</li>
+            <li>The preloader?</li>
+          </ol>
+        </div>
+        <iframe
+          class="gs4"
+          src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=1800"
+          width="300"
+          height="400"
+        ></iframe>
+      </div>
+    </section>
+  </AgendaSection>
+<section>
+  <section>
+    <h2>Other Component / UI Frameworks</h2>
+  </section>
+  <section>
+    <ul>
+      <li>
+        <a href="https://react-bootstrap.github.io/">React Bootstrap</a>
+      </li>
+      <li><a href="https://carbon.sage.com">Carbon</a></li>
+      <li><a href="https://rsuitejs.com/">https://rsuitejs.com/</a></li>
+      <li><a href="https://material-ui.com/">https://material-ui.com/</a></li>
+    </ul>
+  </section>
+</section>
+<section>
+  <section>
+    <h3>A little playing</h3>
+    <p>
+      <a href="https://codesandbox.io/s/antd-forked-nsp0e?file=/src/App.js"
+        >https://codesandbox.io/s/antd-forked-nsp0e?file=/src/App.js</a
+      >
+    </p>
+  </section>
+</section>
+    <AgendaSection header="+3/4">
+       <section>
+        <h2>Just go crazy</h2>
+        <p>Find anything to install</p>
+        <p>And post a link to cool libraries</p> 
+       </section>
+    </AgendaSection>
+</SlideLayout>

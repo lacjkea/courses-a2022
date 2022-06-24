@@ -1,0 +1,219 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+const snippets = await codeFetcher("forms-and-frameworks/4.databases",[
+    "example.gql",
+    "example.sql",
+    "GET.js",
+    "GET-async.js",
+    "GET-expanded.js",
+    "DELETE.js",
+    "POST.js",
+    "PUT.js",
+])
+---
+
+<SlideLayout title="Databases">
+    <AgendaSection header="Databases" h3="introduction" />
+    <section>
+        <Goal>
+            <ol>
+                <li>//TODO: fjern unødige headers</li>
+                <li>Have a shallow insight into various databases</li>
+                <li>See how REST operations are performed</li>
+                <li>Through JS</li>
+            </ol>
+        </Goal>
+    </section>
+    <AgendaSection header="Relational vs NoSQL">
+        <section class="small">
+            <div class="flex-grid">
+                <div class="col-5">
+                    <h3>Relational</h3>
+                    <blockquote>A relational database is a set of <span class="fragment highlight-blue">formally described tables</span> from which data can be <span class="fragment highlight-blue">accessed or reassembled</span> in many different ways <span class="fragment highlight-blue">without having to reorganize the database tables.</span> The standard user and application programming interface <span class="fragment highlight-blue">(API)</span> of a relational database is the Structured Query Language <span class="fragment highlight-blue">(SQL).</span></blockquote>
+                </div>
+                <div class="col-2">&nbsp;</div>
+                <div class="col-5">
+                <h3>NoSQL</h3>
+                <blockquote>NoSQL databases are designed to handle <span class="fragment highlight-blue">unstructured data</span> (e.g., texts, social media posts, video, email) which makes up much of the data that exists today. <br><strong>Scaling:</strong> It's much <span class="fragment highlight-blue">cheaper to scale</span> a NoSQL database than a relational database because you can add capacity by scaling out over cheap, commodity servers.</blockquote>
+                </div>
+            </div>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="accessing data" h3="SQL, GraphQL &amp; REST">
+        <section>
+            <p>Data can be accessed in different ways, depending on the database &amp; the API</p>
+        </section>
+        <section>
+            <h2>SQL</h2>
+            <Code code={snippets["example.sql"]} />
+            <p class="fragment">(Taught on WebDev)</p>
+        </section>
+        <section>
+            <h2><code>GraphQL</code></h2>
+            <Code code={snippets["example.gql"]} />
+            <p class="fragment">GraphQL was open-sourced by Facebook in 2015, and <del>could be</del> <ins>is</ins> taking over from REST</p>
+        </section>
+        <section>
+            <h2>REST</h2>
+            <p>Representational state transfer</p>
+            <p>We access and modify data by accessing specific URLs</p>
+            <p>You've used it already</p>
+            <p>Examples</p>
+            <ul>
+                <li><code>https://api.com/users</code></li>
+                <li><code>https://api.com/users/1</code></li>
+                <li><code>https://api.com/users?order_by=name</code></li>
+            </ul>
+        </section>
+        <section>
+            <h2>REST #2</h2>
+            <p>4 common rules (although not followed by all)</p>
+            
+        </section>
+        <section>
+        <ol>
+                <li>Each resource-type has it's own URL, like: <br>
+                    <code class="highlight">https://api.com/users</code>
+            </li>
+            <li>Hitting (fetching/visiting) the resource URL gives us a list (array) of resources</li>    
+            </ol>
+        </section>
+    
+        <section>
+            <ol start="3">
+            <li>To grab a specific resource, we append the <code>id</code> of the resource to the URL, like:<br>
+                <code class="highlight">https://api.com/users/1</code></li>
+                
+            </ol>
+        </section>
+        <section>
+            <ol start="4">
+            <li>If we want to filter, sort, limit, ... we add URL parameters to the list, like:<br>
+                    <code class="highlight">https://api.com/users?max=10&order_by=first&start_at=10</code>
+                </li>
+                
+            </ol>
+            <p class="fragment">Are you all aware of how the <code class="highlight">?</code> and <code class="highlight">&</code> work?</p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="REST?">
+        <section>
+            <blockquote>Representational state transfer (REST) or RESTful web services are a way of providing interoperability between computer systems on the Internet. 
+            <span class="fragment highlight-blue">REST-compliant Web services allow requesting systems to access and manipulate</span> textual representations of Web resources 
+            using <span class="fragment highlight-blue">a uniform and predefined set of stateless operations.</span> </blockquote>
+
+            <cite>from WikiPedia</cite>
+        </section>
+        <section>
+            <h3>REST #2</h3>
+            <blockquote>In a RESTful Web service, <span class="fragment highlight-blue">requests</span> made to a resource's URI will elicit a <span class="fragment highlight-blue">response</span> that may be in XML, HTML, JSON or some other defined format. 
+                The response may confirm that some alteration has been made to the stored resource, and it may provide hypertext links to other related resources 
+                or collections of resources. Using HTTP, as is most common, the kind of operations available include those predefined by the 
+                CRUD HTTP methods <span class="fragment highlight-blue">GET, POST, PUT, DELETE</span> and so on.</blockquote>
+        </section>
+        <section>
+            <h3>In English please</h3>
+            <ul>
+                <li>REST is a way to let computers talk to each other</li>
+                <li>In this case via HTTP requests</li>
+                <li>Previously, you've been using GET to read data</li>
+                <li>But there's also</li>
+                <li>POST for adding new data</li>
+                <li>PUT for updating data</li>
+                <li>DELETE for ...</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Looking at headers</h3>
+            <p>The network tab</p>
+            <img data-src="/assets/forms-and-frameworks/4.databases/headers.png" alt="">
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="CRUD<br />==<br />REST">
+        <section>
+            <div class="flex-grid">
+                <div class="col-5">
+                    <h3>CRUD</h3>
+                    <ol>
+                        <li>CREATE</li>
+                        <li>READ</li>
+                        <li>UPDATE</li>
+                        <li>DELETE</li>
+                    </ol>
+                </div>
+                <div class="col-2">&nbsp;</div>
+                <div class="col-5">
+                    <h3>REST</h3>
+                    <ol>
+                        <li>POST</li>
+                        <li>GET</li>
+                        <li>PUT</li>
+                        <li>DELETE</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="<code>GET'ing data</code>">
+        <section>
+            <h2><code>GET</code> is the default operation</h2>
+            <p>When we fire of <code>fetch</code>,  it fires of a <code>GET</code> request</p>
+            <Code code={snippets["GET.js"]} />
+            <p>or</p>
+            <Code code={snippets["GET-async.js"]} />
+        </section>
+        <section>
+            <p>When the browser needs an image, it fires of a <code>GET</code> request</p>
+            <p class="fragment">When the browser needs an stylesheet, it fires of a <code>GET</code> request</p>
+            <p class="fragment">...</p>
+        </section>
+        <section>
+        <p>The previous example could be re-written as</p>
+        <Code code={snippets["GET-expanded.js"]} />
+        </section>
+        <section>
+            <dl>
+                <dt>Accept: "application/json"</dt>
+                    <dd class="fragment">a way for a client to specify the data type of the response content it is expecting</dd>
+                <dt>"Content-Type": "application/json"</dt>
+                    <dd class="fragment">a way to specify the media type of request being sent from the client to the server</dd>
+            </dl>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="<code>DELETE'ing data</code>">
+        <section>
+            <Code code={snippets["DELETE.js"]} />
+        </section>
+    </AgendaSection>
+    
+    <AgendaSection header="<code>POST'ing data</code>">
+        <section>
+            <Code code={snippets["POST.js"]} lineNumbers="1-15|1-4|7-8|10|11" />
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="<code>PUT'ing data</code>">
+        <section>
+            <Code code={snippets["PUT.js"]} stretch lineNumbers="1-18|1-6|5,8|9|13" />
+        </section>
+    </AgendaSection>
+    
+    <section>
+        <p>There are lots of services for this</p>
+        <p>restdb.io, mockapi.io, WordPress, ...</p>
+        <p>We will be using restdb.io</p>
+        <p><a href="https://restdb.io">restdb.io</a></p>
+        <p>There are some limitations on the free version, mainly "max. 1 API call per second"</p>
+    </section>
+    <AgendaSection header="Let's revisit the goals" />
+</SlideLayout>

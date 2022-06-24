@@ -1,0 +1,8 @@
+<h2>Overskrifter efter h1</h2>
+<h3>Overskrifter efter h2</h3>
+...
+<h6>Overskrifter efter h5</h6>
+
+<p>Paragraffer er til "brødtekst"</p>
+
+<img src="billeder/billede.jpg" alt="Et billede af...">

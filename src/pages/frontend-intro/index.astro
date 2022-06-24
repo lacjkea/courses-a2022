@@ -1,0 +1,183 @@
+---
+import SlideLayout from "../../layouts/SlideLayout.astro"
+import Goal from "../../components/Goal.astro"
+import AgendaSection from "../../components/AgendaSection.astro"
+import Explainer from "../../components/Explainer.svelte"
+import codeFetcher from "../../js/codeFetcher";
+import Code from "../../components/Code.astro";
+import SlideControls from "../../components/SlideControls.astro";
+
+const snippets = await codeFetcher("react/5.pagination",[
+    
+])
+
+---
+
+<SlideLayout title="Frontend Design, Intro">
+    <section>
+        <h1>Frontend</h1>
+        <h2>Introduction</h2>
+        <h3>@jofh</h3>
+    </section>
+    <section>
+        <SlideControls />
+    </section>
+
+    <section>
+        <h2>4 people</h2>
+        <ol>
+            <li>Peter <span class="highlight-specialty">"The Savior"</span> Tolstrup (ptoa)</li>
+            <li>Klaus <span class="highlight-specialty">"The Inspector"</span> Mandal (klmh)</li>
+            <li>Jonas <span class="highlight-specialty">"The Tool"</span> Holbech (jofh)</li>
+            <li>Dannie <span class="highlight-specialty">"El Puritan"</span> Vinther (davi)</li>
+        </ol>
+        <svg xmlns="http://www.w3.org/2000/svg" class="explanation" width="1000" height="600" style="top:0;">
+        <style>
+  
+  rect {
+            fill: none;
+            stroke: red;
+            stroke-width: 4;
+            stroke-dashoffset: 1;
+            stroke-dasharray: 1;
+        }
+
+        .letsAnimateSlow {
+            animation: awesome 4s linear forwards 1;
+        }
+
+        .letsAnimateFast {
+            animation: awesome 1s linear forwards 1;
+        }
+
+        @keyframes awesome {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        .highlight-specialty {
+          color:#7070ee;
+        }
+
+  </style>
+  <rect class="fragment fade-in-then-out" data-animation="letsAnimateFast" pathLength="1" x="100" y="170" width="750" height="110" />
+  <rect class="fragment fade-in-then-out" data-animation="letsAnimateFast" pathLength="1" x="100" y="120" width="750" height="110" />
+  <rect class="fragment fade-in-then-out" data-animation="letsAnimateFast" pathLength="1" x="100" y="120" width="750" height="110" />
+  <rect class="fragment fade-in-then-out" data-animation="letsAnimateFast" pathLength="1" x="100" y="170" width="750" height="165" />
+  <rect class="fragment fade-in-then-out" data-animation="letsAnimateFast" pathLength="1" x="100" y="230" width="750" height="55" />
+    </svg>
+</section>
+
+<section>
+  
+  <p>A few words before we look at the Week Plan</p>
+  <p>We:</p>
+  <ol>
+    <li>Asked on "frontenders.dk" (a facebook group)</li>
+    <li>Looked at the <a href="https://frontendmasters.com/guides/">Frontendmasters ressources</a></li>
+    <li>and decided that:</li>
+  </ol>
+</section>
+<section>
+    <div class="flex-grid">
+  <div class="col-6">
+    <ul>
+      <li>The terminal</li>
+      <li>git</li>
+      <li>Vanilla JS FTW</li>
+      <li>NPM</li>
+      <li>SASS</li>
+      <li>SVG</li>
+      <li>React</li>
+    </ul>
+  </div>
+  <div class="col-6">
+    <ul>
+      <li><span style="text-decoration: line-through">jQuery</span></li>
+      <li><span style="text-decoration: line-through">WordPress</span></li>
+      <li><span style="text-decoration: line-through">Bootstrap</span></li>
+      <li><span style="text-decoration: line-through">Angular/Vue</span></li>
+      <li><span style="text-decoration: line-through">YARN</span></li>
+      <li><span style="text-decoration: line-through">LESS</span></li>
+    </ul>
+  </div>
+  </div>
+</section>
+
+<section>
+  <section>
+    <h1>The Exam</h1>
+  </section>
+  <section>
+    <p class="fragment">everyone MUST code</p>
+    <p class="fragment">That means JS &amp; CSS</p>
+    <p class="fragment">you cannot pass without it!</p>
+    <p class="fragment">git and branches must be actively used</p>
+  </section>
+  <section>
+    <ol>
+      <li>4 weeks to do your project</li>
+      <li>30 minutes (per person) oral exam, including grading</li>
+      <li>Groups of 2-3 people</li>
+      <li>All mandatory assignments must be passed to qualify for the exam (more in a few minutes)</li>
+      <li>"Report": 12 pages plus 3 per group member<br>
+        <pre><code class="js">const pages = 12 + groupmembers.length * 3;</code></pre>
+      </li>
+    </ol>
+  </section>
+  <section>
+    <h3>Mandatory assignments (MA)</h3>
+    <ul>
+      <li>All MA's must be passed in order to qualify for the exam</li>
+      <li>All MA's have a deadline, assignments handed in, in due time, are given feedback, late deliveries are not</li>
+      <li>Technically, you can hand in the MA's when you start your exam project
+        <ul><li>BUT DON'T WAIT THAT LONG</li></ul>
+      </li>
+      <li>There is a total of 4 MA's</li>
+    </ul>
+  </section>
+</section>
+<section>
+    <h2><a href="https://kea-fronter.itslearning.com/ContentArea/ContentArea.aspx?LocationID=5045&LocationType=1">The week plan</a></h2>
+</section>
+<section>
+    <h2><a href="https://teams.microsoft.com/l/team/19%3aBvaGU0pW9zP21U_QW74FrpAG4Yt_KPLw1qBv8Uc6IoI1%40thread.tacv2/conversations?groupId=8bc11a6c-19a5-48d4-92ed-5a1af81ed795&tenantId=d10c3c6e-c228-4944-8b6a-6067c6afe3c9">Our Teams channel</a></h2>
+</section>
+
+<section>
+  <section>
+    <h1>Final thoughts</h1>
+  </section>
+  <section>
+    <ol>
+      <li>We have done this 5-6  times, and we have a few experiences we wanna share</li>
+    </ol>
+  </section>
+  <section>
+    <ol start="2">
+        <li>Covid-19 is still lurking, but we've tried that before and it went fine. Be active, share, discuss and all will benefit</li>
+    </ol>
+  </section>
+  <section>
+    <ol start="3">
+        <li>Check Teams EVERY MORNING, this is where we will let you know if our kids are isolated etc</li>
+    </ol>
+  </section>
+  <section>
+    <ol start="4">
+        <li>Socialize</li>
+    </ol>
+  </section>
+  <section>
+    <ol start="5">
+        <li>YOU have a responsibility, be active on Teams, ask questions, share what you've got
+        <ul>
+          <li>community</li>
+          <li>there is no shame</li>
+        </ul>
+      </li>
+    </ol>
+  </section>
+</section>
+    
+</SlideLayout>

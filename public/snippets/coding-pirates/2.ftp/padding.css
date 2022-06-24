@@ -1,0 +1,7 @@
+p {
+  padding: 8px;
+}
+h1 {
+  /*venstre op højre ned*/
+  padding: 10px 20px 30px 40px;
+}

@@ -1,0 +1,23 @@
+:root {
+  --main-color: hotpink;
+  --secondary-color: lightblue;
+  --header-font: fantasy;
+  --body-font: cursive;
+}
+
+body {
+  background: var(--main-color);
+  font-family: var(--body-font);
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--header-font);
+  color: var(--secondary-color);
+  text-decoration: underline;
+}

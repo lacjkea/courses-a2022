@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Shop</title>
+    <style>
+      fieldset legend {
+        grid-column: 1/-1;
+      }
+      .App {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+      }
+      .ProductList {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      .Nav {
+        grid-column: 1/-1;
+      }
+
+      :root {
+        --h: 220;
+        --s: 70%;
+        --l: 90%;
+      }
+      fieldset {
+        background: hsl(var(--h) var(--s) var(--l));
+      }
+      fieldset fieldset {
+        --l: 85%; /*calc(var(--l) - 10%);*/
+      }
+      fieldset fieldset fieldset {
+        --l: 80%; /*calc(var(--l) - 10%);*/
+      }
+      fieldset fieldset fieldset fieldset {
+        --l: 75%; /*calc(var(--l) - 10%);*/
+      }
+      fieldset fieldset fieldset fieldset fieldset {
+        --l: 70%; /*calc(var(--l) - 10%);*/
+      }
+    </style>
+  </head>
+  <body>
+    <fieldset>
+      <legend>&lt;App /&gt;</legend>
+      <div class="App">
+        <fieldset class="Nav">
+          <legend>&lt;Nav /></legend>
+          <p>Simple navigation</p>
+        </fieldset>
+        <fieldset>
+          <legend>&lt;ProductList /></legend>
+          <div class="ProductList">
+            <fieldset>
+              <legend>&lt;Product /></legend>
+              <div class="Product"><p>product details</p></div>
+            </fieldset>
+            <fieldset>
+              <legend>&lt;Product /></legend>
+              <div class="Product"><p>product details</p></div>
+            </fieldset>
+            <fieldset>
+              <legend>&lt;Product /></legend>
+              <div class="Product"><p>product details</p></div>
+            </fieldset>
+            <fieldset>
+              <legend>&lt;Product /></legend>
+              <div class="Product"><p>product details</p></div>
+            </fieldset>
+            <fieldset>
+              <legend>&lt;Product /></legend>
+              <div class="Product"><p>product details</p></div>
+            </fieldset>
+            <fieldset>
+              <legend>&lt;Product /></legend>
+              <div class="Product"><p>product details</p></div>
+            </fieldset>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>&lt;BasketContainer /></legend>
+          <div class="Basket">
+            <fieldset>
+              <legend>&lt;Basket /></legend>
+              <div class="MyBasket">
+                <p>Displays number of items and price</p>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>&lt;CheckoutForm /></legend>
+              <div class="CheckoutForm">Some checkout form</div>
+            </fieldset>
+          </div>
+        </fieldset>
+      </div>
+    </fieldset>
+  </body>
+</html>

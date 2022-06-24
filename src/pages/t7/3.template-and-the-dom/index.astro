@@ -1,0 +1,225 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+
+const snippets = await codeFetcher("t7/3.template-and-the-dom",[
+    "required.js",
+    "template.html",
+    "template_content.js",
+    "textcontent-innerhtml.js",
+    "concatenation.js",
+    "concatenation-interpolation.js"
+])
+
+---
+
+<SlideLayout title="Template and the DOM">
+<section>
+    <section>
+        <h2>The</h2>
+        <h1><code>&lt;template&gt;</code></h1>
+        <h2><span class="lowercase">and the </span>DOM</h2>
+        <p>A modern love story</p>
+    </section>
+</section>
+
+<section>
+    <Goal>
+        <ol>
+            <li>Understand that the DOM is a tree-like object</li>
+            <li>Understand what <code>&lt;template/&gt;</code>'s are</li>
+            <li>Experience how <code>&lt;template/&gt;</code>'s work</li>
+            <li>Know the difference between <code>.innerHTML</code> and <code>.textContent</code></li>
+            <li>Know what concatenation is, and understand how to apply it</li>
+        </ol>
+    </Goal>
+</section>
+
+<section>
+    <h3>Today, part 2</h3>
+    <ol>
+        <li>Left overs</li>
+      <li>Understanding the DOM</li>
+      <li>Basic DOM manipulation</li>
+      <li><code>&lt;template&gt;</code>'s</li>
+      <li>Template literals</li>
+    </ol>
+</section>
+
+<section>
+    <h3>Left overs</h3>
+    <ol>
+        <li>Youtube playlist (live recordings)</li>
+        <li>9/2 backgammon tournament</li>
+    </ol>
+</section>
+
+<AgendaSection header="Understanding the DOM">
+    <section>
+        <h3>Vocabulary</h3>
+        <ul>
+            <li><a href="#/dictionary-1">DOM</a></li>
+            <li><a href="#/dictionary-2">Element</a></li>
+            <li><a href="#/dictionary-2">Node</a></li>
+            <li><a href="#/dictionary-3">Document</a></li>
+            <li><a href="#/dictionary-4">Document fragment</a></li>
+            <li><a href="#/dictionary-5">Parent</a></li>
+            <li><a href="#/dictionary-5">Child</a></li>
+            <li><a href="#/dictionary-5">Sibling</a></li>
+        </ul>
+    </section>
+    <section id="dictionary-1">
+        <dl>
+            <dt>DOM</dt>
+            <dd>
+                <blockquote>The Document Object Model (DOM) is an application programming interface (API) for valid HTML ... documents. It defines the logical structure of documents and the way a document is accessed and manipulated... ...With the Document Object Model, programmers can build documents, navigate their structure, and add, modify, or delete elements and content. <span class="fragment highlight-blue">Anything found in an HTML or XML document can be accessed, changed, deleted, or added using the Document Object Model</span></blockquote>
+                <p><a href="https://www.w3.org/TR/DOM-Level-2-Core/introduction.html">w3.org</a></p>
+            </dd>
+        </dl>
+    </section>
+
+    <section id="dictionary-2">
+        <dl>
+            <dt>Element</dt>
+            <dd>The HTML elements in the DOM</dd>
+            <dt>Node</dt>
+            <dd>Common term for "Element Nodes", "Text Nodes" &amp; "Attribute Nodes"</dd>
+        </dl>
+    </section>
+    <section id="dictionary-3">
+        <dl>
+            <dd>Document</dd>
+            <dt>
+                <blockquote>In the HTML DOM (Document Object Model), everything is a node:
+                <ul>
+                    <li>The document itself is a document node</li>
+                    <li>All HTML elements are element nodes</li>
+                    <li>All HTML attributes are attribute nodes</li>
+                    <li>Text inside HTML elements are text nodes</li>
+                    <li>Comments are comment nodes</li>
+                </ul></blockquote>
+                <p><a href="https://www.w3schools.com/jsref/dom_obj_document.asp">w3schools</a></p>
+            </dt>
+        </dl>
+    </section>
+    <section  id="dictionary-4">
+        <dl>
+            <dd>Document Fragment</dd>
+            <dt>
+                <blockquote>The DocumentFragment interface represents a minimal document object that has no parent. It is used as a light-weight version of Document to store a segment of a document structure comprised of nodes just like a standard document. The key difference is that <span class="fragment highlight-blue">... the document fragment isn't part of the actual DOM's structure</span></blockquote>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">MDN</a></p>
+            </dt>
+        </dl>
+    </section>
+    <section  id="dictionary-5">
+        <dl>
+            <dt>Parent</dt>
+            <dd>All "Elements" or "Nodes" higher in the hierachy</dd>
+            <dt>Child</dt>
+            <dd>All "Elements" or "Nodes" lower in the hierachy</dd>
+            <dt>Sibling</dt>
+            <dd>All "Elements" or "Nodes" on the same level in the hierachy</dd>
+        </dl>
+        <p>It's actually simple, and you've seen it before</p>
+    </section>
+</AgendaSection>
+
+<section>
+    <section>
+        <h2>Basic DOM Manipulation</h2>
+    </section>
+    <section>
+        <p>Here's what I <strong>hope</strong> you know</p>
+        <Code code={snippets["required.js"]} path="t7/3.template-and-the-dom/required.js" language="js" startFrom="1" lineNumbers="1-2|1-5|7|9-11|13-15" stretch/>
+        <p class="fragment">How's our status on this?</p>
+    </section>
+</section>
+<section>
+    <section>
+        <h1><code>&lt;template&gt;</code></h1>
+        <p class="flash"></p>
+    </section>
+
+    <section>
+    <blockquote>
+        <p>The HTML template element <code>&lt;template&gt;</code> is a mechanism for holding client-side content that is not to be rendered when a page is loaded but may subsequently be instantiated during runtime using JavaScript.
+        </p>
+        <p class="fragment highlight-blue">
+            Think of a template as a content fragment that is being stored for subsequent use in the document.</p>
+    </blockquote>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template">MDN</a></p>
+    </section>
+
+    <section>
+        <h2><code>&lt;template&gt;'s in html</code></h2>
+        <Code code={snippets["template.html"]} path="t7/3.template-and-the-dom/template.html" language="html" startFrom="1" lineNumbers="3-12" stretch/>
+    </section>
+    <section>
+        <h3>Let's try it</h3>
+    </section>
+    
+</section>
+
+<section>
+    <section>
+        <h1>Cloning</h1>
+    </section>
+    <section>
+        <h2>Procedure</h2>
+        <ol>
+            <li>Select the <code>&lt;template&gt;</code>'s content</li>
+            <li>Make a "clone / copy" </li>
+            <li>Change the content in the clone</li>
+            <li>Choose the "parent" element</li>
+            <li>Add (Append) the clone to the parent (and thus the DOM)</li>
+        </ol>
+    </section>
+    <section>
+        <Code code={snippets["template_content.js"]} path="t7/3.template-and-the-dom/template_content.js" language="js" startFrom="1" lineNumbers="1-2|4-5|7-8|11-12|14-15|1-15" stretch/>
+    </section>
+    <section>
+        <h3>Let's try it</h3>
+    </section>
+</section>
+<section>
+  <h1>Exercise</h1>
+  <p>Fronter: "1. My Little Template"</p>
+</section>
+
+<section class="left small">
+  <h3><code>.textContent</code> vs <code>.innerHTML</code></h3>
+  <p><code>.textContent</code> sets the text on an element, and will convert HTML into text</p>
+  <p><code>.innerHTML</code> sets the text on an element, and allows HTML</p>
+  <p><code>.textContent</code> is generally preferred</p>
+  <Code code={snippets["textcontent-innerhtml.js"]} path="t7/3.template-and-the-dom/textcontent-innerhtml.js" language="js"/>
+</section>
+
+<section>
+    <section>
+        <h2>Interpolation</h2>
+        <blockquote>
+        <p><strong>interpolation</strong></p>
+        <p><code>/ɪntəːpəˈleɪʃ(ə)n/</code></p>
+        <p>noun<br>
+        "the insertion of something of a different nature into something else."</p>
+        </blockquote>
+    </section>
+    <section>
+        <p>Also known as "concatenation", it's basically when we glue together stuff to make new stuff</p>
+    </section>
+    <section>
+    <p>Two versions exist</p>
+        <p>The old:</p>
+        <Code code={snippets["concatenation.js"]} language="js" />
+        <p>And the new:</p>
+        <Code code={snippets["concatenation-interpolation.js"]}  language="js" />
+        <p><small>notice the ` backtick character</small></p>
+        <p>Both versions are fine, personally, I prefer the new one</p>
+    </section>
+</section>
+<AgendaSection header="Let's review the goals" />
+<AgendaSection header="Your 6+" />
+</SlideLayout>

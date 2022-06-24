@@ -1,0 +1,240 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+import AgendaSection from "../../../components/AgendaSection.astro"
+import Explainer from "../../../components/Explainer.svelte"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("react/4.mini-todo-list",[
+    "passing-callbacks.js",
+    "passing-callbacks-vanilla.js",
+    "react-immutable-add.js",
+    "vanilla-immutable-remove.js",
+    "vanilla-immutable-add.js",
+    "vanilla-immutable-modify.js",
+    "react-immutable-add.js",
+    "react-immutable-remove.js",
+    "react-immutable-modify.js",
+])
+
+---
+
+<SlideLayout title="Mini ToDo List">
+    <section>
+        <h1>React</h1>
+        <img src='/assets/react/0.need-to-know-js/react.png'  alt="" />
+    </section>
+    <Goal>
+        <ol>
+            <li>Undertsand how we communicate between components</li>
+            <li>Pass callbacks from parents to children</li>
+            <li>Be able to use and modify complex state in React</li>
+        </ol>
+    </Goal>
+
+    <section>
+        <h3>Agenda</h3>
+        <ol>
+            <li>uni-directional data-flow</li>
+            <li>passing callbacks</li>
+            <li>state, #2
+                <ul>
+                    <li>Add to a state-array</li>
+                    <li>Remove from a state array</li>
+                    <li>update a state array</li>
+                </ul>
+            </li>
+            <li>Solving the ToDo list</li>
+        </ol>
+    </section>
+
+    <AgendaSection header="Uni-directional data-flow">
+        <section>
+            <h3>Uni-directional data flow</h3>
+            <ul>
+                <li>
+                <strong>Data is sent down the tree</strong>, as props <br />(Parent =&gt;
+                Child)
+                </li>
+                <li class="fragment">
+                <strong>Data can be sent back up</strong>, through callbacks <br />(Child =&gt; Parent)
+                </li>
+                <li class="fragment">
+                <strong>Data can NOT be sent sideways</strong> <br /><del>(Sibling =&gt; Sibling)</del>
+                </li>
+            </ul>
+            </section>
+            <section>
+            <iframe
+                style="background: white; height: 300px"
+                width="100%"
+                heigth="100%"
+                data-src="/assets/react/4.mini-todo-list/shop.html"></iframe>
+            <ul>
+                <li>Where are the siblings?</li>
+                <li class="fragment">Where are the parent/child relations</li>
+                <li class="fragment">What's the flow from <code>&lt;App /></code> to <code>&lt;Product /></code></li>
+                <li class="fragment">and from <code>&lt;App /></code> to <code>&lt;Basket /></code></li>
+            </ul>
+            </section>
+            <section>
+            <h3>Placing state</h3>
+            <ol>
+                <li>Each piece of "state" should be owned by one component</li>
+                <li>
+                A single component above all the components that need the state in the
+                hierarchy
+                </li>
+            </ol>
+            <p>So who would need to know if the Nav is open or closed?</p>
+            <p>Which components should know about the tasks?</p>
+            </section>
+        <section>
+            <p><a href="https://twitter.com/kentcdodds/status/1176546888859844608/photo/1">Where do you put state then?</a></p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Passing callbacks">
+        <section>
+            <p>We've seen how to pass <code>props</code> from parent to child</p>
+            <p>
+                If we want to pass events/data from a child to a parent, we need to use
+                <code>callbacks</code>
+            </p>
+        </section>
+        <section>
+            <p>It's not that different from vanilla JS</p>
+            <Code code={snippets["passing-callbacks-vanilla.js"]} language="jsx" />
+        </section>
+        <section>
+          <p>this works bacause Components can not have eventlisteners</p>
+          <Code stretch code={snippets["passing-callbacks.js"]} language="jsx" />
+        </section>
+        <section>
+            <p>Sometimes we have to pass them really far down the hierarchy</p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="State, #2">
+        <section>
+      <h1><code>useState</code> with arrays</h1>
+      <h2>states gone wild</h2>
+    </section>
+    <section>
+      <ul>
+        <li>Breaking a design into components is easy enough</li>
+        <li class="fragment">Adding +1 to a counter is easy enough</li>
+        <li class="fragment">
+          But our state has been pretty simple so far, that's not always the case
+        </li>
+        <li class="fragment"><a href="https://reactjs.org/docs/hooks-reference.html#usestate">https://reactjs.org/docs/hooks-reference.html#usestate</a></li>    
+      </ul>
+    </section>
+    <section>
+      <p>Repeat after me</p>
+      <h2 class="fragment">I must never modify state directly</h2>
+      <h3 class="fragment">I must never modify state directly</h3>
+      <h4 class="fragment">I must never modify state directly</h4>
+      <p class="fragment">I must never modify state directly</p>
+      <p class="fragment">Always use the "updater" function</p>
+    </section>
+
+    <section>
+        <p>So when it comes to modifying an array, it's all about making a copy, modifying that, and then settings that to state</p>
+    </section>
+    <section>
+      <p>are these <span class="fragment highlight-green">Good</span> or <span class="fragment highlight-red">Bad</span>?</p>
+      <ul>
+        <li>
+          <code>.push</code><span class="fragment" style="color:#ff2c2d;"> is BAD, it modifies the original</span>
+        </li>
+        <li><code>.concat</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy</span></li>
+        <li>
+          <code>[...orig, newThing]</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy
+        </span></li>
+        <li>
+          <code>{`{...orig, newThing}`}</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy
+        </span></li>
+        <li>
+          <code>.splice</code><span class="fragment" style="color:#ff2c2d;"> is BAD, it modifies the original
+        </span></li>
+        <li><code>.slice</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy</span></li>
+        <li>
+          <code>.sort</code><span class="fragment" style="color:#ff2c2d;"> is BAD, it modifies the original
+        </span></li>
+        <li><code>.filter</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy</span></li>
+        <li>
+          <code>myState[x]="Stuff"</code><span class="fragment" style="color:#ff2c2d;"> is BAD, it modifies the original
+        </span></li>
+        <li><code>.map</code><span class="fragment" style="color:#17ff2e;"> is fine, it creates a copy</span></li>
+      </ul>
+    </section>
+    <section>
+        <h3>Safely, removing from an array, vanilla</h3>
+        <Code code={snippets["vanilla-immutable-remove.js"]} language="jsx" />
+    </section>
+    <section>
+      <p>Removing an item from a state-array</p>
+      <Code code={snippets["react-immutable-remove.js"]} language="jsx" />
+    </section>
+
+    <section>
+        <h3>Safely, adding to an array, vanilla</h3>
+        <Code code={snippets["vanilla-immutable-add.js"]} language="jsx" />
+    </section>
+    <section>
+      <p>Adding an item to a state-array</p>
+      <Code code={snippets["react-immutable-add.js"]} language="jsx" />
+    </section>
+
+    <section>
+        <h3>Safely, changing an array, vanilla</h3>
+        <Code code={snippets["vanilla-immutable-modify.js"]} language="jsx" />
+    </section>
+    <section>
+      <p>Modifying an item from a state-array</p>
+      <Code code={snippets["react-immutable-modify.js"]} language="jsx" />
+    </section>
+    <section>
+      <p>When dealing with "complex objects", e.g. objects with objects</p>
+      <p>The above is not enough, use something like</p>
+      <p><a href="https://www.npmjs.com/package/just-clone">just-clone</a></p>
+    </section>
+    </AgendaSection>
+
+    <AgendaSection header="Solving the ToDo list">
+        <section>
+            <p><strong>What we know</strong></p>
+            <ol class="fragment">
+                <li>Create the structure</li>
+                <li>Modify states</li>
+                <li>Reading forms in vanilla</li>
+            </ol>
+            <p><strong>What we do not know</strong></p>
+            <ol class="fragment">
+                <li>submit event? <span class="fragment"><code>&lt;form onSubmit={`{}`} /></code></span></li>
+                <li>Unique id's <span class="fragment">(<a href="https://www.npmjs.com/package/uuid">UUID</a>) or just <code>Math.random()</code></span></li>
+            </ol>
+        </section>
+    </AgendaSection>
+    
+    <AgendaSection header="+3/4">
+       <section>
+        <ol>
+            <li>Re-create the ToDo list</li>
+            <li>Go back to the animal base, implement adding, removing, modifying animals</li>
+        </ol>
+       </section>
+    </AgendaSection>
+</SlideLayout>
+
+
+
+
+  
+ 
+  
+
+
+  

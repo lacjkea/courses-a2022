@@ -1,0 +1,121 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+import AgendaSection from "../../../components/AgendaSection.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("digital-design/5.javascript",[
+   "events1.svelte",
+   "if.svelte",
+   "Nav.svelte",
+   "EachTutorial.svelte",
+])
+const snippetsPrev = await codeFetcher("digital-design/2.setup",[
+   "App.svelte"
+])
+---
+
+<SlideLayout title="JavaScript" lang="da">
+    <AgendaSection header="JavaScript" p="and some Svelte magic">
+        <Goal>
+        <ol>
+            <li>Forstå at der er mere "under the hood" i Svelte end smart markup</li>
+        </ol>
+        </Goal>
+    </AgendaSection>
+   
+   <AgendaSection header="Made With Svelte">
+        <section><p><a href="https://madewithsvelte.com/">https://madewithsvelte.com/</a></p></section>
+   </AgendaSection>
+    <AgendaSection header="Events">
+        <section>
+            <p>Events i Svelte er ligesom i "vanilla", bare meget lettere</p>
+            <p>Alle events skrives direkte på DOM elementet, med <code>on:</code> foran</p>
+        </section>
+        <section>
+            <Code code={snippets["events1.svelte"]} />
+        </section>
+        <section>
+            <p>Der hvor det for alvor bliver anderledes er at ting som <code>document.querySelector</code> stort set er forbudt at bruge</p>
+            <p class="fragment">For at håndtere den slags har vi, State</p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="State">
+        <section>
+            <ul>
+                <li>Svelte er et "reactive framework"</li>
+                <li>DVS det kan reagere på ændringer</li>
+                <li>I praksis foregår det via State</li>
+                <li>Hver gang state ændres, opdaterer Svelte tingene for os</li>
+                <li>Men hvad er state så?</li>
+            </ul>
+        </section>
+        <section>
+            <h4>State, eksempler</h4>
+            <ol>
+                <li>let menuOpen = false;</li>
+                <li>let cards = [...];</li>
+                <li>let loggedIn = true;</li>
+                <li>let count=4</li>
+                <li>let basket = [...]</li>
+            </ol>
+        </section>
+        <section>
+            <p>State i Svelte</p>
+            <ol>
+                <li>Erklær en variabel med <code>let</code></li>
+                <li>Brug variablen i din UI</li>
+                <li>Når variablen ændres, opdaterer Svelte</li>
+            </ol>
+        </section>
+        <section>
+            <Code code={snippetsPrev["App.svelte"]} />
+        </section>
+        <section>
+            <p>NavBar</p>
+            <Code code={snippets["Nav.svelte"]} />
+            <p><a href="https://svelte.dev/repl/049d7653741f439fbea90376a739c6fc?version=3.46.4">REPL</a></p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="<code>if/else</code>">
+        <section>
+            <p>Svelte lader os bruge <code>if</code> statements direkte i vores HTML</p>
+            <Code code={snippets["if.svelte"]} />
+            <p><a href="https://svelte.dev/repl/91afe736bf9c4e20969c748e4598c46a?version=3.46.4">REPL</a></p>
+        </section>
+        <section>
+            <p>Accept cookies?</p>
+            <p><a href="https://svelte.dev/repl/32620c2db4d54358ae11ff38d330f1bc?version=3.46.4">REPL</a></p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Simple Routing" p="Poor mans routing">
+        <section>
+           <p><a href="https://svelte.dev/repl/ac9c7b886e544297ac0894cee5c34725?version=3.46.4">REPL</a></p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="<code>each</code>">
+        <section>
+            <p><code>each</code> lader os loope over arrays, ligesom <code>forEach</code>, bare lettere</p>
+            <p>Og så fungerer det uhyggeligt godt sammen med components</p>
+        </section>
+        <section>
+            <Code code={snippets["EachTutorial.svelte"]} stretch/>
+        </section>
+        <section>
+            <p>Lad os gå live, og så har i linket bagefter</p>
+            <p><a href="https://svelte.dev/repl/708a6f3c0dc1481a8936d8d570b9fe29?version=3.46.4">REPL</a></p>
+        </section>
+    </AgendaSection>
+    
+    <AgendaSection header="fetch">
+        <section>
+            <p class="fragment">Ahh, come on, seriously?</p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Transition directive"></AgendaSection>
+    <section>
+        <h2>Lyn evaluering</h2>  
+    </section>
+    <section><h1>Lad os kigge på vores mål</h1></section>
+</SlideLayout>

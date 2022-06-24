@@ -1,0 +1,228 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+import AgendaSection from "../../../components/AgendaSection.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("react/2.build-this-layout-v2",[
+    "a-first-look-at-props.js",
+    "props-visual1.js",
+    "props-visual2.js",
+    "props-visual3.js",
+    "props-visual4.js",
+    "import-export-navigation.js",
+    "import-export-app.js",
+    "passing-props-functional-manual.js",
+    "passing-props-functional-destructure.js",
+    "rendering-arrays-1.js",
+    "rendering-arrays-2.js",
+    "rendering-arrays-3.js",
+    "children.js",
+])
+
+---
+
+<SlideLayout title="Build this layout, #2">
+    <section>
+        <h1>React</h1>
+        <img src='/assets/react/0.need-to-know-js/react.png'  alt="" />
+    </section>
+    <Goal>
+        <ol>
+            <li>Understand <span class="fragment highlight-blue">what <code>props</code> are</span> and how they are used</li>
+            <li>Experience how to <span class="fragment highlight-blue">pass down props</span> to a component, several layers deep</li>
+            <li>Learn how to break a UI in to multiple files using <code>import/export default</code></li>
+        </ol>
+    </Goal>
+
+    <section>
+        <h3>Agenda</h3>
+        <ol>
+            <li><code>props</code></li>
+            <li><code>import / export default</code></li>
+            <li>prop drilling</li>
+            <li><code>children</code></li>
+            <li>mapping, #1</li>
+        </ol>
+    </section>
+
+    <AgendaSection header="<code>props</code>">
+        <section class="small">
+            <h3>A first look at <code>props</code></h3>
+            <p>Our code is not yet re-usable</p>
+            <p>Our greeting component can only say hi to our moms</p>
+            <p>
+                In React, we can invent our own properties that the component can read
+            </p>
+            <Code stretch code={snippets["a-first-look-at-props.js"]} language="js" />
+            <p class="fragment">See those <code>{`{}`}</code> that's how we "interpolate" variables</p>
+        </section>
+        <section>
+            <p><code>props</code> are immutable, you cannot/should not change them</p>
+            <p>We'll get back to this when it makes sense, but...</p>
+            <h3>Whenever a prop change, the component is updated!!</h3>
+        </section>
+        <section>
+            <ul>
+                <li>In the dev tools we can inspect React components as well</li>
+                <li>We can manipulate state and props</li>
+                <li>Let's take a look</li>
+            </ul>
+        </section>
+        <section>
+            <h3>My Mental model for understanding props</h3>
+            <ol>
+                <li>All props/attributes we pass to a component will be</li>
+                <li>turned in to an object</li>
+                <li>passed unto the component</li>
+                <li>who receives it as a parameter called <code>props</code></li>
+            </ol>
+        </section>
+        <section>
+            <h2>or</h2>
+            <p>Let's imagine a component called <code>&lt;MyComponent /&gt;</code></p>
+        </section>
+        <section data-auto-animate>
+            <Code dataId="props-visual" stretch code={snippets["props-visual1.js"]} language="jsx" />
+        </section>
+        <section data-auto-animate>
+            <Code dataId="props-visual" stretch code={snippets["props-visual2.js"]} language="js" />
+        </section>
+        <section data-auto-animate>
+            <Code dataId="props-visual" stretch code={snippets["props-visual3.js"]} language="jsx" />
+        </section>
+        <section data-auto-animate>
+            <Code dataId="props-visual" stretch code={snippets["props-visual4.js"]} language="jsx" />
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="<code>import / export default</code>">
+        <section>
+            <h2>Splitting / Cleaning up our code</h2>
+        </section>
+        <section>
+            <p>This is probably my favourite part, splitting up our code</p>
+            
+            <p>We'll put each component in a separate file, and</p>
+            <ul>
+                <li>Increase readability</li>
+                <li>Improve maintainablility</li>
+                <li>Improve re-usability</li>
+                <li>Make it easier to work together</li>
+            </ul>
+        </section>
+        <section>
+            <p>The process is simple</p>
+            <ol>
+                <li class="fragment">Put each component in a separate file</li>
+                <li class="fragment">
+                Name the file the same as your component and add <code>.js</code> or
+                <code>.jsx</code>
+                </li>
+                <li class="fragment">
+                Add <code>export default</code> in front of the function definition
+                </li>
+                <li class="fragment">Import it in the "parent" component file</li>
+            </ol>
+        </section>
+        <section>
+            <h3>Example</h3>
+            <Code code={snippets["import-export-navigation.js"]} language="jsx" />
+            <Code code={snippets["import-export-app.js"]} language="jsx" />
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="prop drilling">
+        <section>
+            <p>or</p>
+            <h2>Passing down props</h2>
+        </section>
+        <section>
+        <ul>
+            <li>We've seen props, and we can pass them from parent to child</li>
+            <li>But very often we need to pass our data down several levels</li>
+            <li>If so, just repeat the process</li>
+        </ul>
+        </section>
+        <section>
+        <h3>Example, manual</h3>
+        
+        <Code code={snippets["passing-props-functional-manual.js"]} language="jsx" />
+        <p><span class="fragment">App </span><span class="fragment"> =>  Navigation </span><span class="fragment">=> Profile</span></p>
+        </section>
+    
+        <section>
+        <h3>Example, spreading</h3>
+        <p>(just forward everything)</p>
+        <Code code={snippets["passing-props-functional-destructure.js"]} language="jsx" />
+        </section>
+        <section>
+        <ul>
+            <li>If This was all React could do I would already be kind of happy</li>
+            <li>Components are an amazing way of building UI's</li>
+            <li>But we need interactivity</li>
+            <li>And for that we have <code>state</code> and <code>events</code></li>
+            <li class="fragment">Later</li>
+        </ul>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="<code>props.children</code>">
+        <section>
+            <p>Components receive a special prop called <code>children</code>, which contains all nested JSX</p>
+            <Code code={snippets["children.js"]} />
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="mapping, #1">
+        <section>
+            <h1><code>map</code>'ing</h1>
+            <h2>Rendering Arrays</h2>
+        </section>
+  
+    <section>
+      <ul>
+        <li>We have an array of data</li>
+        <li>We want to render components based on that data</li>
+        <li>
+          React already knows what to do with an array of components / DOM
+          elements
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>Baby step #1</h3>
+      <Code code={snippets["rendering-arrays-1.js"]} language="jsx" />
+    </section>
+    <section>
+      <h3>Baby step #2</h3>
+      <p>We can ++ it, and use components</p>
+      <Code code={snippets["rendering-arrays-2.js"]} language="jsx" />
+    </section>
+    <section>
+      <ul>
+        <li>But mostly, we have a "simple" array with data</li>
+        <li><code>.map</code> to the rescue</li>
+        <li>Remember, map works on an array, and returns a new array for us</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Baby step #3</h3>
+      <p>We can <code>.map</code> it, and use components</p>
+      <Code code={snippets["rendering-arrays-3.js"]} language="jsx" />
+    </section>
+    </AgendaSection>
+
+    <AgendaSection header="+3/4">
+        <section>
+            <p>Let's see what you can figure out</p>
+            <p>Take what you built earlier and</p>
+            <ol class="boxed">
+                <li>fix the text's by passing props</li>
+                <li>See any repeated components? create an array of data and map through it to display the components</li>
+            </ol>
+            <p>When to stop is up to you, keep hacking until you get it</p>
+        </section>
+    </AgendaSection>
+</SlideLayout>

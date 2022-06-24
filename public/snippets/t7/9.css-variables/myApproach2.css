@@ -1,0 +1,16 @@
+:root {
+    --color-black: hsl(0, 0%, 0%);
+    --color-grey-0: hsl(0, 0%, 12%);
+    --color-grey-100: hsl(0, 0%, 21%);
+    --color-grey-200: hsl(0, 0%, 29%);
+    ...
+    --color-grey-800: hsl(0, 0%, 80%);
+    --color-grey-900: hsl(0, 0%, 89%);
+  
+    --color-red-0: hsl(0,50%,12%);
+    --color-red-100: hsl(0,50%,21%);
+    --color-red-200: hsl(0,50%,29%);
+    ...
+    --color-red-800: hsl(0,50%,80%);
+    --color-red-900: hsl(0,50%,89%);                                  
+  }

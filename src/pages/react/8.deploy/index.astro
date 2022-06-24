@@ -1,0 +1,47 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro";
+import Goal from "../../../components/Goal.astro";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import codeFetcher from "../../../js/codeFetcher";
+const snippets = await codeFetcher("react/8.deploy",[
+    
+])
+
+---
+
+<SlideLayout title="Deploy">
+    <section>
+    <h1>React</h1>
+        <img src='/assets/react/0.need-to-know-js/react.png'  alt="" />
+    </section>
+    <Goal>
+    <ol>
+        <li>Know how to deploy a React app</li>
+    </ol>
+    </Goal>
+    <section>
+        <h1>Build and deploy</h1>
+    </section>
+    <section>
+        <p>3 steps</p>
+        <ol>
+            <li>Hook it up to GitHub</li>
+            <li>Hook GitHub up to Netlify</li>
+            <li>Push</li>
+        </ol>
+        <p>Netlify should pick up the needed settings from Create React App</p>
+        
+    </section>
+    <section>
+        <h2>A few extra details</h2>
+        <p><code>npm run build</code> is the command needed to build</p>
+        <p class="fragment">That will create a folder called <code>dist/</code> with the minified/optimized code</p>
+        <p class="fragment">If you wish to upload it to your own domain, you probably need to tell React to use relative paths</p>
+        <p class="fragment">Do that by adding the following to <code>package.json</code>: <code>"homepage": ".",</code></p>
+    </section>
+    <AgendaSection header="+3/4">
+        <section>
+            <p>Go ahead and deploy something :-)</p>
+        </section>
+    </AgendaSection>
+</SlideLayout>

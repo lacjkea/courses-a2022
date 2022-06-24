@@ -1,0 +1,29 @@
+...
+<header>
+  <nav id="main">
+    <a href="#">Home</a>
+    <a href="#">About us</a>
+  </nav>
+  <p>Please click something</p>
+</header>
+<article>
+  <header>
+    <h1>An ode to JS</h1>
+    <h2>
+      By
+      <a href="#">Jonas</a>
+    </h2>
+  </header>
+  <p>content goes here</p>
+</article>
+<script>
+  const header = document.querySelector("header");
+  //what does 'header' contain now?
+
+  const next = header.nextElementSibling;
+  //what's inside 'next' now?
+
+  const please = document.querySelector("header p");
+
+  const x = please.previousElementSibling;
+</script>

@@ -1,0 +1,26 @@
+/*We can turn this*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (min-width: 40em) {
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/*into this*/
+:root {
+  --cols: 3;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+}
+
+@media (min-width: 40em) {
+  .grid {
+    --cols: 5;
+  }
+}

@@ -1,0 +1,174 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+const snippets = await codeFetcher("forms-and-frameworks/3.sass",[
+    "cool-trick.scss",
+    "cool-trick.css"
+])
+---
+
+<SlideLayout title="SASS">
+    <AgendaSection header="SASS" h3="Syntactically Awesome Style Sheets" p="CSS as it should be" />
+    <section>
+        <Goal>
+            <ol>
+                <li>Understand why devs use SASS</li>
+                <li>Be able to write SASS</li>
+                <li>Know where to find more ressources</li>
+            </ol>
+        </Goal>
+    </section>
+    
+    <AgendaSection header="Agenda">
+        <section>
+            <ul>
+                <li>What is it?</li>
+                <li>Why do we use it?</li>
+                <li>How to install it?</li>
+                <li>The syntax</li>
+                <li>Componetizing</li>
+                <li>A cool trick</li>
+                <li>+3</li>
+            </ul>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="What is it">
+    
+        <section>
+            <p>SASS is a CSS preprocessor</p>
+            <p>We write SCSS/SASS and the preprocessor translates it into CSS</p>
+        </section>
+        <section>
+            <h3>Two competing syntaxes</h3>
+            <p>.scss</p>
+            <p>.sass</p>
+            <p>We'll be using .scss</p>
+            <p><strong>so all our files will be called .scss in the end</strong></p>
+        </section>
+        <section>
+            <blockquote><p>I write style sheets by hand! I don’t need help! And I certainly don’t want to add extra complexity to my workflow. Go away!</p></blockquote>
+            <cite> - Dan Cederholm
+                <a href="http://alistapart.com/articles/why-sass">http://alistapart.com/articles/why-sass</a></cite>
+        </section>
+    </AgendaSection>
+    
+    <AgendaSection header="Why do we use it">
+        <section>
+            <p>Because CSS is missing stuff "we need"</p>
+            <ul>
+                <li><del>Variables</del></li>
+                <li>Reusable blocks</li>
+                <li>Conditionals</li>
+                <li>Loops</li>
+                <li>Functions</li>
+                <li>Math (sorry)</li>
+                <li>Minification</li>
+            </ul>
+        </section>
+        <section>
+            <h3>The good parts</h3>
+            <ul>
+                <li>It's (almost) just CSS</li>
+                <li>We can use as little or as much as we like</li>
+                <li>It's not that hard</li> 
+            </ul>
+        </section>
+        <section>
+            <blockquote><p>Once I started using Sass, I never once thought it was awkward or laborious—it just feels like CSS should feel. Once you try it, you’ll likely stick with it permanently</p></blockquote>
+            <cite> - Dan Cederholm <a href="http://alistapart.com/articles/why-sass">http://alistapart.com/articles/why-sass</a></cite>
+        </section>
+        <section>
+            <h3>The bad parts</h3>
+            <ul>
+                <li>It's a new thing to learn</li>
+                <li>It doesn't work without the "preprocessor"</li>
+                <li>It might not stick around</li>
+                <li>It's not the only one</li>
+                <li>SCSS vs SASS</li>
+            </ul>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="How do we install it?">
+        <section>
+            <h2>Two ways <span class="fragment">(that we care about)</span></h2>
+            <ol>
+                <li><code>npm</code></li>
+                <li><code>Vite</code></li>
+            </ol>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="SASS through NPM">
+        <section>
+            <p>For just converting SASS</p>
+            <p><a href="https://www.npmjs.com/package/sass">https://www.npmjs.com/package/sass</a></p>
+            <pre><code class="bash">npm init
+npm install --save-dev sass
+            </code></pre>
+        </section>
+        <section>
+            <h3>Running with npm</h3>
+            <p>Add an extra <code>scripts</code> line to our <code>package.json</code></p>
+            <pre><code class="bash">"watchsass":"sass --output-style expanded myfile.scss output.css -w"</code></pre>
+        </section>
+        <section>
+            <p>But we don't need that if we're using Vite</p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="SASS through Vite">
+        <section>
+            <h3>SASS through Vite</h3>
+            <p>Couldn't be simpler</p>
+            <p>With Vite installed:</p>   
+            <ol>
+                <li class="fragment">install SASS<br>
+                    <code>npm install --save-dev sass</code>
+                </li>
+                <li class="fragment">In your JS file you import the SASS files<br>
+                    <code>import "./sass/style.scss";</code>
+                </li>
+            </ol>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="The Syntax">
+        <section>
+            <p><a href="https://sass-lang.com/guide">https://sass-lang.com/guide</a></p>
+            
+            <p>Let's go through the link above, and then</p>
+            <p><a href="https://devhints.io/sass">https://devhints.io/sass</a></p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Exercice">
+        <section>
+            <p>Play around with SASS</p>
+            <ol>
+                <li>Install SASS in a / your project</li>
+                <li>Create a SASS file</li>
+                <li>Import it in JS</li>
+            </ol>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="A cool trick">
+        <section>
+            <Code code={snippets["cool-trick.scss"]} language="sass" />
+            <p class="fragment">becomes</p>
+            <div class="fragment"><Code code={snippets["cool-trick.css"]} language="css" /></div>
+        </section>
+        <section>
+            <p><a href="https://www.hongkiat.com/blog/mixin-library-for-sass/">https://www.hongkiat.com/blog/mixin-library-for-sass/</a></p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Deployment?" p="Do we have the time / energy?"></AgendaSection>
+    <section>
+        <h2>+3</h2>
+        <p>(Let's look at Fronter)</p>
+    </section>
+    <AgendaSection header="Let's revisit the goals" />
+</SlideLayout>

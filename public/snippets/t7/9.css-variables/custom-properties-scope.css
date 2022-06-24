@@ -1,0 +1,12 @@
+/*declared the variable*/
+:root {
+  --link-color: #bada55;
+}
+/*use it, all child elements will now have badass text*/
+nav a {
+  color: var(--link-color);
+}
+/*except when hovered, where we overwrite the property*/
+nav a:hover {
+  --link-color: #c0ffee;
+}

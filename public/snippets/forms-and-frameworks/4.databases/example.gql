@@ -1,0 +1,8 @@
+query {
+    user(cpr: '010203-0507') {
+        firstname
+        street
+        phone
+        cpr
+    }
+}

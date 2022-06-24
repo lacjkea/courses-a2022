@@ -1,0 +1,74 @@
+<style>
+      .pacman {
+        position: relative;
+        width: 500px;
+        height: 300px;
+        overflow: hidden;
+      }
+      .pacman .top,
+      .pacman .bottom {
+        background: hotpink;
+        width: 300px;
+        height: 150px;
+        position: relative;
+      }
+      .pacman .top {
+        border-radius: 150px 150px 0 0;
+        transform-origin: bottom center;
+        animation: 0.5s chew alternate infinite;
+      }
+      .pacman .top:before {
+        position: absolute;
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: black;
+        border-radius: 50%;
+        right: 100px;
+        top: 100px;
+      }
+      .pacman .bottom {
+        border-radius: 0 0 150px 150px;
+        transform-origin: top center;
+        animation: 0.5s chew2 alternate infinite;
+      }
+      @keyframes chew {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(-30deg);
+        }
+      }
+      @keyframes chew2 {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(30deg);
+        }
+      }
+      .food {
+        position: relative;
+        top: -175px;
+        animation: 2s movefood infinite;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: yellow;
+        z-index: -2;
+      }
+      @keyframes movefood {
+        from {
+          transform: translateX(400px);
+        }
+        to {
+          transform: translateX(-00px);
+        }
+      }
+    </style>
+    <div class="pacman">
+      <div class="top"></div>
+      <div class="bottom"></div>
+      <div class="food"></div>
+    </div>

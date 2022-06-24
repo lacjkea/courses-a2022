@@ -1,0 +1,148 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import PayButton from "./components/PayButton.astro";
+import FlightButton from "./components/FlightButton.astro";
+const snippets = await codeFetcher("t7/12.microinteractions",[
+    
+]);
+
+---
+
+<SlideLayout title="Micro Interactions">
+
+<section>
+    <h1>Micro</h1><h2>interactions</h2>
+    
+</section>
+
+<section>
+    
+    <h3>Today</h3>
+    <ol>
+        <li>Tomorrow</li>
+        <li>Micro-interactions</li>
+        <li>Examples</li>
+        <!-- <li>Box model</li>
+        <li>Dev Tools</li> -->
+        <li>Introduction to the assignment</li>
+        <li>Tomorrow</li>
+    </ol>
+</section>
+
+<section>
+    <h1>Tomorrow</h1>
+    <p>online</p>
+    <p>Short presentation at 14:00</p>
+    <p>Jonas available on Teams</p>
+</section>
+<AgendaSection header="Micro" h2=" Interactions">
+    <section>
+        <h3>What are Micro-Interactions?</h3>
+
+        <blockquote>Micro-Interactions are like any other interactions with devices, which are used to communicate <span class="fragment highlight-red">meaningful feedback</span> to the users because a user has to constantly <span class="fragment highlight-green">know what happens</span> <span class="fragment highlight-blue">when an action is performed</span>. It’s a human tendency to expect something to happen when you click a button, scroll a page, add an item to the cart, left swipe a card.</blockquote>
+    </section>    
+    <section>
+        <p>Micro interactions have four parts:</p>
+        <img data-src="/assets/t7/12.microinteractions/triggers.png" alt="" />
+    </section>
+</AgendaSection>
+<AgendaSection header="Triggers">
+    <section>
+        <ul>
+            <li><strong>Triggers</strong> initiate a microinteraction. Triggers can be user-initiated or system initiated.</li> 
+            <li>In a user-initiated trigger, the user has to initiate an action.</li>
+            <li>In a system-initiated trigger, software detects certain qualifications are being met and initiates an action.</li>
+        </ul>
+        <p class="fragment">?</p>
+    </section>
+</AgendaSection>
+
+<section>
+    <section>
+        <h1>Rules</h1>
+    </section>
+    <section>
+        <ul>
+            <li><strong>Rules</strong> determine what happens once a microinteraction is triggered.</li>
+        </ul>
+        <p class="fragment">?</p>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h1>Feedback</h1>
+    </section>
+    <section>
+        <ul>
+            <li><strong>Feedback</strong> lets people know what's happening. Anything a user sees, hears, or feels while a microinteraction is happening is feedback.</li>
+        </ul>
+        <p class="fragment">?</p>
+    </section>
+</section>
+
+<section>
+    <section>
+        <h1>Loops and Modes</h1>
+    </section>
+    <section>
+        <ul>
+            <li><strong>Loops and Modes</strong>: A loop determines the length of the microinteraction. It determines whether the interaction repeats or if it changes over time</li>
+        </ul>
+        <p class="fragment">?</p>
+    </section>
+</section>
+
+<AgendaSection header="Examples">
+    <section>
+        <p><a href="https://codepen.io/jonasholbech/pen/xxPWjeZ">https://codepen.io/jonasholbech/pen/xxPWjeZ</a></p>
+    </section>
+    <section>
+        <PayButton client:visible />
+        <p><a href="https://github.com/jonasholbech/courses-s2022/blob/main/src/pages/t7/12.microinteractions/components/PayButton.astro">GitHub</a></p>
+    </section>
+    <section>
+        <FlightButton client:visible />
+        <p><a href="https://github.com/jonasholbech/courses-s2022/blob/main/src/pages/t7/12.microinteractions/components/FlightButton.astro">GitHub</a></p>   
+    </section>
+    <section>
+        <p><a href="https://codemyui.com/tag/microinteractions/">https://codemyui.com/tag/microinteractions/</a></p>
+    </section>
+</AgendaSection>
+<!-- <section>
+    <section>
+        <h1>The Box-Model</h1>
+    </section>
+    <section>
+        <p>Do you know it?</p>
+        <img class="fragment" data-src="/assets/t7/12.microinteractions/boxmodel.png" alt="" />
+    </section>
+</section>
+
+<section>
+    <section>
+        <h1>The Dev Tools</h1>
+    </section>
+    <section>
+        <p>Do you know it?</p>
+    </section>
+</section>
+ --><section>
+    <section>
+        <h2>Introduction to the assignment</h2>
+    </section>
+</section>
+<section>
+    <section>
+    <h1>Tomorrow</h1>
+    <p>online</p>
+    <p>Short presentation at 14:00</p>
+    <p>Jonas available on Teams</p>
+</section>
+</section>
+
+</SlideLayout>

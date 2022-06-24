@@ -1,0 +1,302 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+import AgendaSection from "../../../components/AgendaSection.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("react/3.mini-animal-base",[
+    "events.js",
+    "events-syntax-by-name.js",
+    "events-syntax-wrapped.js",
+    "events-syntax-wrapped-2.js",
+    "stateful-component-1.js",
+    "stateful-component-2.js",
+    "stateful-component-3.js",
+    "stateful-component-4.js",
+    "stateful-component-5.js",
+    "react-state-fail.js",
+])
+
+---
+
+<SlideLayout title="Mini Animal Base">
+    <section>
+        <h1>React</h1>
+        <img src='/assets/react/0.need-to-know-js/react.png'  alt="" />
+    </section>
+    <section>
+        <h2>Last minute changes</h2>
+        <ol>
+            <li>Guest speaker</li>
+            <li>new videos</li>
+            <li>Using myself as an example</li>
+        </ol>
+    </section>
+    <Goal>
+        <ol>
+            <li>Be able to use events in React, just like you would in vanilla</li>
+            <li>Be able to create and modify simple state in React</li>
+            <li>Be able to analyze simple scenarios and decide when and where to put state</li>
+        </ol>
+    </Goal>
+
+    <section>
+        <h3>Agenda</h3>
+        <ol>
+            <li>events</li>
+            <li>state #1
+                <ul>
+                    <li><code>const [count, setCount] = useState(0)</code></li>
+                    <li>The React extension</li>
+                    <li>example on how react "fails" (setState is asynchronous)</li>
+                </ul>
+            </li>
+            <li>keys</li>
+        </ol>
+    </section>
+
+    <AgendaSection header="Events">
+        <section>
+            <p>events in React are quite different from what you're used to</p>
+            <p>They actually look a lot like "stuff you've been told not to do"</p>
+            <Code code={snippets["events.js"]} language="jsx" />
+            <p>
+                <a href="https://reactjs.org/docs/events.html#supported-events">supported events</a>
+            </p>
+        </section>
+        <section>
+            <h3>Warning</h3>
+            <p>LOTS of examples will do something like</p>
+            <pre><code class="js">&lt;div onClick={`{}`}>Stuff&lt;/div></code></pre>
+            <p>Don't put click events on stuff like that, use buttons and anchors</p>
+            <p class="fragment">And if you have no choice, research aria attributes</p>
+        </section>
+        <section>
+            <h3>Other syntaxes for events</h3>
+            <p>
+                As with <code>addEventListener</code>, events in React receive a callback,
+                and you'll see a lot of different syntaxes
+            </p>
+            <p>So let's take a quick look</p>
+            <Code code={snippets["events-syntax-by-name.js"]} language="jsx" />
+        </section>
+        <section data-auto-animate>
+            <Code dataId="wrapped" code={snippets["events-syntax-wrapped.js"]} language="jsx" />
+        </section>
+        <section data-auto-animate>
+            <Code dataId="wrapped" code={snippets["events-syntax-wrapped-2.js"]} language="jsx" />
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="State, #1">
+        <section>
+            <ol>
+                <li>State is "the state of our application at any given point"</li>
+                <li class="fragment">
+                or some smaller part of our app, like
+                <ul>
+                    <li class="fragment">
+                    <code class="js">let menuOpen = false;</code>
+                    </li>
+                    <li class="fragment">
+                    <code class="js">let userSignedIn = true;</code>
+                    </li>
+                    <li class="fragment"><code class="js">let blogPosts=[];</code></li>
+                    <li class="fragment"><code class="js">let valueInForm=42;</code></li>
+                </ul>
+                </li>
+                <li class="fragment">
+                So we can think of it as variables that describe the "state of our UI"
+                </li>
+                <li class="fragment">
+                <code>props</code> is a special kind of state that is inherited from a
+                parent
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h3>The React promise</h3>
+            <ol>
+                <li>
+                Whenever state changes, react will "re-render" anything dependent on
+                that state
+                </li>
+                <li>
+                Whenever props change, react will "re-render" anything dependent on
+                those props
+                </li>
+            </ol>
+        </section>
+        <section>
+        <ul>
+            <li>
+            In practice, that means, that, whenever we change state, all components,
+            that uses that state, either directly, or through props, will update
+            automatically!!!
+            </li>
+            <li class="fragment">
+            Did the user log out? Just change a variable, and all components that
+            knows about the user will update as needed
+            </li>
+            <li class="fragment">
+            Did we remove something from an array? Just update state
+            </li>
+        </ul>
+        </section>
+        <section class="alternate">
+            <p><code>props</code> are passed down from the parent</p>
+            <p><code>state</code> lives inside a component</p>
+            <p>
+                When either of these change, the affected components are "re-rendered"
+            </p>
+            <p>(meaning the function runs again)</p>
+        </section>
+        <section>
+            <h4>a "stateful" component</h4>
+            <p>Stateful components consists of a few things</p>
+            <ol>
+                <li>
+                We import <code>useState</code><br />
+                <pre><code class="js">{`import {useState} from "react";`}</code></pre>
+                </li>
+                <li class="fragment">
+                <code>useState</code> is a function that, once called returns an array
+                with two things, a state variable, and an "updater function"
+                </li>
+                <li class="fragment">
+                When calling <code>useState</code> we pass the initial value for our
+                state variable<br />
+                <pre><code class="js">const [myVar, myUpdater] = useState(initialValue)</code></pre>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <ol start="4">
+                <li>
+                We use the "updater function" to modify state to force a re-render
+                </li>
+                <li class="fragment">
+                We use the "state variable" in our UI, as a condition, or simply data
+                </li>
+            </ol>
+        </section>
+        <section>
+            <p>
+                Remember, every time "state" or "props" change, the UI is updated. So all
+                we have to do is update state......
+            </p>
+            <p>It's quite strange initially, but SO powerful once you get it</p>
+        </section>
+        <section>
+        <h3><code>useState, #1</code></h3>
+            <h4>Initial setup</h4>
+            <Code code={snippets["stateful-component-1.js"]} language="jsx" />
+            <div  class="fragment">
+                <p>And we can use the <code>count</code> variable</p>
+                <Code code={snippets["stateful-component-2.js"]} language="jsx" />
+            </div>
+        </section>
+        <section>
+            <h3><code>useState, #2</code></h3>
+            <ul>
+                <li>
+                But the power comes from the "magic of React"
+                <ol>
+                    <li>When state changes, React updates (sorry)</li>
+                    <li><code>useState</code> gives us an updater function</li>
+                    <li>In our case, we called it <code>setCount()</code></li>
+                </ol>
+                </li>
+                <li>
+                Calling our function will modify state, thereby forcing a re-render
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3><code>useState, #3</code></h3>
+            <ul>
+                <li>In <code>useState</code> we pass a function that:
+                    <ul>
+                        <li>receives the current state</li>
+                        <li>Must return the new state</li>
+                    </ul>
+                </li>
+            </ul>
+            <Code code={snippets["stateful-component-3.js"]} language="jsx" />
+        </section>
+        <section>
+            <h3>"Rules of Hooks"</h3>
+            <p><a href="https://reactjs.org/docs/hooks-rules.html">https://reactjs.org/docs/hooks-rules.html</a></p>
+            <blockquote>Don’t call Hooks inside loops, conditions, or nested functions</blockquote>
+            <p>In general, only call <code>useState</code> in callbacks (events / useEffect)</p>
+        </section>
+        <section>
+            <h3><code>useState, #5</code></h3>
+            <Code code={snippets["stateful-component-4.js"]} language="jsx" />
+        </section>
+        <section>
+            <h3><code>useState, #6</code></h3>
+            <Code code={snippets["stateful-component-5.js"]} language="jsx" />
+            <p>Another form exists when the state is not based off a previous state</p>
+        </section>
+        <section>Let's look at Dev Tools</section>
+    <section>
+        <p>Repeat after me</p>
+        <h2 class="fragment">I must never modify state directly</h2>
+        <h3 class="fragment">I must never modify state directly</h3>
+        <h4 class="fragment">I must never modify state directly</h4>
+        <p class="fragment">I must never modify state directly</p>
+        <p class="fragment">Always use the "updater" function</p>
+        </section>
+        <section>
+            <h3>When state fails</h3>
+            <p><code>useState</code> is asynchronous. React schedules the calls and handles them when it has the time</p>
+            <p>The following will work, but not correctly!</p>
+            <Code code={snippets["react-state-fail.js"]} language="jsx" />
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Mini Animal Base">
+        <section>
+            <p>Let's solve it, quick and dirty</p>
+            <p>And record it</p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="keys">
+        <section>
+      <p>Right now we have an error in the console</p>
+      <img src="/assets/react/3.mini-animal-base/keys-warning.png" alt="" />
+      <p>React has been friendly enough to give us a link so we can read more</p>
+    </section>
+    <section>
+      <p>But basically it's just:</p>
+      <p>
+        <strong
+          >React needs a "key" so it can find the stuff to update fast</strong
+        >
+      </p>
+      <h3>Solution</h3>
+      <ol>
+        <li>
+          Give each component that is "based" off an array a
+          <code>key</code> property that is unique to that list
+        </li>
+        <li>Something like <code>&lt;card key={`{data.id}`} ...</code></li>
+      </ol>
+    </section>
+    </AgendaSection>
+
+    <AgendaSection header="+3/4">
+        <section>
+            <p>Copy the mini animal base</p>
+            <p>If you can, try the following</p>
+            <ol>
+                <li>Make each animal a component</li>
+                <li>Give each <code>&lt;Animal /&gt;</code> it's own state (starred)</li>
+                <li>Add a star that is either dimmed or bright dependent on the state (starred)</li>
+            </ol>
+        </section>
+    </AgendaSection>
+</SlideLayout>

@@ -1,0 +1,260 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+const snippets = await codeFetcher("t7/6.conditionally-showing-data",[
+    "if-quiz1.js",
+    "if-quiz2.js",
+    "discount1.js",
+    "discount2.js",
+    "navigationhelpers.js",
+    "qs-template.html",
+    "qs-template-all.html",
+    "qs-template-parentElement.html",
+    "qs-template-nextElementSibling.html",
+    "chaining.js",
+    "getAttribute.js",
+    "setAttribute.js",
+    "qsForEach.js",
+    "qsForEachArrow.js",
+    "qsForEachArrowCondensed.js",
+    "useTheCascade.css",
+    "useTheCascade.html",
+    "useTheCascade2.css",
+    "useTheCascade2.html",
+])
+
+---
+
+<SlideLayout title="Conditionally showing data">
+<AgendaSection header="Dom manipulation" p="Conditionally showing data" />
+
+<section>
+  <Goal>
+    <ol>
+      <li>Learn to navigate the DOM</li>
+      <li>Work with attributes</li>
+      <li>Practice arrays</li>
+      <li>Get a better understanding of conditions</li>
+    </ol>
+  </Goal>
+</section>
+<section>
+  <h2>Agenda</h2>
+  <ul>
+    <li>Left-overs</li>
+    <li>Navigating the DOM</li>
+    <li>Attributes</li>
+    <li>Arrays / <code>.querySelectorAll</code></li>
+    <li>Removing content</li>
+    <li>Conditional data</li>
+    <li>Data attributes</li>
+    <li><code>productlist.html</code>, #1</li>
+    <li>The almighty frontend developer</li>
+  </ul>
+</section>
+
+<AgendaSection header="Left-overs">
+  <section>
+    <ol>
+      <li>New video (superheroes)</li>
+      <li>Questions?</li>
+    </ol>
+  </section>
+</AgendaSection>
+
+<section>
+  <h3>Purpose of today</h3>
+  <p><strong>Navigating and controlling the DOM, remember</strong></p>
+  <p class="fragment">We can find ANYTHING in the DOM</p>
+  <p class="fragment">We can create ANYTHING in the DOM</p>
+  <p class="fragment">We can modify ANYTHING in the DOM</p>
+</section>
+
+<AgendaSection header="Navigating the DOM">
+  <section>
+    <h4>Locating an element</h4>
+    <Code code={snippets["navigationhelpers.js"]} lineNumbers="1-3|5-7|9-10|12-13|15-16"/>
+  </section>
+
+  <section class="small">
+    <h4><code>elem.querySelector</code></h4>
+    <p>With something selected, we can search through it's children</p>
+    <Code code={snippets["qs-template.html"]} lineNumbers="1-21|2,8,17|4-5,18-20"/>
+  </section>
+
+  <section class="small">
+    <h4><code>elem.querySelectorAll</code></h4>
+    <Code code={snippets["qs-template-all.html"]} lineNumbers="1-24|20,4-5,14|22,7,17 " stretch/>
+    
+    <p>This one is a bit harder, we'll get back to it</p>
+  </section>
+
+  <section class="small">
+    <h4><code>elem.parentElement</code></h4>
+    <Code code={snippets["qs-template-parentElement.html"]} lineNumbers="1-100|10,13,17|9,15,19"/>
+  </section>
+
+  <section class="small">
+    <h4><code>elem.nextElementSibling</code></h4>
+    <Code code={snippets["qs-template-nextElementSibling.html"]} stretch lineNumbers="1-100|20-21|20-21,2,8|23-24|23-24,9,18|26|26,7|28|28,3,6" />
+  </section>
+
+  <section class="small">
+    <h4>Chaining</h4>
+    <p>We often see these elements used "chained"</p>
+    <Code code={snippets["chaining.js"]} />
+  </section>
+
+</AgendaSection>
+
+<AgendaSection header="Attributes">
+  <section>
+    <h3><code>setAttribute</code></h3>
+    <p>With <code>elem.setAttribute('atr', 'new')</code> we can set the "attributes" on any element in the DOM</p>
+    <Code code={snippets["setAttribute.js"]} />
+  <p><small>we have changed attributes with <code>.src</code> which works just fine</small></p>
+  </section>
+  <section>
+    <h3><code>getAttribute</code></h3>
+    <p>We can also "read" attributes</p>
+    <Code code={snippets["getAttribute.js"]} />
+    <p><small>We could also read the src with <code>.src</code> but it behaves strange</small></p>
+  </section>
+</AgendaSection>
+
+<AgendaSection header="Arrays" p="Well, actually, <code>NodeList</code>s">
+  <section>
+    <ul>
+      <li>Arrays are still a bit hard</li>
+      <li>But oh so useful</li>
+      <li><code>.querySelectorAll()</code> gives us a NodeList</li>
+      <li>Which works almost like an array</li>
+      <li>e.g. we can use <code>forEach</code></li>
+    </ul>
+  </section>
+  <section data-auto-animate>
+    <h5><code>forEach</code> with named functions</h5>
+    <Code dataId="forEach" code={snippets["qsForEach.js"]} />
+  </section>
+  <section data-auto-animate>
+    <h5><code>forEach</code> with arrow functions</h5>
+    <Code dataId="forEach" code={snippets["qsForEachArrow.js"]} />
+  </section>
+  <section data-auto-animate>
+    <h5><code>forEach</code> with arrow functions, condensed</h5>
+    <Code dataId="forEach" code={snippets["qsForEachArrowCondensed.js"]} />
+  </section>
+</AgendaSection>
+
+<AgendaSection header="Removing content">
+  <section>
+    <p>One of the easier ones :-)</p>
+    <pre><code>elem.remove()</code></pre>
+
+    <h3>Removing some &lt;div&gt;</h3>
+    <pre><code>const div = document.querySelector("div");
+  div.remove();
+  //or just
+  document.querySelector("div").remove()
+  </code></pre>
+  </section>
+</AgendaSection>
+
+<AgendaSection header="Exercise">
+  <section>
+    <p>Fronter: 1. DOM Manipulation</p>
+    <p>You get 20 minutes, finish the rest as homework</p>
+    <p>A quick look at the exercise</p>
+    <p>Remember, you can discuss this on Teams</p>
+  </section>
+</AgendaSection>
+
+<AgendaSection header="Conditional data?">
+  <section>
+    <p>What's that?</p>
+  </section>
+  <section>
+    <ul class="striped">
+        <li>Non-static sites are full of it.</li>
+        <li class="fragment">if you're logged in, you see one thing, otherwise you see something else</li>
+        <li class="fragment">Based on your actions on a site, things can change</li>
+        <li class="fragment">Some products are sold out, some are discontinued etc</li>
+        <li class="fragment">Designing for these circumstances require a little thought</li>
+    </ul>
+  </section>
+  <section>
+    <h3>Technical Approaches</h3>
+    <ol>
+      <li>Have the DOM element in your template, and hide it if you do not need it</li>
+      <li class="fragment">Have the DOM element, hidden in your template, and show it if you need it</li>
+      <li class="fragment">Have the DOM element in your template, remove it if you do not need it</li>
+      <li class="fragment">Make JS create the element when needed</li>
+    </ol>
+    <p class="fragment">Is there any difference?</p>
+  </section>
+</AgendaSection>
+
+<AgendaSection header="Using the cascade">
+  <section>
+    <h3>Remember the C in CSS?</h3>
+    <p>If you want to hide/show something, you don't HAVE to put the class on that element, you can use the cascade</p>
+    <p>Two versions:</p>
+  </section>
+  <section>
+    <h3>Directly on the element</h3>
+    <Code code={snippets["useTheCascade.html"]} language="html"/>
+    <Code code={snippets["useTheCascade.css"]} language="css"/>
+  </section>
+  <section>
+    <h3>On the parent</h3>
+    <Code code={snippets["useTheCascade2.html"]} language="html"/>
+    <Code code={snippets["useTheCascade2.css"]} language="css"/>
+  </section>
+</AgendaSection>
+
+<AgendaSection header="Conditions &amp; sample code">
+  <section><img data-src="https://s-media-cache-ak0.pinimg.com/originals/fc/5d/a3/fc5da380710c56cf174b4e5e0c63feb3.jpg" alt=""></section>
+  <section>
+    <p>Remember <code>if</code>-statements?</p>
+    <div class="flex-grid">
+        <div class="col-6">
+        <Code code={snippets["if-quiz1.js"]} stretch />
+        </div>
+        <div class="col-6">
+        <Code code={snippets["if-quiz2.js"]} stretch />
+        </div>
+    </div>
+    <p>10 minutes, try them out in the console</p>
+  </section>
+  <section>
+    <h2>sample code</h2>
+    <p>Hide / show depending on data</p>
+    <Code code={snippets["discount1.js"]} />
+    <p>Create an element based on data</p>
+    <Code code={snippets["discount2.js"]} />
+  </section>
+</AgendaSection>
+
+<AgendaSection header="Exercise" p="<code>productlist.html</code>, first iteration">
+  <section>
+    <ol>
+      <li>Follow the process in the <a href="https://www.youtube.com/watch?v=eNY6FfgpfgY&list=PLCx1FpZ4Dtb1c2pBTQWTcliHbsJBaZAMt&index=5&t=15s">video</a></li>
+      <li>This one will be a little harder than the last time, because our DOM's will be very different</li>
+      <li>But remember, you can <code>.remove()</code> things in your clone</li>
+      <li>And use all the other cool methods for navigating the DOM inside your clones</li>
+    </ol>
+  </section>
+</AgendaSection>
+<AgendaSection header="The almighty frontend developer">
+  <section>
+    <p>An experiment, let's see how many of you want to participate</p>
+    <p><a href="https://www.emailjs.com/">https://www.emailjs.com/</a></p>
+  </section>
+</AgendaSection>
+<AgendaSection header="Let's review the goals" />
+<AgendaSection header="+5" />
+</SlideLayout>

@@ -1,0 +1,5 @@
+<form>
+    <input type="email" name="userEmail">
+    <textarea name="message"></textarea>
+    <input type="submit" value="Submit" name="submit">
+</form>

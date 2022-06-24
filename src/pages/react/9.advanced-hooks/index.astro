@@ -1,0 +1,155 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro";
+import AgendaSection from "../../../components/AgendaSection.astro";
+
+import Goal from "../../../components/Goal.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+const snippets = await codeFetcher("react/9.advanced-hooks",[
+    "numberContext.js",
+    "numberContextProvider.js",
+    "numberContextConsumer.js",
+    "useReducer.js",
+    "useReducerLarge.js"
+])
+
+---
+
+<SlideLayout title="Advanced Hooks">
+    <section>
+        <h1>React</h1>
+        <img src='/assets/react/0.need-to-know-js/react.png'  alt="" />
+    </section>
+    <section>
+        <p>There's no way around it, this is hard</p>
+        <p>If this is where you sign off, I get it</p>
+    </section>
+    <Goal>
+        <ol>
+            <li>Understand how <code>useContext</code> works</li>
+            <li>Understand how <code>useReducer</code> works</li>
+            <li>Understand how <code>useContext</code> works with <code>useReducer</code></li>
+            <li>Understand what <code>useMemo</code> does</li>
+        </ol>
+    </Goal>
+
+    <AgendaSection header="<code>useContext</code>">
+        <section>
+           <h4>Context: a way to pass data through the component tree.</h4>
+           <blockquote>In a typical React application, data is passed top-down (parent to child) via props, but such usage can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. <span class="fragment highlight-blue">Context provides a way to share values like these between components</span> without having to explicitly pass a prop through every level of the tree.</blockquote>
+        </section>
+        <section>
+            <p>So, context is "global" variables that can be accessed by any component beneath it in the tree</p>
+        </section>
+        <section>
+            <p>Working with contexts requires 3 steps</p>
+            <ol>
+                <li>Creating a context</li>
+                <li>Creating a "provider"</li>
+                <li>Consuming the context</li>
+            </ol>
+        </section>
+        <section>
+            <h3>TLDR;</h3>
+            <p>Creating a context</p>
+            <Code code={snippets["numberContext.js"]} />
+        </section>
+        <section>
+            <h3>TLDR;</h3>
+            <p>Creating a provider</p>
+            <Code code={snippets["numberContextProvider.js"]} />
+        </section>
+        <section>
+            <h3>TLDR;</h3>
+            <p>Consuming the context</p>
+            <Code code={snippets["numberContextConsumer.js"]} />
+        </section>
+    </AgendaSection>
+    
+    <AgendaSection header="<code>useReducer</code>">
+        <section>
+            <blockquote>Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called a “reducer.”</blockquote>
+            <cite><a href="https://beta.reactjs.org/learn/extracting-state-logic-into-a-reducer">https://beta.reactjs.org...</a></cite>
+        </section>
+        <section>
+            <p><code>useState == useReducer</code></p>
+            <p class="fragment">Everything you know about <code>useState</code> kinda applies to <code>useReducer</code></p>
+            <p class="fragment">reducers are just meant for more complex state</p>
+        </section>
+        <section>
+            <h3>Core concepts</h3>
+            <ol>
+                <li>The reducer is a function</li>
+                <li>That receives the current state and an "action object"</li>
+                <li>
+                    <pre><code>//Action object
+{`{
+    action: "ADD",
+    payload: "some data"
+}`}
+                    </code></pre>
+                </li>
+                <li>the function returns the new/next state</li>
+                <li>Components re-render as necessary</li>
+            </ol>
+        </section>
+        <section>
+            <ol start={6}>
+                <li>The <code>useReducer</code> hook returns 2 things
+                    <ul>
+                        <li>The state</li>
+                        <li>A functions for sending "actions" to the reducer</li>
+                    </ul>
+                </li>
+                <li><code>const [state, dispatch] = useReducer(reducer, initialState);</code></li>  
+            </ol>
+        </section>
+        <section>
+            <Code code={snippets["useReducer.js"]} />
+        </section>
+        <section>
+            <iframe src="https://codesandbox.io/embed/usereducer-1-icds6u?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="useReducer #1"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+        </section>
+        <section>
+            <p>This example uses simple state, reducers are commonly used with complex state</p>
+            <p class="fragment">It often ends up looking like this</p>
+            <div class="fragment">
+                <Code code={snippets["useReducerLarge.js"]} />
+            </div>
+        </section>
+        <section>
+            <p>Demo on <code>payload</code></p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="<code>useReducer</code> + <code>useContext</code>">
+        <section>
+            <p>An alternative to prop-drilling</p>
+        </section>
+        <section>
+            <p><a href="https://beta.reactjs.org/learn/scaling-up-with-reducer-and-context">https://beta.reactjs.org/learn/scaling-up-with-reducer-and-context</a></p>
+        </section>
+        <section>
+            <p>TODO:?</p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="<code>useMemo</code>">
+        <section>
+            <p>Just so you've seen it</p>
+        </section>
+        <section>
+            <p>//TODO:</p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="+3/4">
+        
+</AgendaSection>
+</SlideLayout>

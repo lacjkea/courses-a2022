@@ -1,0 +1,137 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+
+---
+
+<SlideLayout title="Querying RestDB">
+<section>
+    <h1><small>Querying RestDB</small></h1>
+</section>
+<section>
+    <Goal>
+        <ol>
+            <li>Know how to query RestDB in new interesting ways</li>
+        </ol>
+    </Goal>
+</section>
+
+<section>
+    <section>
+        <p>With RestDB we can control the data in multiple ways, we can</p>
+        <ul>
+            <li class="fragment">filter</li>
+            <li class="fragment">sort</li>
+            <li class="fragment">Group / Aggregate</li>
+            <li class="fragment">Paginate</li>
+        </ul>
+        <p>Some of these options are easy, some hard</p>
+    </section>
+    <section>
+        <h2>The Manual</h2>
+        <p><a href="https://restdb.io/docs/querying-with-the-api#restdb" target="_blank" rel="noopener noreferrer">https://restdb.io/docs/querying-with-the-api#restdb</a></p>
+        <p>Don't memorize these</p>
+        <p>But know that they exist</p>
+        <p>Then look them up and find an example close to what you want</p>
+        <p>Finally, build your URL one piece at a time</p>
+        <p>Take 10 to skim through it</p>
+    </section>
+    <!-- <section>
+        <h3>Exercise</h3>
+        <ol>
+            <li>Install <a href="https://insomnia.rest/download">Insomnia</a></li>
+            <li>Skim through this: <p><a href="https://restdb.io/docs/querying-with-the-api#restdb" target="_blank" rel="noopener noreferrer">https://restdb.io/docs/querying-with-the-api#restdb</a></p></li>
+        </ol>
+    </section> -->
+</section>
+<!-- <section>
+    <section>
+        <h1>Configure Insomnia</h1>
+    </section>
+</section> -->
+<section>
+<section>
+        <h2>General concepts</h2>
+        <ol>
+            <li>We have an endpoint</li>
+            <li>We append URL parameters to control the data we fetch</li>
+        </ol>
+    </section>
+    <section>
+        <h3>Remember URL parameters?</h3>
+        <code>
+            <pre>endpoint<span class="fragment">?a=1</span><span class="fragment">&b=2</span><span class="fragment">&c=3</span></pre>
+        </code>
+    </section>
+</section>
+<section>
+    <section>
+        <h1><code>max</code></h1>
+    </section>
+    <section>
+        <p>Limits the number of rows that are returned</p>
+        <pre><code class="js">endpoint?max=10</code></pre>
+    </section>
+</section>
+<AgendaSection header="<code>filter</code>">
+    <section>
+        <p>Performs a full text search across all columns and returns rows with matches</p>
+        <pre><code class="js">endpoint?filter=bob</code></pre>
+        <p class="fragment">It's slow but usable for implementing search</p>
+    </section>
+</AgendaSection>
+<section>
+    <section>
+        <h1><code>sort</code></h1>
+    </section>
+    <section>
+        <p>Sorts the returned rows based on a column</p>
+        <pre><code class="js">endpoint?sort=firstname</code></pre>
+    </section>
+</section>
+<section>
+    <section>
+        <h1><code>dir</code></h1>
+    </section>
+    <section>
+        <p>Controls the sort direction</p>
+        
+            <h4>Ascending</h4>  
+            <pre><code class="js stretch">endpoint?dir=1&sort=firstname</code></pre>
+            <h4>Descending</h4>  
+            <pre><code class="js">endpoint?dir=-1&sort=firstname</code></pre>
+        
+    </section>
+</section>
+<section>
+    <section>
+        <h1><code>q</code></h1>
+        <p>This one has so many options that it becomes hard</p>
+        <p>We just need one</p>
+    </section>
+    <section>
+        <p>Only return rows where column has a certain value</p>
+        <pre><code class="js">endpoint?q={`{"firstname":"Jonas"}`}</code></pre>
+        <pre><code class="js">endpoint?q={`{"firstname":"Jonas", "lastname":"Holbech"}`}</code></pre>
+        <p>Usefull for categories</p>
+    </section>
+</section>
+<section>
+    <section>
+        <h1><code>h</code></h1>
+        <p>hints for the database</p>
+        <p>Again, a lot of options</p>
+        <p>But most are covered by the other parameters</p>
+    </section>
+    <section>
+        <p>Limits the number of <strong>columns</strong> that are returned</p>
+        <pre><code class="html">endpoint?h={`{"$fields":{"firstname":1, lastname:1}}`}</code></pre>
+        <hr>
+        <p><span class="fragment">Fewer columns</span> == <span class="fragment">less data</span> == <span class="fragment">increased performance</span></p>
+    </section>
+</section>
+<section>
+    <h1>So, what could you build with this?</h1>
+</section>
+</SlideLayout>

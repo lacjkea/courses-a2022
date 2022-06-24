@@ -1,0 +1,7 @@
+p {
+  margin: 8px;
+}
+h1 {
+  /*venstre op højre ned*/
+  margin: 10px 20px 30px 40px;
+}

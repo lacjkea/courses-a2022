@@ -1,0 +1,271 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+import AgendaSection from "../../../components/AgendaSection.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("react/1.introduction",[
+    "functionalComponents.js",
+    "samplejsx.js",
+    "singleReturnBad.js",
+    "singleReturnBetter.js",
+    "singleReturnBest.js",
+    "functionalComponentsNested.js"
+])
+
+---
+
+<SlideLayout title="Introducing React">
+    <section>
+        <h1>React</h1>
+        <img src='/assets/react/0.need-to-know-js/react.png'  alt="" />
+    </section>
+    <Goal>
+    <ol>
+        <li>Understand <span class="fragment highlight-blue">the problems React solves</span></li>
+        <li>Understand how to use React to <span class="fragment highlight-blue">build reusable UI Components</span></li>
+    </ol>
+    </Goal>
+
+    <section>
+    <h3>Agenda</h3>
+    <ol>
+        <li>Why React</li>
+        <li>The new &amp; old docs</li>
+        <li>Introduction to the plugins you installed</li>
+        <li>Installing react</li>
+        <li>functional components #1</li>
+        <li>Nested components
+            <ul>
+                <li>the React extension</li>
+            </ul>
+        </li>
+        <li>Styling #1
+            <ul>
+                <li><code>className</code></li>
+            </ul>
+        </li>
+    </ol>
+    </section>
+
+    <AgendaSection header="Why React">
+        <section>
+        <h2>How React works</h2>
+        <ol>
+        <li>you display data on a webpage</li>
+        <li>a user interacts with it</li>
+        <li>the data changes</li>
+        <li>React updates the UI</li>
+        </ol>
+    </section>
+    <section>
+        <h3>1. The use of reusable, composable, and stateful components</h3>
+        <blockquote>
+        <p>
+            Working with the DOM API is hard. React basically gives developers the
+            ability to work with a virtual browser that is more friendly than the
+            real browser. React's virtual browser acts like an agent between the
+            developer and the real browser.
+        </p>
+        </blockquote>
+    </section>
+    <section>
+        <h3>2. The nature of reactive updates</h3>
+        <blockquote>
+        <p>
+            React enables developers to declaratively describe their User Interfaces
+            and model the state of those interfaces. This means instead of coming up
+            with steps to describe transactions on interfaces, developers just
+            describe the interfaces in terms of a final state (like a function).
+            When transactions happen to that state, React takes care of updating the
+            User Interfaces based on that.
+        </p>
+        </blockquote>
+    </section>
+    <section>
+        <h3>3. The virtual representation of views in memory</h3>
+        <blockquote>
+        <p>
+            React is just JavaScript, there is a very small API to learn, just a few
+            functions and how to use them. After that, your JavaScript skills are
+            what make you a better React developer.
+        </p>
+        </blockquote>
+    </section>
+    <section>
+        <blockquote>
+        <p>
+            There are no barriers to entry. A JavaScript developer can become a
+            productive React developer in a few hours.
+        </p>
+        </blockquote>
+        <h3 class="fragment">really?</h3>
+    </section>
+    <section>
+        <h3>React is "easy"</h3>
+        <p>But the tooling around it is HARD</p>
+        <img style="background:rgba(255,255,255,0.4)" data-src="/assets/react/1.introduction/tooling.png" alt="" />
+    </section>
+    <section>
+        <h3><code>create-react-app</code></h3>
+        <p>which is why we use CRA</p>
+        <p>
+        <a href="https://github.com/facebook/create-react-app"
+            >https://github.com/facebook/create-react-app</a
+        >
+        </p>
+        <p class="fragment">Vite can also handle React, but there are a few annoyances</p>
+        <!-- <p>//TODO: Vite? https://medium.com/codex/you-should-choose-vite-over-cra-for-react-apps-heres-why-47e2e7381d13</p> -->
+    </section>
+    <section>
+        <h2>Warnings</h2>
+        <ul>
+        <li>React does not use the DOM as such</li>
+        <li>It handles all DOM manipulation for us</li>
+        <li>
+            Stuff like <code>querySelector, classList, createElement</code> etc are
+            usually a no-go
+        </li>
+        <li>Even <code>setInterval</code> becomes hard</li>
+        <li>We have to do it the React-way</li>
+        </ul>
+    </section>
+    </AgendaSection>
+
+    <AgendaSection header="The new &amp; old docs">
+        <section>
+            <p>The React docs are currently being re-written</p>
+            <p>A lot of the examples in the old documentation uses the "old school" syntax (classes)</p>
+            <p>The new docs fix this, but they are not done</p>
+            <ul>
+                <li><a href="https://reactjs.org/">https://reactjs.org/</a></li>
+                <li><a href="https://beta.reactjs.org/">https://beta.reactjs.org/</a></li>
+            </ul>
+            <p>Editors choice: use the new (beta) one</p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Plugins you installed">
+        <section>
+    
+            <ol>
+                <li style="padding-bottom:1rem;">ESLint: a linting-tool for JS. Warns about common syntax issues (like == vs ===)</li>
+                <li style="padding-bottom:1rem;">Import Cost: every time you import some code, it tells you how much code is imported in KB</li>
+            </ol>
+        </section>
+        <section>
+            <ol start={3}>
+                <li style="padding-bottom:1rem;">React Developer Tools: Adds react inspecting/debugging in Chrome/FireFox, priceless</li>
+                <li style="padding-bottom:1rem;">ES7 React/Redux/GraphQL/React-Native snippets: Adds small Emmet-snippets to VSCode, so you can type e.g <code>rfce</code> to get a full React component</li>
+                <li>get-svg-icons: Just a quick little way of getting prototype SVG icons in your project</li>
+            </ol>
+        </section>
+        <section>
+            <ol start={6}>
+                <li style="padding-bottom: 1rem;">React Style Helper: autocomplete for classes &amp; CSS modules</li>
+                <li style="padding-bottom: 1rem;">VSCode React Refactor: "Click to split code"</li>
+            </ol>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Installing &amp; Running React">
+        <section>
+            <h3>Starting a new project</h3>
+            <p>Used to be really hard, now? less so</p>
+            <p>Two easy options</p>
+            <ul>
+                <li><a href="https://github.com/facebook/create-react-app">https://github.com/facebook/create-react-app</a></li>
+                <li><a href="https://vitejs.dev/guide/#scaffolding-your-first-vite-project">https://vitejs.dev/guide/#scaffolding-your-first-vite-project</a></li>
+            </ul>
+            <!-- <p>Let's go for Vite, since we know it</p>
+            <p class="fragment">Disclaimer: I haven't tried Vite/React yet, let's see if it comes back to bite us</p> -->
+        </section>
+        <section>
+            <ol>
+                <li><code>npx create-react-app myproject</code></li>
+                <li>Follow the instructions</li>
+            </ol>
+            
+        </section>
+        <section>
+            <p>And then, it's just <code>npm run start</code> to start you live server</p>
+            <p>and <code>npm run build</code> to generate the static version</p>
+            <p>Which can be deployed to e.g. Netlify</p>
+        </section>
+
+    </AgendaSection>
+
+    <AgendaSection header="<small>Functional Components, #1</small>">
+        <section>
+            <h3>JSX</h3>
+            <blockquote>
+            JSX is a preprocessor step that adds XML syntax to JavaScript. You can
+            definitely use React without JSX but JSX makes React a lot more elegant.
+            </blockquote>
+            <p>Basically, it allows us to write HTML in our JS files</p>
+            <p>We can invent our own tags!</p>
+            <p>All tags must be closed</p>
+            <Code stretch code={snippets["samplejsx.js"]} language="js" />
+        </section>
+
+        <section>
+            <h3>Up and running, functional components</h3>
+            <p>Using JSX we can create re-usable components</p>
+            <Code stretch code={snippets["functionalComponents.js"]} language="js" />
+        </section>
+
+        <section>
+            <p>
+            The component must return a single element, wrap in a parent element or
+            <code>&lt>...&lt;/></code> if nothing else makes sense
+            </p>
+        </section>
+        <section data-auto-animate>
+            <Code dataId="singleReturn" code={snippets["singleReturnBad.js"]} language="js" />
+        </section>
+        <section data-auto-animate>
+            <Code dataId="singleReturn" code={snippets["singleReturnBetter.js"]} language="js" />
+        </section>
+        <section data-auto-animate>
+            <Code dataId="singleReturn" code={snippets["singleReturnBest.js"]} language="js" />
+        </section>
+        <section>
+            <h3>Everything is a component</h3>
+            <p>That's all we do, we write components</p>
+            <p>Small, encapsulated, reusable parts</p>
+            <p>We can also get other peoples components</p>
+        </section>
+        <section>
+            <p>The React extension</p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Nested Components">
+        <section>
+            <h3>and we can nest components!</h3>
+            <Code dataId="singleReturn" code={snippets["functionalComponentsNested.js"]} language="js" />
+            <p class="fragment">
+            Which means that we can now take the first steps into building WebApps /
+            Sites with small, encapsulated modules
+            </p>
+        </section>
+        <section><p>The React extension</p></section>
+    </AgendaSection>
+    <AgendaSection header="Styling, #1">
+        <section>
+            <p>Lots of options exists (as it's just JSX turned into JS turned into HTML</p>
+            <p>We'll deal with some options later</p>
+            <p>For now, all you need to know is that:</p>
+            <p><code>class=""</code> is <code>className=""</code> in React</p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="+3/4">
+        <section>
+            <a href="/assets/react/1.introduction/recreate1.png"><img width="200" height="200" style="float:left" src="/assets/react/1.introduction/recreate1.png" alt=""/></a>
+            <p>Recreate some of this layout using only functional components</p>
+            <p>At this point we do NOT care about the content</p>
+            <p>So if you have created a component that does something, but the content in the assignment is different, it doesn't matter</p>
+            <p><small>Image borrowed from <a href="https://dribbble.com/shots/17297753/attachments/12410554?mode=media">Dribbble.com</a></small></p>
+        </section>
+    </AgendaSection>
+</SlideLayout>

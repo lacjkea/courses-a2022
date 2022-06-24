@@ -1,0 +1,67 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+const snippets = await codeFetcher("t7/6.conditionally-showing-data",[
+    
+])
+---
+
+<SlideLayout title="Introduction">
+<section>
+        <h2>Introduction</h2>
+        <h3>Forms</h3>
+        <p>jofh@kea.dk</p>
+</section>
+    
+    <section>
+        <h2>Things we need to clear up NOW</h2>
+        <ol>
+            <li class="fragment">Duplicate content?</li>
+            <li class="fragment">Guest speakers: 
+                <ul>
+                    <li>I have a few ideas</li>
+                    <li>Anything YOU want?</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+    <section>
+        <h1>Ask us anything</h1>
+    </section>
+    <section>
+        <h3>The numbers</h3>
+        <ul>
+            <li>3 teachers</li>
+            <li>3 + 3</li>
+        </ul>
+        <p><a href="https://kea-fronter.itslearning.com/ContentArea/ContentArea.aspx?LocationID=5045&LocationType=1">The schedule</a></p>
+        <ul class="fragment">
+            <li>"Front-load"</li>
+        </ul>
+    </section>
+    <section>
+        <h3>The content</h3>
+        <ul>
+            <li>Forms</li>
+            <li>Databases</li>
+            <li>"WebDev Technology"</li>
+            <li><strong>UX</strong></li>
+            <li>"DX"</li>
+            <li>React</li>
+            <li>The case</li>
+        </ul>
+    </section>
+    <section>
+        <h3>Goal for the exam project</h3>
+        <h4>It must:</h4>
+        <ul>
+            <li>"look good" <span class="fragment highlight-blue">UI</span></li>
+            <li>"feel good" <span class="fragment highlight-blue">UX</span></li>
+            <li>work <span class="fragment highlight-blue">DEV</span></li>
+        </ul>
+    </section>
+</SlideLayout>

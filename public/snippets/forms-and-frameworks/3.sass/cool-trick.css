@@ -1,0 +1,8 @@
+nav a {
+  color: red;
+}
+@media only screen and (min-width: 1140px) {
+  nav a {
+    color: black;
+  }
+}

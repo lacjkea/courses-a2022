@@ -1,0 +1,3 @@
+<MyNav />
+//or
+<MyNav></MyNav>

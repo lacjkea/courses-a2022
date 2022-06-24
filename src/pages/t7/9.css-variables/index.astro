@@ -1,0 +1,313 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("t7/9.css-variables",[
+    "base.css",
+    "myApproach.css",
+    "myApproach2.css",
+    "calc.css",
+    "custom-properties.css",
+    "custom-properties-scope.css",
+    "custom-properties-media-queries.css",
+    "custom-properties-media-queries-2.css",
+    "custom-properties-media-queries-3.css",
+    "calc-use-cases.css"
+]);
+
+---
+
+<SlideLayout title="CSS Variables">
+<section>
+  <h1>Modern CSS</h1>
+  <h2>Semantic HTML</h2>
+</section>
+
+<section>
+  <h2>Agenda</h2>
+  <ol>
+    <li>relative units</li>
+    <li>custom properties</li>
+    <li>calc()</li>
+    <li>pseudo elements (e.g. ::before)</li>
+    <li>Responsive do's and don't(s)</li>  
+    <li>5+</li>
+  </ol>
+</section>
+<section>
+  <section>
+    <h1>Relative Units</h1>
+  </section>
+  <section>
+    <h2>Absolute vs relative</h2>
+    <p>Do you know the difference?</p>
+  </section>
+  <section>
+    <h2>Absolute units</h2>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#absolute_length_units">Absolute units on MDN</a></p>
+  </section>
+  <section>
+    <h2>Relative units</h2>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units#relative_length_units">Relative units on MDN</a></p>
+  </section>
+  <section>
+    <p>Let's play a bit</p>
+    <p>And see why responsive ❤️ <code>rem</code></p>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>CSS Custom Properties</h1>
+  </section>
+  <section>
+    <h1>CSS Custom Properties</h1>
+    <h3>often called, CSS variables</h3>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">MDN</a></p>
+  </section>
+  <section>
+    <h1>Finally!!!</h1>
+    <p><a href="http://caniuse.com/#search=custom%20properties">http://caniuse.com/#search=custom%20properties</a></p>
+  </section>  
+  <section>
+    <h3>Really easy</h3>
+    <p>But the syntax is strange</p>
+  </section>
+  <section>
+    <Code code={snippets["custom-properties.css"]} language="css" stretch />
+
+  </section>
+  <section>
+    <h3>The boring stuff</h3>
+    <ul>
+      <li>Variables in CSS are declared within a CSS selector that defines its scope.</li>
+      <li>For a global scope you can use either the :root or the body selector.</li>
+      <li>The variable name must begin with two dashes (--) and is case sensitive.</li>
+      <li>You use them by writing <code>var(variable-name)</code>, like<br>
+      <pre><code class="css">background: var(--primary-color);</code></pre>
+    </li>
+    </ul>
+
+  </section>
+  <section>
+    <h1 class="small">Inheritance</h1>
+    <h2>Or scope</h2>
+  </section>
+  <section>
+    <h3>Scope</h3>
+    <ul>
+      <li>CSS variables are applied to the element they are defined on, and all child elements</li>
+      <li>Which is why we usually use them on <code>:root</code> or <code>&lt;body&gt;</code></li>
+      <li>But you can overwrite CSS V by redefining it</li>
+    </ul>
+  </section>
+  <section>
+    <Code code={snippets["custom-properties-scope.css"]} language="css" />
+    <p>Inheritance is a bit strange with variables (IMO)</p>
+  </section>
+  <section>
+    <p>But it provides us with some really cool little tricks</p>
+  </section>
+  <section>
+    <h2>Simpler syntax?</h2>
+    <Code code={snippets["custom-properties-media-queries.css"]} language="css" />
+  </section>
+  <section>
+    <h2>prefers reduced motion</h2>
+    <Code code={snippets["custom-properties-media-queries-2.css"]} language="css" />
+    
+  </section>
+  <section>
+    <h2>prefers color scheme</h2>
+    <Code code={snippets["custom-properties-media-queries-3.css"]} language="css" />
+    
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1 class="small">Custom Properties in the <del>real</del><ins>my</ins> world</h1>
+  </section>
+  <section>
+    <ol>
+      <li class="fragment">Define your vars once</li>
+      <li class="fragment">Use them everywhere</li>
+      <li class="fragment">You can go all in
+        <ul>
+          <li class="fragment">padding</li>
+          <li class="fragment">borders</li>
+          <li class="fragment">gradients</li>
+          <li class="fragment">grid?</li>
+        </ul>
+      </li>
+      <li class="fragment">Or you can sprinkle them in when needed
+        <ul>
+          <li class="fragment">colors</li>
+          <li class="fragment">sizes</li>
+        </ul>
+    </li>
+    </ol>
+  </section>
+  <section>
+    <h2>My approach</h2>
+    <p class="fragment">sometimes</p>
+    <ol>
+      <li>Create the basic variables, like</li>
+    </ol>
+    <Code code={snippets["myApproach.css"]}language="css" />
+  </section>
+  <section>
+    <h2>My approach, #2</h2>
+    <ol start={2}>
+      <li>define your colors</li>
+    </ol>
+    <Code code={snippets["myApproach2.css"]}language="css" />
+  </section>
+  <section>
+    <h2>A Custom Property Color Generator</h2>
+    <p>A work in progress</p>
+    <p><a href="https://jonasholbech.github.io/color-generator/">Color Generator</a></p>
+  </section>
+</section>
+<section>
+  <h1>Exercise</h1>
+  <p>Fronter: 1. Custom props for your site</p>
+</section>
+<section>
+  <section>
+    <h1><code>calc()</code></h1>
+    <p>What's <code>100vw - 100px</code> ?</p>
+  </section>
+  <section>
+    <p><code>calc()</code> allows us to do math with "mixed" units</p>
+    <p><a href="https://caniuse.com/#search=calc">https://caniuse.com/#search=calc</a></p>
+    <Code code={snippets["calc.css"]} language="css" />
+  </section>
+  <!--
+https://type-scale.com/
+
+h1 {
+  --minFontSize: 32px;
+  --maxFontSize: 200px;
+  --scaler: 10vw;
+  font-size: clamp( var(--minFontSize), var(--scaler), var(--maxFontSize) );
+}
+
+
+      
+  -->
+  <section>
+    <h2>Use cases</h2>
+    <Code stretch code={snippets["calc-use-cases.css"]} language="css" />
+  </section>
+  <section>
+    <p>I rarely reach for <code>calc</code></p>
+    <p class="fragment">Except when doing animations w. JS</p>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>pseudo elements</h1>
+    <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements">MDN</a></p>
+  </section>
+  <section>
+    <blockquote>
+      <p>A CSS pseudo-element is a keyword added to a selector that lets you style a specific part of the selected element(s).</p>
+    </blockquote>
+    <p>Basically, it allows us to style stuff we couldn't otherwise</p>
+    <p>Some are easy, some are harder</p>
+  </section>
+  <section>
+    <h2>The easy ones</h2>
+    <ol>
+      <li>::first-letter</li>
+      <li>::first-line</li>
+      <li>::selection</li>
+    </ol>
+    <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="yLXOgNE" data-user="jonasholbech" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+      <span>See the Pen <a href="https://codepen.io/jonasholbech/pen/yLXOgNE">
+      pseudo elements, the easy ones</a> by Jonas Holbech (<a href="https://codepen.io/jonasholbech">@jonasholbech</a>)
+      on <a href="https://codepen.io">CodePen</a>.</span>
+    </p>
+    <!-- <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script> -->
+  </section>
+  <section>
+    <h2>The harder ones</h2>
+    <ol>
+      <li>::after</li>
+      <li>::before</li>
+    </ol>
+    <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="xxrVgOv" data-user="jonasholbech" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+      <span>See the Pen <a href="https://codepen.io/jonasholbech/pen/xxrVgOv">
+      pseudo elements, the harder ones</a> by Jonas Holbech (<a href="https://codepen.io/jonasholbech">@jonasholbech</a>)
+      on <a href="https://codepen.io">CodePen</a>.</span>
+    </p>
+    <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+  </section>
+</section>
+<section>
+    <section>
+        <h1>Responsive do's</h1>
+        <h2>and don't's<span class="fragment">?</span></h2>
+    </section>
+    <section>
+        <p>Just a few personal recommendations</p>
+    </section>
+    <section>
+        <p>Start with whatever responsive defaults you might want</p>
+        <Code code={snippets["base.css"]}language="css" />
+    </section>
+    <section>
+        <h2>DO:</h2>
+        <ol>
+            <li class="fragment">... mobile first (right?)</li>
+            <li class="fragment">... custom properties for common values</li>
+            <li class="fragment">... multiple grids /flexes</li>
+            <li class="fragment">...not be afraid of media queries
+                <ol>
+                    <li>Consider a set of major and minor breakpoints</li>
+                    <li>Start from the smallest viewport and add media queries when needed</li>
+                    <li>But overwrite as little as possible</li>    
+                </ol>
+            </li>
+            <li class="fragment">... large, clickable areas for buttons and links </li>
+            <li class="fragment">... optimal reading widths</li>
+        </ol>
+    </section>
+    <section>
+        <h2>DON'T(s)</h2>
+        <ul>
+            <li class="fragment">Responsive is not an afterthought (check often)</li>
+            <li class="fragment">(almost) Never set heights</li>
+            <li class="fragment">Use min-height if you need to</li>
+            <li class="fragment">Minimzie width's as well</li>
+            <li class="fragment">(and use min-width / max-width instead)</li>
+            <li class="fragment">Can you do without <code>px</code>?</li>
+            <li class="fragment">Use margins sparringly, gap is better</li>
+            <li class="fragment">Use magic values</li>
+        </ul>
+    </section>
+    <section>
+        <p>Some life-saving properties</p>
+        <ol>
+            <li><code>order</code></li>
+            <li><code>gap</code></li>
+            <li><code>flex-wrap</code></li>
+
+        </ol>
+    </section>
+</section>
+<section>
+  <h2>5+</h2>
+  <ol>
+    <li>Semantic HTML</li>
+    <li>Code</li>
+    <li>read <a href="https://javascript.info">javascript.info</a></li>
+    <li>Re-cap</li>
+  </ol>
+</section>
+
+
+</SlideLayout>

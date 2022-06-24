@@ -1,0 +1,573 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+const snippets = await codeFetcher("forms-and-frameworks/2.npm-vite",[
+    "vite-scripts.json",
+    "setup-script.sh",
+    "vite-config.js",
+    "package.json",
+    "package-min.json",
+    "package-bloated.json"
+])
+/*
+STOP!!!
+over vej at fjerne enten global, task runner eller begge, det er sgu for forvirrende
+fjern evt adding vite to an existing project
+
+Fjerne øvelsen med at installere vite i et gammelt projekt, der er alt for mange ting der skal ændres med stier etc
+
+kan jeg lave en øvelse hvor de skal npm installe mit, jeg opdaterer deps og de skal pulle og npm install
+*/
+---
+
+<SlideLayout title="NPM / Vite">
+    <section>
+        <h1>NPM / Vite</h1>
+    </section>
+    <section>
+        <Goal>
+            <ol>
+                <li>Understand the need for build tools</li>
+                <li>Understand the purpose of NPM</li>
+                <li>Experience NPM modules first hand</li>
+                <li>Work with Vite</li>
+            </ol>
+        </Goal>
+    </section>
+    <section>
+        <section>
+            <h2>Modern Web Development</h2>
+            <p>A pursuit for speed and convenience (DX)</p>
+        </section>
+        <section>
+            <p>I do hope you all read <a href="https://medium.com/the-node-js-collection/modern-javascript-explained-for-dinosaurs-f695e9747b70">https://medium.com/the-node-js-collection/modern-javascript-explained-for-dinosaurs-f695e9747b70</a></p>
+        </section>
+        <section>
+            <p>And that's just part of the story</p>
+            <h3>CSS</h3>
+            <ol>
+                <li class="fragment">CSS needs vendor prefixes
+                    <ul>
+                        <li>But who remembers which properties</li>
+                    </ul>
+                </li>
+                <li class="fragment">New features are added
+                    <ul>
+                        <li>But not in all browsers</li>
+                    </ul>
+                </li>
+                <li class="fragment">CSS does not work like a programming language
+                    <ul>
+                        <li>You cannot write functions, <span class="stricken">variables</span> etc</li>
+                    </ul>
+                </li>
+                <li class="fragment">Slow to load
+                    <ul>
+                        <li>Well formatted documents take longer to load</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <p>And that's just part of the story</p>
+            <h3>HTML</h3>
+            <ol>
+                <li class="fragment">Slow to load
+                    <ul>
+                        <li>Well formatted documents take longer to load</li>
+                    </ul>
+                </li>
+                <li class="fragment">Loosely coupled
+                    <ul>
+                        <li>Manipulating HTML from JS is fragile and non-declarative</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <p>And that's just part of the story</p>
+            <h3>JS</h3>
+            <ol>
+                <li class="fragment">Not all browsers support everything</li>
+                <li class="fragment">Some say JS is limited
+                    <ul>
+                        <li>JS is not "type-safe"</li>
+                        <li>Creating HTML is too hard</li>
+                    </ul>
+                </li>
+                <li class="fragment">Slow to load
+                    <ul>
+                        <li>Well formatted documents take longer to load</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h1>The "solution"</h1>
+        </section>
+        <section>
+            <h2>Tools, plenty of tools</h2>
+        </section>
+        <section>
+            <h3>CSS</h3>
+            <ul class="listed">
+                <li><a href="http://autoprefixer.github.io/">Autoprefixer</a></li>
+                <li>SASS</li>
+                <li>LESS</li>
+                <li>PostCSS</li>
+                <li>Minification</li>
+                <li>Critical CSS</li>
+                <li>CSS Modules</li>
+                <li>CSS in JS</li>
+                <li>caniuse</li>
+            </ul>
+        </section>
+        <section>
+            <h3>HTML</h3>
+            <ul class="listed">
+                <li>Minification</li>
+                <li>caniuse</li>
+                <li>Declarative JS (more JS)</li>
+            </ul>
+        </section>
+        <section>
+            <h3>JS</h3>
+            <ul class="listed">
+                <li>TypeScript</li>
+                <li>JSX</li>
+                <li>Minification</li>
+                <li>Obfuscation</li>
+                <li>Transpiling</li>
+                <li>Babel</li>
+                <li>React, Vue, Angular</li>
+                <li>import vs require</li>
+                <li>caniuse</li>
+                <li>npm</li>
+                <li>browserify</li>
+                <li>yarn</li>
+                <li>webpack</li>
+                <li>parceljs</li>
+                <li>vite</li>
+                <li>wmr</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Phew</h3>
+            <p>Configuring all these tools takes a lot of time / mental effort</p>
+            <p>Everything can be done using NPM scripts and WebPack</p>
+            <p>But we'll use Vite 2, a new addition to the tooling-landscape</p>
+        </section>
+    </section>
+
+    <AgendaSection header="<code>npm</code>">
+        <section>
+            <ol>
+                <li>NPM?</li>
+                <li>PNPM?</li>
+                <li>YARN?</li>
+                <li>BUN?</li>
+                <li>NPX?</li>
+                <li>???</li>
+            </ol>
+            <p>Except for <code>npx</code> they are the same</p>   
+            <p class="fragment">plus Install-Package, spm, meteor, bower etc</p>
+        </section>
+        <section>
+            <blockquote>npm is the package manager for JavaScript and the world’s largest software registry. Discover
+                packages of reusable code — and assemble them in powerful new ways.</blockquote>
+            <p><small>from <a href="https://www.npmjs.com/">https://www.npmjs.com/</a></small></p>
+            <blockquote>npm is way to download JS projects (called modules)</blockquote>
+            <p><small>from Jonas</small></p>
+            <blockquote>npm is a task runner</blockquote>
+            <p><small>from Jonas</small></p>
+        </section>
+        <section>
+            <h3>Why?</h3>
+            <ul>
+                <li>No need to link to external libraries</li>
+                <li>Dependency-management</li>
+                <li>Great for automation!!!</li>
+                <li>Great for sharing
+                    <ul class="fragment">
+                        <li>You can publish your own modules</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </AgendaSection>
+    <section>
+        <h1>Two ways to install</h1>
+        <h2 class="fragment">Globally</h2>
+        <div  class="fragment"><p>and</p>
+        <h2>Locally</h2></div>
+    </section>
+    <AgendaSection header="Global Modules">
+        <section>
+            <ul>
+                <li>You have installed <code>Node</code>, which means you have <code>NPM</code></li>
+                <li class="fragment">A global module is one you can run from anywhere (on your machine)</li>
+                <li class="fragment">The built in commands in the terminal works like global modules
+                    <ul>
+                        <li>as in you can always write <code>ls</code>, <code>cd</code> or <code>git</code></li>
+                    </ul>
+                </li>
+                <li class="fragment">We should try to have as few global modules as possible!</li>
+                <li class="fragment">You have already seen one: <code>live-server</code></li>
+            </ul>
+        </section>
+        
+        <section class="small">
+            <h3>Global vs. Local</h3>
+            <ul class="striped">
+                <li class="fragment">Global packages can be used everywhere, in the terminal. But only a few modules should be installed
+                    globally. They take up space, needs manual updates, and it's kinda hard to cleanup.</li>
+                <li class="fragment">Local modules can only be used in the current project (but can of course be installed for every
+                    project), and cannot be run from the terminal directly, for that we need to setup NPM (more later). (or look into <code>NPX</code>)</li>
+                <li class="fragment">Warning, almost all modules indicate you should install the module globally, that is rarely the case.</li>
+                <li class="fragment">Some modules suggests you write <code>sudo</code> in front of a command, that's usually not good. Do you know why?</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3><a href="https://npmjs.com">https://npmjs.com</a></h3>
+            <p>Is where you'll find all your modules, there's a short description, and usage instructions for each.</p>
+            <p>&nbsp;</p>
+            <p class="fragment"><a href="https://npmjs.com">https://npmjs.com</a> was originally meant for Node.js devs, so lot's of stuff is not meant for "us"</p>
+            <p>&nbsp;</p>
+            <p class="fragment">But it's hard to read, and often not suited for "command-line" or "front-end"-usage, the module's github repo is often the
+                best place to find answers.</p>
+        </section>
+
+        <section>
+            <h3>Installing a global module</h3>
+            <p>When you have found a module, open up the terminal and write
+                <pre><code class="bash">npm install -g modulename</code></pre>
+                <p>or</p>
+                <pre><code class="bash">npm install --global modulename</code></pre>
+            </p>
+        </section>
+        <section>
+            <p>Then it's available everywhere by typing modulename (or something close to that, for instance, the module
+                <code>pageres-cli</code> is run by typing <code>pageres</code>).</p>
+            <p>The documentation states what you need to do.</p>
+        </section>
+        <section>
+            <h2>Demo</h2>
+            <p><a href="https://www.npmjs.com/package/dad-joke-generator">https://www.npmjs.com/package/dad-joke-generator</a></p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Exercise">
+        <section>
+            <h3>Let's play with global modules</h3>
+            <p>Go solve Task 1, 2 &amp; 3</p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="local modules" h3="Using NPM as a task runner" p="Automation">
+        <section>
+            <h3>Warning</h3>
+            <p>I will highlight some of the more common processes</p>
+            <p>There will be many others</p>
+            <p>And the packages I've chosen, might not be exactly the same as those you'll encounter in the wild</p>
+        </section>
+        <section>
+            <h3>Setting up NPM</h3>
+            <pre><code class="bash">npm init</code></pre>
+            <p>Will set up a project where we can use NPM modules</p>
+            <p>Run this in the same folder you run <code>git init</code> in</p>
+        </section>
+        <section>
+            <p>3+ ways to install modules</p>
+            <dl>
+                <del><dt>npm install -g xxx</dt>
+                <dd>Install a module globally</dd></del>
+                <dt>npm install --save-dev xxx</dt>
+                <dd>Install a module that is only used for development</dd>
+                <dt>npm install --save xxx</dt>
+                <dd>Install a module that is used in production</dd>
+            </dl>
+        </section>
+        <section>
+            <pre><code class="bash">npm init</code></pre> or 
+            <pre><code class="bash">npm init -y</code></pre>
+            <p>Will create a file called <code>package.json</code> for us</p>
+            <Code code={snippets["package.json"]} language="json" />
+        </section>
+        <section>
+            <p>Hint: If you setup git / GitHub first it will auto-fill some fields for you</p>
+        </section>
+
+        <section>
+            <h3><code>--save-dev / --save</code></h3>
+            <p>When we install a module locally we get a <code>node_modules</code> folder</p>
+            <p>And the module is added to our <code>package.json</code> file</p>
+            <pre><code class="bash">npm install --save-dev minify</code></pre>
+        </section>
+        <section>
+            <p>We can then create an entry in the "scripts" section of our package.json to run our modules</p>
+            <Code code={snippets["package-min.json"]} language="json" />
+        </section>
+        <section>
+        <p>And then we can run our scripts with</p>
+            <pre><code class="bash">npm run dev</code></pre>
+            <pre><code class="bash">npm run minify-js</code></pre>
+            <pre><code class="bash">npm run minify-html</code></pre>
+            <pre><code class="bash">npm run minify-css</code></pre>
+        </section>
+        <section>
+            <p><strong>We never push our node_modules folder to git!</strong></p>
+            <p class="fragment">add <code>node_modules/</code> to <kbd>.gitignore</kbd></p>
+        </section>
+
+        <section>
+            <h3>Re-installing</h3>
+            <p>If we have a <code>package.json</code> file (let's say from a cloned repo)</p>
+            <p>We can install all dependencies by running</p>
+            <pre><code class="bash">npm install</code></pre>
+            <p class="fragment">Or if something went wrong, we can delete <code>node_modules</code> and re-install everything</p>
+        </section>
+        <section>
+            <h3>Cleaning up</h3>
+            <p>Since we can always just install everything again, I often remove <code>node_modules</code> folders on my machine</p>
+            <p>For that I use a tool called <code>npkill</code></p>
+            <ol>
+                <li>In the terminal, navigate to where your projects are</li>
+                <li>Run <pre><code class="bash">npx npkill</code></pre></li>
+                <li>And delete node_modules with the interactive prompt</li>
+            </ol>
+            <p class="fragment"><code>npx</code> ?</p>
+        </section>
+        <section>
+            <h3>Bloated</h3>
+            <Code code={snippets["package-bloated.json"]} language="json" />
+            <p><a href="https://github.com/jonasholbech/courses-s2022/blob/main/public/snippets/forms-and-frameworks/2.npm-vite/package-bloated.json">GitHub</a></p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Exercise" p="Go solve Task 4" />
+    
+    <AgendaSection header="Vite Intro Exercise" p="10 minutes">
+        <section>
+            <ol>
+                <li>Fork this repo: <a href="https://github.com/jonasholbech/electives-autumn-21-tag-cloud/">https://github.com/jonasholbech/electives-autumn-21-tag-cloud/</a></li>
+                <li>Clone it</li>
+                <li>run <code>npm install</code></li>
+                <li>try <code>npm run dev</code></li>
+                <li>try <code>npm run build</code></li>
+                <li>switch out my GitHub handle in <code>package.json</code></li>
+                <li>what does <code>npm run deploy</code> do?</li>
+            </ol>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Vite">
+        <section>
+            <blockquote>Next Generation Frontend Tooling</blockquote>
+            <p><small><a href="https://vitejs.dev/">from vitejs.dev</a></small></p>
+            <p>Pronounced /vit/</p>
+        </section>
+        <section>
+            <p>Vite is a tool that tries to handle a lot of scenarios for us</p>
+            <p>It is an oppinionated tool, meaning that they have given us a set of "sensible defaults"</p>
+            <p>And it's so much easier to use than the alternatives</p>
+        </section>
+        <section>
+            <h3>Out of the box, Vite will:</h3>
+            <ul>
+                <li>minify our HTML, CSS &amp; JS</li>
+                <li>transpile our JS</li>
+                <li>bundle our JS</li>
+                <li>Code-split our files</li>
+                <li>"Convert SASS"</li>
+                <li>give us a live-server with hot module reloading</li>
+                <li><a href="https://vitejs.dev/guide/features.html">and much more</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Installing vite, manually</h2>
+            <pre><code class="bash">npm init
+npm install --save-dev vite</code></pre>
+                <p>The add the following to <code>package.json</code></p>
+                <Code code={snippets["vite-scripts.json"]} language="json"/>
+        </section>
+        <section>
+            <h2>Installing Vite, with a starter</h2>
+            <pre><code class="bash">npm create vite@latest</code></pre>
+            <p>Then follow the interactive installer</p>
+        </section>
+        <section>
+            <h3>When to use what</h3>
+            <h4>Manual install</h4>
+            <div class="fragment">
+                <p>If you already have npm set up, and have some files</p>
+                <p>(add to existing project)</p>
+            </div>
+            <h4>With a starter</h4>
+            <div class="fragment">
+                
+                <p>Everytime you start a new project</p>
+            </div>
+        </section>
+        <section>
+            <h3>Running a dev-server</h3>
+            <p><kbd>npm run dev</kbd></p>
+        </section>
+        <section>
+            <h3>Creating an optimized build</h3>
+            <p><kbd>npm run build</kbd></p>
+            <p>This will create a <span class="fragment">minified/optimized,</span> <span class="fragment">transpiled, </span><span class="fragment">buzzworded</span> build in a folder called <code>dist</code></p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Exercise" p="20 minutes">
+        <section>
+            <ol>
+                <li>Copy any old project (like your portfolio)</li>
+                <li>Setup NPM and Vite as per <a href="#/10/4">this slide</a></li>
+                <li>Try out the <kbd>dev</kbd> script and the <kbd>build</kbd> script</li>    
+                <li>Remember to take a look in  the dist folder</li>
+            </ol>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="working with modules" h3="Using other peoples code">
+        <section>
+            <p>Remember, every single module does stuff differently</p>   
+            <p class="fragment">I can highlight some common stuff, but we have to read the documentation and play around</p>
+            <p class="fragment">Some modules are easy, some are not</p>
+            <p class="fragment">All this "installing" usually makes more sense when we work with react / frameworks</p>
+        </section>
+        <section>
+            <h3>The general process</h3>
+            <dl>
+                <dt>terminal</dt>
+                <dd>npm install --save something</dd>
+
+                <dt>index.js</dt>
+                <dd><pre><code class="js">import something from "something"</code></pre></dd>
+                <dd>Write some code that uses the module</dd>
+            </dl>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Full example" p="but a bit stupid">
+        <section>
+            <h3>Example, part #1</h3>
+            <h4>The terminal</h4>
+            <pre><code class="bash"># setup npm and vite</code></pre>
+            <pre><code class="bash">npm install --save isitfriday</code></pre>
+            <h4>The JS</h4>
+            <pre><code class="js">import isitfriday from "isitfriday";
+const h1 = document.querySelector("h1");
+h1.textContent = isitfriday() ? "hell yeah": ":-(";
+    </code></pre>
+            <h4>The HTML</h4>
+            <p>No, you can figure that one out</p>
+        </section>
+        <section>
+            <h3>Example, part #2</h3>
+            <p>(assuming Vite is installed, and added to "scripts")</p>
+            <h4>Running it</h4>
+            <pre><code class="bash">npm run dev</code></pre>
+            <h4>Building it</h4>
+            <pre><code class="bash">npm run build</code></pre>
+            <p class="fragment">This wil NOT work with <code>live-server</code> before it's built</p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection h2="Live example, #1" p="<a href='https://is.js.org/'>https://is.js.org/</a>" />
+    <AgendaSection h2="Live example, #2" p="<a href='https://github.com/angus-c/just'>https://github.com/angus-c/just</a>" />
+    
+    <AgendaSection header="Live example, #3" p="(I have not tried any of these)" >
+        <section>
+            <ul>
+                <li><a href="https://www.npmjs.com/package/leap-year">https://www.npmjs.com/package/leap-year</a></li>
+                <li><a href="https://nosir.github.io/cleave.js/">https://nosir.github.io/cleave.js/</a></li>
+                <li><a href="https://www.npmjs.com/package/color-convert">https://www.npmjs.com/package/color-convert</a></li>
+                <li><a href="https://www.npmjs.com/package/fireworks-js">https://www.npmjs.com/package/fireworks-js</a></li>
+                <li>Or anything you want that Klaus made you do :-)</li>
+            </ul>
+        </section>
+    </AgendaSection>
+    
+    <section class="small">
+        <h3>Cool packages</h3>
+        <ol>
+            <li><a href="https://michalsnik.github.io/aos/">https://michalsnik.github.io/aos/</a></li>
+            <li><a href="https://github.com/juliangarnier/anime">anime.js</a></li>
+            <li><a href="https://greensock.com/docs/NPMUsage">GSAP (a bit harder to use)</a></li>
+            <li><a href="https://is.js.org/">is.js</a></li>
+            <li><a href="https://date-fns.org/">date-fns</a></li>
+            <li><a href="https://www.chartjs.org/">chart.js (a bit harder to use)</a></li>
+            <li><a href="https://robinparisi.github.io/tingle/">tingle.js</a></li>
+            <li><a href="https://christinecha.github.io/choreographer-js/">https://christinecha.github.io/choreographer-js/</a></li>
+            <li><a href="https://multiple.js.org/">https://multiple.js.org/</a></li>
+            <li><a href="https://popper.js.org/">https://popper.js.org/</a></li>
+            <li><a href="https://robinparisi.github.io/tingle/">https://robinparisi.github.io/tingle/</a></li>
+            <li><a href="https://www.npmjs.com/package/pristinejs">https://www.npmjs.com/package/pristinejs</a></li>
+        </ol>
+    </section>
+
+    <AgendaSection header="Exercise" p="Go solve 'The module tutorial' assignment" />
+        
+    <section>
+        <section>
+            <h3>A work in progress</h3>
+            <p>Setup a new project, quickly</p>
+            <Code code={snippets["setup-script.sh"]} language="bash"/>
+        </section>
+    </section>
+
+    <section>
+        <h1>Problems!!!</h1>
+    </section>
+
+    <AgendaSection header="Must be hosted at /" h2="Problem 1">
+        <section>
+            <h3>Building for sub-folders</h3>
+            <p>Vite (and all similar tools) will assume you host your files at /</p>
+            <p>e.g. <code>https://project.domain.com</code></p>
+            <p>e.g. <code>https://domain.com</code></p>
+            <p>We can change that by passing a <code>base</code> to the build command in package.json:</p>
+            <pre><code class="bash">"build": "vite build --base=./",</code></pre>
+            <p>Or, through vite.config.js (later)</p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Meant for dynamic sites" h2="Problem 2">
+        <section>
+            <p>Vite really focuses on DYNAMIC sites</p>
+            <p>Even CSS &amp; images are imported</p>
+            <p>(yes, you can write <code>import me from "selfie.png")</code></p>
+            <p>(or, <code>import "styles.css"</code> in your JS)</p>
+            <p>But that's often overkill</p>
+        </section>
+        <section>
+            <h3>The problem</h3>
+            <p>Vite will not include files that are not imported</p>
+            <p><strong>UNLESS YOU PUT THEM IN A FOLDER CALLED <code>public</code></strong></p>
+            <p>And then, reference those files without <code>public</code></p>
+            <p>All files in <code>public/</code> will be copied (as is) to <code>dist/</code> when building</p>
+        </section>
+    </AgendaSection>
+
+<AgendaSection header="One HTML file" h2="Problem 3">
+    <section class="small">
+        <h3>Multiple HTML files?</h3>
+        <p>Vite assumes 1, if you have more, we need to tell it</p>
+        <p><a href="https://vitejs.dev/guide/build.html#multi-page-app">https://vitejs.dev/guide/build.html#multi-page-app</a></p>
+        <ol>
+            <li>create a <code>vite.config.js</code> file</li>
+            <li>Add the following</li>
+        </ol>    
+        <Code code={snippets["vite-config.js"]}/>
+        <ol start="3">
+    <li>Add/adjust as needed</li>
+        </ol>
+    </section>
+</AgendaSection>
+</SlideLayout>

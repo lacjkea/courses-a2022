@@ -1,0 +1,104 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+import AgendaSection from "../../../components/AgendaSection.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("digital-design/4.custom-classes",[
+   "API.svelte",
+   "DefaultProps1.svelte",
+   "DefaultProps2.svelte",
+   "Classes.svelte",
+   "Classes2.svelte",
+   "Classes3.svelte",
+   "Classes4.svelte",
+   "Classes5.svelte",
+   "Classes6.svelte",
+])
+
+---
+
+<SlideLayout title="Custom Classes" lang="da">
+    <AgendaSection header="Custom Classes" p="and a tiny bit of JS">
+        <Goal>
+        <ol>
+            <li>Re-cap på props</li>
+            <li>Forstå hvordan default props virker</li>
+            <li>Forstå hvordan vi kan bygge components der bliver styret af deres "props"</li>
+            <li>Forstå hvordan Svelte arbejder med classes</li>
+        </ol>
+        </Goal>
+    </AgendaSection>
+   
+    <AgendaSection header="Hvad er drømmen?">
+        <section>
+            <p>Hvad er det optimale API for vores design system?</p>
+            <Code code={snippets["API.svelte"]} />
+            <p>Hvilken syntax ville du helst bruge?</p>
+        </section>
+    </AgendaSection>
+   
+    <AgendaSection header="Classes fra props">
+        <section data-auto-animate>
+            <p>Classes kan sættes på flere måder i Svelte</p>
+            <Code dataId="classes" code={snippets["Classes.svelte"]} />
+            <p>Som vi er vant til</p>
+        </section>
+        <section data-auto-animate>
+            <p>Classes kan sættes på flere måder i Svelte</p>
+            <Code dataId="classes" code={snippets["Classes2.svelte"]} />
+            <p>Fra en variabel</p>
+        </section>
+        <section data-auto-animate>
+            <p>Classes kan sættes på flere måder i Svelte</p>
+            <Code dataId="classes" code={snippets["Classes3.svelte"]} />
+            <p>Eller en "condition"</p>
+        </section>
+        <section data-auto-animate>
+            <p>Classes kan sættes på flere måder i Svelte</p>
+            <Code dataId="classes" code={snippets["Classes4.svelte"]} />
+            <p>Hvilket vi gør så ofte at de har givet os en ny syntax</p>
+        </section>
+        <section data-auto-animate>
+            <p>Classes kan sættes på flere måder i Svelte</p>
+            <Code dataId="classes" code={snippets["Classes5.svelte"]} />
+            <p>Der kan forkortes</p>  
+        </section>
+        <section data-auto-animate>
+            <p>Classes kan sættes på flere måder i Svelte</p>
+            <Code dataId="classes" code={snippets["Classes6.svelte"]} />
+            <p>Og hvis variablen hedder det samme som classen, kan vi skrive</p>  
+        </section>
+        <section>
+            <p>Der er (lidt for?) mange muligheder, men vi kan slå dem op</p>
+            <p>Hvad så hvis noget skal have flere classes?</p>
+            <p class="fragment">Så gentager vi bare</p>
+            <p class="fragment">Vi må bare ikke bruge <code>class=""</code> mere end engang</p>
+            <p class="fragment">phew!</p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Default values for <code>props</code>">
+        <section>
+            <p>Har vi lidt styr på props?</p>
+        </section>
+        <section>
+            <p>Default values er den værdi en prop får hvis udvikleren ikke har sat en</p>
+        </section>
+        <section>
+            <Code code={snippets["DefaultProps1.svelte"]} />
+            <div class="fragment"><Code code={snippets["DefaultProps2.svelte"]} /></div>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="And now we go live" p="Lad os kigge på det" />
+
+    <AgendaSection header="Øvelse">
+        <section>
+            <p>Start på dagens hjemmearbejde mens vi er her til at hjælpe</p>
+            <p>Se Fronter</p>
+        </section>
+    </AgendaSection>
+
+    <section><h1>Lad os kigge på vores mål</h1></section>
+</SlideLayout>

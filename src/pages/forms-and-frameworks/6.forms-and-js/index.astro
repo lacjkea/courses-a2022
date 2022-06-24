@@ -1,0 +1,315 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+const snippets = await codeFetcher("forms-and-frameworks/6.forms-and-js",[
+    "form.elements.txt",
+    "form.elements.js",
+    "preventDefault.js",
+    "reportValidity.js",
+    "checkValidity.js",
+    "validity.js",
+    "js-from-day-one.js"
+])
+---
+
+<SlideLayout title="Forms and JS">
+    <AgendaSection header="Forms and JS" />
+    <Goal>
+        <ol>
+            <li>Know how to interact with forms in JS</li>
+        </ol>
+    </Goal>
+    
+    <section>
+    <h3>Agenda</h3>
+        <ol>
+            <li>The Case: issues and solutions?</li>
+            <li>Principle of Least Power</li>
+            <li>Grabbing elements</li>
+            <li>Reading / Setting</li>
+            <li>Controlling elements</li>
+            <li>Form related events</li>
+            <li>Custom Validation, custom messages</li>
+            <li>JS Powered validation</li>
+            
+        </ol>
+    </section>
+    <section>
+  <h2>The case</h2>
+  <p>WTF?</p>
+  <p><a href="https://studkea.sharepoint.com/:w:/s/MMDFrontend-Autumn2020copy/EbDKk0sTuTBLo8KHi2hh6iEBijhMgbEB1itJpI0c3nVqQg?e=KIKhhB">Sign up for the pitch</a></p>
+  <p></p>
+</section>
+    <section>
+        <h2>Principle Of Least Power</h2>
+        <p><a href="https://www.w3.org/DesignIssues/Principles.html">https://www.w3.org/DesignIssues/Principles.html</a></p>
+        <p class="fragment">CSS is f'ing powerful</p>
+        <pre class="fragment"><code class="css">div:hover ul>li </code></pre>
+        <p class="fragment"><a href="https://flukeout.github.io/">https://flukeout.github.io/</a></p>
+    </section>
+    <AgendaSection header="Let's see what Dannie did">
+      <section>
+        <p>Fork/Clone or Clone his repositiory so we can try stuff out</p>
+        <p><a href="https://github.com/daviatkea/something-with-alcohol">https://github.com/daviatkea/something-with-alcohol</a></p>
+      </section>
+    </AgendaSection>
+    <AgendaSection header="Grabbing elements">
+        <section>
+            <p>Grabbing elements in the form is "easy" (sorry)</p>
+            <pre><code class="js">const emailField = document.querySelector("input[type=email]");</code></pre>
+            <p>But another option exists</p>
+        </section>
+        <section>
+            <h3><code>form.elements</code></h3>
+            <p>Basics:</p>
+            <ol>
+                <li>All form fields should/must have a <code>name</code> attribute</li>
+                <li class="fragment">All <code>name</code> attributes in a form should be unique (except groups)</li>
+            </ol>
+            <p class="fragment">By selecting a form and accessing the <code>property</code> called <code>.elements</code> we get a "live" list of the forms fields as properties</p>
+            <p class="fragment">Each <code>name</code> attribute becomes a <code>property</code> on the <code>elements</code> object</p>
+        </section>
+        <section>
+            <h3><code>form.elements</code> #2</h3>
+            <Code code={snippets["form.elements.txt"]} language="html" />
+            <Code code={snippets["form.elements.js"]} />
+        </section>  
+    </AgendaSection>
+
+    <AgendaSection header="Reading / Setting">
+        <section>
+            <p>All we need is</p>
+            <p><code>.value</code></p>
+            <p>This allows us to read / write to the field, just like <code>.textContent</code></p>
+            <pre><code class="js">someField.value="Hi mom";</code></pre>
+            <p>Let's look at a few examples (including &lt;select&gt;)</p>
+        </section>  
+    </AgendaSection>
+  
+    <AgendaSection header="Controlling Elements">
+        <section>
+            <p>Remember, this is JavaScript, anything that happens in the browser can be changed / controlled</p>
+            <p>All HTML attributes can be altered/read using</p>
+            <ul>
+                <li><code>setAttribute</code></li>
+                <li><code>removeAttribute</code></li>
+                <li><code>getAttribute</code></li>
+            </ul>
+            <p>or by using the . notation</p>
+            <pre><code class="js">myElement.disabled=true</code></pre>
+        </section>
+        <section>
+            <p>There's also a list of methods we can use on our form elements</p>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#Methods">https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#Methods</a></p>
+        </section>  
+    </AgendaSection>
+
+    <AgendaSection header="Form related events">
+        <section>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/Events">https://developer.mozilla.org/en-US/docs/Web/Events</a></p>
+        </section>
+        <section>
+            <h3>Editors choice</h3>
+            <ol>
+            <li>input / keyup</li>
+            <li>submit</li>
+            <li>focus</li>
+            <li>blur</li>
+            </ol>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Exercise">
+      <section>
+        <p>Play with the <a href="https://jonasholbech.github.io/form-validation-interactive/">The Awesome Form Event Playground</a></p>
+      </section>
+    </AgendaSection>
+    
+    <section>
+        <h3><code>.preventDefault()</code></h3>
+        <div class="code_footprint small">
+        <div>
+            <h4>Usable on:</h4>
+            <ul>
+            <li><code>form</code></li>
+            <li><code>element</code></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Returns</h4>
+            <ul>
+                <li><code>nothing</code></li>
+            </ul>
+        </div>
+        <div class="purpose">
+            <h4>Purpose</h4>
+            <p><strong>Must be used together with <code>.addEventListener</code></strong></p>
+            <p>Prevent the default action from happening</p>
+            <p>On a form it means submit, on a link it means "follow" etc</p>
+        </div>
+        </div>
+        <Code code={snippets["preventDefault.js"]} />
+    </section>
+
+
+<AgendaSection header="Custom validation" h2="Custom messages">
+        <section>
+            <p>SOOOOOOOOO many options</p>
+            <p>A lot of people go for a framework here, but</p>
+
+
+            <blockquote>
+            Form validation does not require complex JavaScript, but it does require thinking carefully about the user. Always remember to help your user to correct the data they provide. To that end, be sure to:
+            <ol>
+                <li>Display explicit error messages.</li>
+                <li>Be permissive about the input format.</li>
+                <li>Point out exactly where the error occurs (especially on large forms).</li>
+            </ol>
+            </blockquote>
+            <cite><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation#Conclusion">MDN</a></cite>
+        </section>
+        <section>
+            <ol>
+            <li>If you can live with the built in validation, do that</li>
+            <li>If you need really fancy validation, go for a framework/lib</li>
+            <li>If you need something in between, go for the built in validation with some "simple js"</li>
+            </ol>
+        </section>
+    </AgendaSection>
+<section>
+  <section>
+    <h1>JS powered validation</h1>
+  </section>
+  <section>
+    
+    <img data-src="/assets/forms-and-frameworks/6.forms-and-js/planning.png" alt="">
+  </section>
+  <section>
+    <p>The first step CAN BE to tell the browser to ignore the HTML5 form validation</p>
+    <p><small><code>required, pattern, email, etc</code></small></p>
+    <p>They are still used to validate the content, but</p>
+    <p>We are going to use them from JS instead</p>
+    <pre><code class="js">document.querySelector("myform").setAttribute("novalidate", true);</code></pre>
+  </section>
+  <section>
+    <ol>
+      <li><code>.reportValidity()</code></li>
+      <li><code>.checkValidity()</code></li>
+      <li><code>.validity</code></li>
+    </ol>
+  </section>
+  <section>
+    <h3><code>.reportValidity()</code></h3>
+    <div class="code_footprint small">
+      <div>
+        <h4>Usable on:</h4>
+        <ul>
+          <li><code>form</code></li>
+          <li><code>element</code></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Returns</h4>
+          <ul>
+            <li><code>boolean</code></li>
+          </ul>
+      </div>
+      <div class="purpose">
+        <h4>Purpose</h4>
+          <p>Triggers / reports validation errors on the element or the entire form</p>
+      </div>
+    </div>
+    <Code code={snippets["reportValidity.js"]} />
+  </section>
+
+  <section>
+    <h3><code>.checkValidity()</code></h3>
+    <div class="code_footprint small">
+      <div>
+        <h4>Usable on:</h4>
+        <ul>
+          <li><code>form</code></li>
+          <li><code>element</code></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Returns</h4>
+          <ul>
+            <li><code>boolean</code></li>
+          </ul>
+      </div>
+      <div class="purpose">
+        <h4>Purpose</h4>
+          <p>Tells us whether the form or element is valid</p>
+      </div>
+    </div>
+    <Code code={snippets["checkValidity.js"]} />
+  </section>
+
+  <section>
+    <h3><code>.validity</code></h3>
+    <div class="code_footprint small">
+      <div>
+        <h4>Usable on:</h4>
+        <ul>
+          <li><code>element</code></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Returns</h4>
+          <ul>
+            <li><code>object</code></li>
+          </ul>
+      </div>
+      <div class="purpose">
+        <h4>Purpose</h4>
+          <p>returns an object containing detailed information on the validity of the element</p>
+      </div>
+    </div>
+    <Code code={snippets["validity.js"]} />
+    
+  </section>
+
+  
+</section>
+
+
+
+<section>
+  <h2>Links</h2>
+  <ul class="small">
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation#Validation-related_attributes">https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation#Validation-related_attributes</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation">https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements</a></li>
+    <li><a href="https://itnext.io/https-medium-com-joshstudley-form-field-validation-with-html-and-a-little-javascript-1bda6a4a4c8c">https://itnext.io/https-medium-com-joshstudley-form-field-validation-with-html-and-a-little-javascript-1bda6a4a4c8c</a></li>
+    <li><a href="https://unmanner.github.io/imaskjs/">https://unmanner.github.io/imaskjs/</a></li>
+  </ul>
+</section>
+
+
+<section>
+  <section>
+    <h2>Let's finish up our</h2>
+    <h1>form</h1>
+  </section>
+  <section>
+    <ul>
+      <li>Create the table/endpoint</li>
+      <!-- <li>
+        <img data-src="/assets/forms-and-frameworks/6.forms-and-js/formcase.png" alt="">
+      </li> -->
+      <li>Make post work</li>
+      <li>How should the validation work/feel</li>
+
+    </ul>
+    <div class="fragment">
+    <p>The JS from day one</p>
+      <Code code={snippets["js-from-day-one.js"]} />
+    </div>
+  </section>
+</section>
+    <AgendaSection header="Let's revisit the goals" />
+</SlideLayout>

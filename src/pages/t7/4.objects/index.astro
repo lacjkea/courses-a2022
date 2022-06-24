@@ -1,0 +1,152 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import Pacman from "./components/Pacman.astro";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+
+const snippets = await codeFetcher("t7/4.objects",[
+    "objects1.js",
+    "objects2.js",
+    "objects3.js",
+    "objects-templates.html",
+    "objects-templates.js",
+])
+
+---
+
+<SlideLayout title="Objects">
+
+<section>
+  <h1>Objects</h1>
+  <h3>jofh@kea.dk</h3>
+</section>
+<section>
+  <Goal>
+    <ol>
+      <li>Know how object (literals) are created in JS</li>
+      <li>Know how to access properties in simple objects</li>
+      <li>See how arrays work</li>
+      <li>Combine &lt;template&gt; and objects</li>
+    </ol>
+  </Goal>
+</section>
+<section>
+  <h2>Agenda</h2>
+  <ul>
+    <li>A quote I read</li>
+    <li>A little challenge</li>
+    <li>Objects</li>
+    <li>Objects &amp; the &lt;template&gt;</li>
+  </ul>
+</section>
+<section>
+  <section>
+    <h1>A quote I read</h1>
+  </section>
+  <section>
+    <blockquote>
+      <p>
+        The "smart" in a smartphone doesn't come from the computer chips, but
+        from the people who program them.
+      </p>
+      <p>
+        Computers are the most powerful tools mankind has ever created, yet
+        they're under-utilized because few people know how to unleash their full
+        potential.
+      </p>
+      <p>
+        In a world where everything is a computer, the most important people are
+        the programmers who can realise their full potential
+      </p>
+    </blockquote>
+    <cite>Learning Python with Raspberry Pi</cite>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>A little challenge</h1>
+  </section>
+  <section>
+    <Pacman />
+    <p class="fragment">How was this made?</p>
+    <p class="fragment">Try using the inspector to figure it out</p>
+  </section>
+</section>
+<section>
+  <section>
+    <h1>Objects</h1>
+  </section>
+  <section>
+    <p>What is an object?</p>
+    <ol>
+      <li class="fragment">It's a representation of something</li>
+      <li class="fragment">It's an abstraction</li>
+      <li class="fragment">It's a logical grouping</li>
+      <li class="fragment">It's a data structure</li>
+    </ol>
+    <p>You have already worked with a lot</p>
+
+    <pre
+      class="fragment"
+    ><code class="js">document.querySelector("selector")</code></pre>
+    <pre class="fragment"><code class="js">elem.classList</code></pre>
+    <pre class="fragment"><code class="js">...</code></pre>
+  </section>
+  <section>
+    <h3>Objects in JavaScript</h3>
+    <Code code={snippets["objects1.js"]}  language="js" />
+    <p>Objects are created using <code>{`{ }`}</code></p>
+    <p>
+      It has a set of property/value pairs, <br />separated by <code>:</code><br />ended with
+      a <code>,</code>
+    </p>
+  </section>
+  <section>
+    <h3>Working with objects</h3>
+    <p>Values are accessed using the <code>.</code> (dot) notation</p>
+    <Code code={snippets["objects1.js"]}  language="js" />
+    <Code code={snippets["objects2.js"]}  language="js" />
+  </section>
+  <section>
+    <p>
+      We often see arrays of objects, arrays in objects, objects in objects etc
+    </p>
+    <p>Learning to navigate these structures is important</p>
+    <p>&nbsp;</p>
+    <p>Remember:</p>
+    <ol>
+      <li>Objects / properties are accessed using <code>.</code></li>
+      <li>Arrays are accessed using <code>[ ]</code></li>
+    </ol>
+  </section>
+  <section>
+    <h3>How do we find ...</h3>
+    <Code code={snippets["objects3.js"]} path="t7/4.objects/objects3.js" language="js"  stretch/>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h1>Objects &amp; the <code>&lt;template&gt;</code></h1>
+  </section>
+  <section>
+    <p>
+      Combining <code>object</code>'s with the <code>&lt;template&gt;</code> is
+      easy (if we understood <code>&lt;template&gt;</code>'s the first time)
+    </p>
+    <Code code={snippets["objects-templates.html"]} path="t7/4.objects/objects-templates.html" language="html"/>
+    <Code code={snippets["objects-templates.js"]} path="t7/4.objects/objects-templates.js" language="js"/>
+  </section>
+</section>
+
+<section>
+  <h1>Exercise</h1>
+  <p>Fronter: "2. Cloning / Templating"</p>
+</section>
+
+<section>
+  <h1>Let's review the goals</h1>
+</section>
+</SlideLayout>

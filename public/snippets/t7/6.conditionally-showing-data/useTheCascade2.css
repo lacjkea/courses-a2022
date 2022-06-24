@@ -1,0 +1,6 @@
+p {
+  display: none;
+}
+.discount p {
+  display: block;
+}

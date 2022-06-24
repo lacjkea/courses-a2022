@@ -1,0 +1,12 @@
+:root {
+  --animation-duration: 1s;
+}
+.animation {
+  animation: pulse var(--animation-duration) linear infinite both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animation {
+    --animation-duration: 0;
+  }
+}

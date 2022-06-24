@@ -1,0 +1,180 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+const snippets = await codeFetcher("t7/8.url-parameters",[
+    "urlsearchparams.js",
+    "urlsearchparams-condition.js",
+]);
+
+---
+
+<SlideLayout title="URL Parameters">
+<section>
+
+  <section>
+    <h2>URL parameters</h2>
+    <p>The web is stateless</p>
+    <blockquote>"page 2 does not know what happened on page 1 unless we send the info along"</blockquote>
+  </section>
+    <section>
+        <h3>What does that mean for us</h3>
+        <p>The product page does not know which product was selected</p>
+        <p>We need to send something from productlist.html to product.html</p>
+    </section>
+  <section>
+    <h4>WWGD - What would google do</h4>
+    <p><a href="https://www.google.com/search?q=hi+mom">google.com/search?q=hi+mom</a></p>
+    <p><a href="https://www.google.com/search?q=hi+mom&start=10">google.com/search?q=hi+mom&amp;start=10</a></p>
+    <p>&nbsp;</p>
+    <p>Google sends along 1 or 2 parameters to the page</p>
+    <p><code>q</code> &amp; <code>start</code></p>
+    <p><small>They also send lots of other stuff we don't need</small></p>
+    <p>Let's see how it works</p>
+  </section>
+  <section>
+      <h2>Three rules</h2>
+      <ol>
+          <li>The first parameter is <strong>prefixed</strong> with <code>?</code></li>
+          <li>The second and subsequent parameters is <strong>prefixed</strong> with <code>&</code></li>
+          <li>Parameters and values are separated with <code>=</code></li>
+      </ol>
+      <pre class="fragment"><code class="html">
+myfile.html?name=Jonas&friend=Lasse&class=2nd&topic=js
+      </code></pre>
+  </section>
+  <section data-auto-animate>
+    <p>Line breaks for demonstration only</p>
+    <pre data-id="code-animation"><code data-trim data-line-numbers class="html">
+        <a href="
+            myfile.html
+        ">link</a>
+    </code></pre>
+  </section>
+  <section data-auto-animate>
+  <p>Line breaks for demonstration only</p>
+    <pre data-id="code-animation"><code data-trim data-line-numbers class="html">
+        <a href="
+            myfile.html
+                ?name=Jonas
+        ">link</a>
+    </code></pre>
+  </section>
+  <section data-auto-animate>
+  <p>Line breaks for demonstration only</p>
+    <pre data-id="code-animation"><code data-trim data-line-numbers class="html">
+        <a href="
+            myfile.html
+                ?name=Jonas
+                &friend=Lasse
+        ">link</a>
+    </code></pre>
+  </section>
+  <section data-auto-animate>
+  <p>Line breaks for demonstration only</p>
+    <pre data-id="code-animation"><code data-trim data-line-numbers class="html">
+        <a href="
+            myfile.html
+                ?name=Jonas
+                &friend=Lasse
+                &class=2nd
+        ">link</a>
+    </code></pre>
+  </section>
+  <section data-auto-animate>
+  <p>Line breaks for demonstration only</p>
+    <pre data-id="code-animation"><code data-trim data-line-numbers class="html">
+        <a href="
+            myfile.html
+                ?name=Jonas
+                &friend=Lasse
+                &class=2nd
+                &topic=js
+        ">link</a>
+    </code></pre>
+  </section>
+</section>
+<section>
+  <section>
+      <h3>URL Params</h3>
+      <p>Defined by others</p>
+  </section>
+  <section>
+      <p>Often, someone else decided what to name these params</p>
+      <p>and what they do</p>
+      <p>This is the case with Google and for our API</p>
+  </section>
+  <section>
+      <h3>Let's take a look at our API</h3>
+      <p><a href="https://kea-alt-del.dk/t7/api/">https://kea-alt-del.dk/t7/api/</a></p>
+  </section>
+</section>
+<section>
+    <section>
+        <h1>Exercise</h1>
+        <p>2. URL Parameters and our API</p>
+    </section>
+</section>
+<section>
+    <section>
+        <h3>URL Params</h3>
+        <p>Defined by us</p>
+    </section>
+    
+    <section>
+        <h2>Sending parameters</h2>
+        <p>That one is simple, just add them to your links</p>
+        <pre><code class="html">
+&lt;a href="product.html?id=something"&gt;Read More&lt/a&gt;
+        </code></pre>
+    </section>
+    <section>
+    <h2>Grabbing the parameters</h2>
+        <p>Our URL <code>...page.html?q=beer&start=now</code></p>
+        <Code code={snippets["urlsearchparams.js"]} />
+    </section>
+  <section>
+    
+    <h2>Grabbing the parameters, #2</h2>
+    <p>If <code>q</code> or <code>start</code> does not exist we get <code>null</code></p>
+    <p>Which means we can ask if it exists</p>
+    <Code code={snippets["urlsearchparams-condition.js"]} />
+    <p><a href="https://davidwalsh.name/query-string-javascript">David Walsh has an excellent explanation</a></p>
+  </section>
+
+  
+</section>
+<section>
+    
+    <h1>Excercise</h1>
+    <p>3. URL parameters and passing data</p>
+    
+</section>
+<section>
+    <section><h1>Product page, #2</h1><p>We're close, I can smell it :-)</p></section>
+    
+    <section>
+        <p>In our case, the produt.html page needs to know what product to show.</p>
+        <p>This means that productlist.html needs to send it</p>
+        <p>What we send is up to us</p>
+        <p>But it is almost always something the API/Database needs</p>
+        <p>If we look at out product page, it needs an <code>id</code></p>
+    </section>
+    <section>
+        <h2>The flow</h2>
+        <h4><code>productlist.html</code></h4>
+        <p>The user clicks a product on the productlist.html page</p>
+        <p>On that link, we send the id of the product</p>
+        <h4><code>product.html</code></h4>
+        <p>We grab the id from the url</p>
+        <p>And we use the id when we fetch the data</p>
+    </section>
+    <section>
+        <img data-src="/assets/t7/8.url-parameters/products-overview.png" alt="">
+    </section>
+    <section>
+        <p>let's take a look at my code</p>
+        <p>And see what needs to be done</p>
+    </section>
+</section>
+</SlideLayout>

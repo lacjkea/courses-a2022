@@ -1,0 +1,13 @@
+const formIsValid = form.checkValidity();
+if(formIsValid){
+    ...
+} else {
+    ...
+}
+
+const emailIsValid = emailField.checkValidity();
+if(emailIsValid){
+    ...
+} else {
+    ...
+}

@@ -1,0 +1,255 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro";
+import Goal from "../../../components/Goal.astro";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import Explainer2 from "../../../components/Explainer.svelte";
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("react/5.pagination",[
+    "useEffect-syntax-basic.js",
+    "useEffect-syntax-full.js",
+    "conditional-rendering-short-circuit.js",
+    "conditional-rendering-single-return.js",
+    "conditional-rendering-ternary.js",
+    "useEffect-deps1.js",
+    "update-title-without-useEffect.js",
+    "update-title-with-useEffect.js",
+    "useEffect-pagination.js",
+    "useEffect-cleanup.js"
+])
+
+---
+
+<SlideLayout title="Pagination">
+    <section>
+        <h1>React</h1>
+        <img src='/assets/react/0.need-to-know-js/react.png'  alt="" />
+    </section>
+    <Goal>
+        <ol>
+            <li>Learn to fetch data</li>
+            <li>Understand why <code>fetch</code> behaves differently</li>
+            <li>Understand the <code>useEffect</code> hook and it's dependencies</li>
+            <li>Utilize conditional rendering</li>
+        </ol>
+    </Goal>
+
+    <section>
+        <h3>Agenda</h3>
+        <ol>
+            <li><code>useEffect</code> #1
+                <ul>
+                    <li>Do things once</li>
+                    <li>fetch data</li>
+                </ul>
+            </li>
+            <li>Conditional rendering</li>
+            <li><code>useEffect</code> #2
+                <ul>
+                    <li>dependencies array</li>
+                </ul>
+            </li>
+            <li>Case: pagination</li>
+        </ol>
+    </section>
+
+    <AgendaSection header="<code>useEffect</code> #1">
+        <section>
+            <p>...and how to avoid an infinite loop</p>
+        </section>
+        <section>
+            <h3>The problem</h3>
+            <ol>
+                <li>We would like to fetch some data, right?</li>
+                <li class="fragment">That data should go in state, so we can utilize React properly</li>
+                <li class="fragment">But what happens when state is updated? React re-renders, meaning, we go back to 1, which in turn...</li>
+            </ol>
+            <p class="fragment">So now we have an infinite loop</p>
+        </section>
+        <section>
+            <h3>The Solution</h3>
+            <ol>
+                <li>We need to tell React to do a thing ONCE</li>
+                <li>That's what the "hook" <code>useEffect</code> is for</li>
+                <li><a href="https://reactjs.org/docs/hooks-effect.html">https://reactjs.org/docs/hooks-effect.html</a></li>
+            </ol>
+            <blockquote>
+                Data fetching, setting up a subscription, and manually changing the DOM in
+                React components are all examples of side effects. Whether or not you're
+                used to calling these operations "side effects" (or just "effects"), ...
+            </blockquote>
+        </section>
+        <section>
+            <h3>The Syntax</h3>
+            <Code stretch code={snippets["useEffect-syntax-basic.js"]} language="jsx" />
+            
+            <p class="fragment" style="transform: translateY(200px)">
+                Which means, we often use an empty <code>dependencies</code> array
+            </p>
+    </section>
+    <section>
+        <h3>Full example</h3>
+        <Code stretch code={snippets["useEffect-syntax-full.js"]} language="jsx" />
+        <div class="fragment">
+            <Explainer2 client:only data={[
+                {
+                    type:"text",
+                    x:629,
+                    y:227,
+                    text:"We create a state, and set it to []"
+                },
+                {
+                    type:"arrow",
+                    d:"M623,220 L600,210"
+                },
+
+                {
+                    type:"text",
+                    x:505,
+                    y:269,
+                    text:"use an arrow function for the callback"
+                },
+                {
+                    type:"arrow",
+                    d:"M495,263 L370,250"
+                },
+
+                {
+                    type:"text",
+                    x:315,
+                    y:400,
+                    text:"set state, which will trigger the render again"
+                },
+                {
+                    type:"arrow",
+                    d:"M310,394 L300,380"
+                },
+
+                {
+                    type:"text",
+                    x:315,
+                    y:450,
+                    text:"provide an empty callback array, so it runs once"
+                },
+                {
+                    type:"arrow",
+                    d:"M310,444 L240,430"
+                },
+
+                {
+                    type:"text",
+                    x:580,
+                    y:500,
+                    text:"This one is automatic"
+                },
+                {
+                    type:"arrow",
+                    d:"M570,500 L520,510"
+                },
+            ]} />
+        </div>
+        </section>
+    </AgendaSection>
+    
+    <AgendaSection header="Conditional rendering">
+        <section>
+            <ul>
+                <li>
+                We (I) call it "conditional rendering" when we render stuff based on
+                conditions
+                </li>
+                <li>We have a few options, let's highlight three common patterns</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Single return</h3>
+            <p>Remember what <code>return</code> does in a function?</p>
+            <p>
+                It, surprise, returns something, AND stops the function from proceeding
+            </p>
+            <p>So, once we return, nothing else happens, we can use that</p>
+            <Code code={snippets["conditional-rendering-single-return.js"]} language="jsx" />
+        </section>
+        <section>
+            <h3>Short Circuit Evaluation</h3>
+            <ul>
+                <li>
+                If statements are read from left to right, the moment JS figures out
+                that something can not be true, it stops
+                </li>
+                <li>
+                React won't render <code>null</code>, <code>undefined</code> and
+                <code>[]</code> (empty arrays)
+                </li>
+            </ul>
+            <Code code={snippets["conditional-rendering-short-circuit.js"]} language="jsx" />
+        </section>
+        <section>
+            <h3>Ternary operator</h3>
+            <pre><code class="js">const result = condition ? ifTrue : ifFalse</code></pre>
+            <p>The ternary operator is commonly used for minor stuff</p>
+            <Code code={snippets["conditional-rendering-ternary.js"]} language="jsx" />
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="<code>useEffect</code> #2">
+        <section>
+            <blockquote>
+                <p>You can tell React to skip applying an effect if certain values haven't changed between re-renders. To do so, pass an array as an optional second argument to useEffect:</p>
+            </blockquote>
+            <Code code={snippets["useEffect-deps1.js"]} language="jsx" />
+        </section>
+        <section data-auto-animate>
+            <p>But couldn't I just do:</p>
+            <Code dataId="update-title" code={snippets["update-title-without-useEffect.js"]} language="jsx" />
+            <p class="fragment">Yes! But it would do it a lot of times</p>
+            <p class="fragment">Think of it as a convenience method. It get's called for you when specified variables change</p>
+        </section>
+        <section data-auto-animate>
+            <p>This is better:</p>
+            <Code dataId="update-title" code={snippets["update-title-with-useEffect.js"]} language="jsx" />
+        </section>
+        <section>
+            <h3>Simple pagination</h3>
+            <p>This is our API: <a href="https://kea-alt-del.dk/t7/api/products">https://kea-alt-del.dk/t7/api/products</a></p>
+            <p>We can request more products by specifying a <code>start</code> parameter</p>
+            <p><a href="https://kea-alt-del.dk/t7/api/products?start=10">https://kea-alt-del.dk/t7/api/products?start=10</a></p>
+        </section>
+        <section>
+            <p>So, we want to request "the next 10 products" when a criteria is met. <code>useEffect</code> is perfect for that</p>
+        </section>
+        <section>
+            <Code code={snippets["useEffect-pagination.js"]} language="jsx" />
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="<code>useEffect</code> #3, cleanup">
+        <section>
+            <p>One more thing before we're <code>useEffect</code> superstars</p>
+            <p>Cleanup</p>
+            <p>Some "effects" needs to be cleaned up. Like removing eventlisteners (specially scroll), intervals etc</p>
+            <p>It's rare that I need this</p>
+        </section>
+        <section>
+            <p>Cleanup is performed for us when the component is "unmounted" (destroyed)</p>
+            <p>We tell React how to clean up by returning a function from <code>useEffect</code></p>
+        </section>
+        <section>
+            <Code code={snippets["useEffect-cleanup.js"]} language="jsx" />
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="+3/4">
+        <section>
+            <ul>
+                <li>read <a href="https://dmitripavlutin.com/react-useeffect-explanation/">https://dmitripavlutin.com/react-useeffect-explanation/</a></li>
+                <li>Use the API from the slides to build a small site</li>
+                <li><a href="https://kea-alt-del.dk/t7/api/#parameters">https://kea-alt-del.dk/t7/api/#parameters</a></li>
+                <li>Use conditional rendering, url parameters, useEffect etc</li>
+                <li>Can you implement a simple shopping basket?</li>
+            </ul>
+        </section>
+    </AgendaSection>
+</SlideLayout>
