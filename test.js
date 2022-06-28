@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { readdirSync, existsSync, statSync } = require("fs");
 const { exec, execSync } = require("child_process");
 
@@ -44,15 +45,15 @@ if (testsToRun.length > 0) {
 function runTest() {
   const test = testsToRun.pop();
   var child = exec(
-    `npm run _test -- https://courses-s2022.kea-alt-del.dk/${test.folder}/${test.file}/ --chrome-flags="--headless" --quiet --output-path ./tests/${test.folder}/${test.file}/test.html`, //TODO: env
+    `npm run _test -- ${process.env.SITE}${test.folder}/${test.file}/ --chrome-flags="--headless" --quiet --output-path ./tests/${test.folder}/${test.file}/test.html`, //TODO: env
     (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);
-        return;
+        /* return; */
       }
       if (stderr) {
         console.log(`stderr: ${stderr}`);
-        return;
+        /* return; */
       }
       console.log(`stdout: ${stdout}`);
     }

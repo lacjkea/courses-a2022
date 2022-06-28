@@ -3,17 +3,17 @@
 const {header,p,h2,h3} = Astro.props;
 //let header1 = header ? <h1 set:html={header}/> : null
 //let header1 = <h1>{header}</h1>;
-let paragraph = p ? `<p>${p}</p>` : null
+/* let paragraph = p ? `<p>${p}</p>` : null
 let header2 = h2 ? `<h2>${h2}</h2>` : null
-let header3 = h3 ? `<h3>${h3}</h3>` : null
+let header3 = h3 ? `<h3>${h3}</h3>` : null */
 ---
 <section>
     <section>
         <!-- {header1} -->
         {header && (<h1 set:html={header}/>)}
-        {h2 && (<h2 set:html={header}/>)}
-        {h3 && (<h3 set:html={header}/>)}
-        {p && (<p set:html={header}/>)}
+        {h2 && (<h2 set:html={h2}/>)}
+        {h3 && (<h3 set:html={h3}/>)}
+        {p && (<p set:html={p}/>)}
     </section>
     <slot />
 </section>

@@ -25,9 +25,9 @@ urlsToParse.forEach((url) => {
     const pdfStats = statSync(`./pdfs/${folder}/${file}.pdf`);
     const astroStats = statSync(`./src/pages/${folder}/${file}/index.astro`);
     if (pdfStats.mtime > astroStats.mtime) {
-      console.log(
+      /*  console.log(
         `skipping ./pdfs/${folder}/${file}.pdf, it exists and pdf is newer`
-      );
+      ); */
     } else {
       console.log(`overwriting ./pdfs/${folder}/${file}.pdf`);
       createPDF(folder, file);
@@ -36,7 +36,7 @@ urlsToParse.forEach((url) => {
 });
 function createPDF(folder, file) {
   exec(
-    `npm run pdf -- http://localhost:3000/${folder}/${file} ./pdfs/${folder}/${file}.pdf`, //TODO: env
+    `npm run pdf -- http://localhost:3000/${folder}/${file} ./pdfs/${folder}/${file}.pdf`,
     (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);
@@ -46,7 +46,7 @@ function createPDF(folder, file) {
         console.log(`stderr: ${stderr}`);
         return;
       }
-      console.log(`stdout: ${stdout}`);
+      //console.log(`stdout: ${stdout}`);
     }
   );
 }
