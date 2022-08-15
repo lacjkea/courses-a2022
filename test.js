@@ -13,6 +13,7 @@ topLevelDirectories.forEach((url) => {
   urlsToParse = urlsToParse.concat(getDirectories(url));
 });
 //console.log(urlsToParse);
+
 const testsToRun = [];
 urlsToParse.forEach((url) => {
   const parts = url.split("/");
