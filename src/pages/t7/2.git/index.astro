@@ -291,6 +291,7 @@ import Goal from "../../../components/Goal.astro";
       <li><code>branch</code></li>
       <li><code>merge</code></li>
       <li><code>reset</code></li>
+      <li><code>revert</code></li>
       <li><code>checkout</code></li>
       <li><code>feature</code> (not a git word)</li>
       <li><code>commit message</code></li>
@@ -314,6 +315,7 @@ import Goal from "../../../components/Goal.astro";
       <li>push</li>
       <li>checkout</li>
       <li>reset</li>
+      <li>revert</li>
     </ol>
   </section>
   <section>
@@ -355,7 +357,7 @@ import Goal from "../../../components/Goal.astro";
   </section>
   <section>
     <h3><code>reset</code></h3>
-    <p>Reset was destructive, so that means move back permanently (sort of)</p>
+    <p>Reset is destructive, so that means move back permanently (sort of)</p>
     <video height="200" data-src="/assets/t7/2.git/reset.mov.mp4" controls></video>
     <p><small>(this one has audio)</small></p>
     <p><code>reset</code> is a "last option" other (and better) ways exists</p>
@@ -370,6 +372,13 @@ import Goal from "../../../components/Goal.astro";
     <p>We can do a forced push</p>
     <p>But that's not for now</p>
   </section>
+  <section>
+    <h3><code>revert</code></h3>
+    <p>Undo a specific commit</p>
+    <p>Demo?</p>
+    <p><code>revert</code> is often better than <code>reset</code></p>
+  </section>
+  
 </section>
 
 <section>
@@ -380,7 +389,7 @@ import Goal from "../../../components/Goal.astro";
   <section>
     <h3>"Save games"</h3>
     <p>Commits are points in history we can go back to</p>
-    <p>That's called checking out or resetting</p>
+    <p>That's called checking out, resetting or reverting</p>
     <div class="fragment">
       <p>In general, if something is working, do a commit</p>
       <p>Try to do one thing per commit</p>
