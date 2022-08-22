@@ -10,12 +10,11 @@ import Goal from "../../../components/Goal.astro";
   </section>
   <Goal>
     <ol>
-      <li>TODO: revert instead of reset?</li>  
       <li class="fragment">Understand the need for Git</li>
       <li class="fragment">Memorize Git specific keywords and flows</li>
       <li class="fragment">Connect a project to gihub</li>
       <li class="fragment">Use the commands <code>add, commit, push</code> fluently</li>
-      <li class="fragment">Know that <code>checkout</code>,<code>pull</code> &amp; <code>reset</code> exists</li>
+      <li class="fragment">Know that <code>checkout</code>, <code>pull</code>, <code>revert</code> &amp; <code>reset</code> exists</li>
       <li class="fragment">Know what <code>fork</code>ing and <code>clone</code>ing does, and what the difference is</li>
     </ol>
   </Goal>
@@ -32,10 +31,9 @@ import Goal from "../../../components/Goal.astro";
     <li>Checkout</li>
     <li>Resetting</li>
 
-    <li class="stricken">Branches</li>
+    <!-- <li class="stricken">Branches</li>
     <li class="stricken">Merging</li>
-    <li class="stricken">Checkout</li>
-    <li class="stricken">Dictionary</li>
+    <li class="stricken">Dictionary</li> -->
   </ol>
 </section>
 <AgendaSection header="git, what is it">
@@ -157,7 +155,7 @@ import Goal from "../../../components/Goal.astro";
     </ol>
     <p>
       <video
-      data-src='/assets/t7/2.git/create-project.mov.mp4'
+        data-src='/assets/t7/2.git/1-setup-project.mov'
         height="300"
         controls
       ></video>
@@ -173,10 +171,9 @@ import Goal from "../../../components/Goal.astro";
         </ul>
       </li>
     </ol>
-    <p><small>Sorry about the sound :-)</small></p>
     <p>
       <video
-      data-src='/assets/t7/2.git/initialize-repository.mov.mp4'
+      data-src='/assets/t7/2.git/2-init.webm'
         height="400"
         controls
       ></video>
@@ -187,7 +184,7 @@ import Goal from "../../../components/Goal.astro";
       <li>In VS Code, <code>add</code> (+) all the files you need</li>
       <li>Write a meaningfull message and click <code>commit</code> (V)</li>
     </ol>
-    <video data-src='/assets/t7/2.git/first-commit.mov.mp4' height="300" controls></video>
+    <video data-src='/assets/t7/2.git/3-add-commit.webm' height="300" controls></video>
   </section>
   <section>
     <p>Now you have version control locally.</p>
@@ -244,7 +241,7 @@ import Goal from "../../../components/Goal.astro";
       <li>You can click "Open in GitHub" to see you new repository</li>
     </ol>
     <video
-    data-src='/assets/t7/2.git/publish-to-github.mov.mp4'
+    data-src='/assets/t7/2.git/4-publish-to-github.webm'
       height="300"
       controls
     ></video>
@@ -342,24 +339,24 @@ import Goal from "../../../components/Goal.astro";
     <h3><code>checkout</code></h3>
     <p>Looking at a point in time</p>
     <p>You can look, but you can't (shouldn't) touch</p>
-    <video height="200" data-src='/assets/t7/2.git/checkout.mov.mp4' controls></video>
-    <p><small>(No audio)</small></p>
+    <video height="200" data-src='/assets/t7/2.git/5-switch-to-commit.mov' controls></video>
+    
   </section>
   <section>
     <h3>Going back to our timeline</h3>
-    <p>Once we've looked, we can go back to our own timeline (master)</p>
+    <p>Once we've looked, we can go back to our own timeline (main)</p>
     <video
       height="200"
-      data-src='/assets/t7/2.git/back-to-master.mov.mp4'
+      data-src='/assets/t7/2.git/6-go-back.webm'
       controls
     ></video>
-    <p><small>(this one has audio)</small></p>
+    
   </section>
   <section>
     <h3><code>reset</code></h3>
     <p>Reset is destructive, so that means move back permanently (sort of)</p>
-    <video height="200" data-src="/assets/t7/2.git/reset.mov.mp4" controls></video>
-    <p><small>(this one has audio)</small></p>
+    <video height="200" data-src="/assets/t7/2.git/7-reset.mov" controls></video>
+    
     <p><code>reset</code> is a "last option" other (and better) ways exists</p>
   </section>
   <section>
@@ -375,10 +372,16 @@ import Goal from "../../../components/Goal.astro";
   <section>
     <h3><code>revert</code></h3>
     <p>Undo a specific commit</p>
+    <video height="200" data-src="/assets/t7/2.git/8-revert.mov" controls></video>
     <p>Demo?</p>
     <p><code>revert</code> is often better than <code>reset</code></p>
   </section>
   
+  <section>
+    <h3><code>push</code></h3>
+    <p>Upload our commits</p>
+    <video height="200" data-src="/assets/t7/2.git/9-push.mov" controls></video>
+  </section>
 </section>
 
 <section>
