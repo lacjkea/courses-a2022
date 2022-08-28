@@ -8,6 +8,7 @@ import Goal from "../../../components/Goal.astro";
 const snippets = await codeFetcher("t7/6.conditionally-showing-data",[
     "if-quiz1.js",
     "if-quiz2.js",
+    "if-quiz3.js",
     "discount1.js",
     "discount2.js",
     "navigationhelpers.js",
@@ -45,7 +46,6 @@ const snippets = await codeFetcher("t7/6.conditionally-showing-data",[
 <section>
   <h2>Agenda</h2>
   <ul>
-    <li>Left-overs</li>
     <li>Navigating the DOM</li>
     <li>Attributes</li>
     <li>Arrays / <code>.querySelectorAll</code></li>
@@ -57,14 +57,14 @@ const snippets = await codeFetcher("t7/6.conditionally-showing-data",[
   </ul>
 </section>
 
-<AgendaSection header="Left-overs">
+<!-- <AgendaSection header="Left-overs">
   <section>
     <ol>
       <li>New video (superheroes)</li>
       <li>Questions?</li>
     </ol>
   </section>
-</AgendaSection>
+</AgendaSection> -->
 
 <section>
   <h3>Purpose of today</h3>
@@ -220,15 +220,15 @@ const snippets = await codeFetcher("t7/6.conditionally-showing-data",[
   <section><img data-src="https://s-media-cache-ak0.pinimg.com/originals/fc/5d/a3/fc5da380710c56cf174b4e5e0c63feb3.jpg" alt=""></section>
   <section>
     <p>Remember <code>if</code>-statements?</p>
-    <div class="flex-grid">
-        <div class="col-6">
-        <Code code={snippets["if-quiz1.js"]} stretch />
-        </div>
-        <div class="col-6">
-        <Code code={snippets["if-quiz2.js"]} stretch />
-        </div>
-    </div>
-    <p>10 minutes, try them out in the console</p>
+    
+        <Code code={snippets["if-quiz1.js"]} stretch/>
+    <!-- <p>10 minutes, try them out in the console</p> -->
+  </section>
+  <section>
+    <Code code={snippets["if-quiz2.js"]} stretch />
+  </section>
+  <section>
+    <Code code={snippets["if-quiz3.js"]} stretch />
   </section>
   <section>
     <h2>sample code</h2>
@@ -251,8 +251,10 @@ const snippets = await codeFetcher("t7/6.conditionally-showing-data",[
 </AgendaSection>
 <AgendaSection header="The almighty frontend developer">
   <section>
-    <p>An experiment, let's see how many of you want to participate</p>
+    <p>Maybe another day</p>
+    <del><p>An experiment, let's see how many of you want to participate</p>
     <p><a href="https://www.emailjs.com/">https://www.emailjs.com/</a></p>
+  </del>
   </section>
 </AgendaSection>
 <AgendaSection header="Let's review the goals" />
