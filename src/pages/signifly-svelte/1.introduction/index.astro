@@ -1,0 +1,77 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+import AboutMe from "../../../components/AboutMe.astro"
+import AgendaSection from "../../../components/AgendaSection.astro"
+import SlideControls from "../../../components/SlideControls.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("signifly-svelte/1.introduction",[
+    "Calculator.svelte",
+    "Calculator.vue",
+    "Calculator.jsx",
+    "calculator.html",
+])
+
+---
+
+<SlideLayout title="Introduktion" lang="en">
+    <AgendaSection header="Svelte" h2="a quick introduction" p="jofh@kea.dk">
+      <section>
+        <p>A brief history lesson</p>
+      </section>
+    </AgendaSection>
+    <AgendaSection header="Svelte?">
+      <section>
+        <p><a href="https://svelte.dev/">https://svelte.dev/</a></p>
+        <ol>
+          <li class="fragment">Write less code</li>
+          <li class="fragment">No virtual DOM</li>
+          <li class="fragment">Truly Reactive</li>
+        </ol>
+      </section>
+    </AgendaSection>
+    <AgendaSection header="Write less code">
+      <section>
+        <h2>A simple calculator</h2>
+        <iframe style="background: #FFFFFF;"  src="/snippets/signifly-svelte/1.introduction/calculator.html"></iframe>
+      </section>
+      <section data-auto-animate>
+        <h2 data-id="h2">React</h2>
+        <Code dataId="calculator" code={snippets["Calculator.jsx"]} stretch />
+      </section>
+      <section data-auto-animate>
+        <h2 data-id="h2">Vue</h2>
+        <Code dataId="calculator" code={snippets["Calculator.vue"]} stretch />
+      </section>
+      <section data-auto-animate>
+        <h2 data-id="h2">Svelte</h2>
+        <Code dataId="calculator" code={snippets["Calculator.svelte"]} stretch />
+      </section>
+      
+    </AgendaSection>
+    <AgendaSection header="No virtual DOM">
+      <section>
+        <blockquote>
+          <p>Svelte compiles your code to tiny, framework-less vanilla JS — your app starts fast and
+            stays fast</p>
+        </blockquote>
+        <ul>
+          <li class="fragment">Svelte is a compiler, once you <code>build</code>, Svelte is gone</li>
+          <li class="fragment">No Virtual DOM == No Overhead</li>
+        </ul>
+      </section>
+    </AgendaSection>
+    <AgendaSection header="Truly Reactive">
+      <section><blockquote><p>No more complex state management libraries — Svelte brings reactivity to JavaScript itself</p></blockquote></section>
+    </AgendaSection>
+    <section>
+      <h2>That was the marketing department</h2>
+    </section>
+    <AgendaSection h2="The competition">
+      <section>
+        <p><a href="https://2021.stateofjs.com/en-US/libraries/front-end-frameworks">https://2021.stateofjs.com/en-US/libraries/front-end-frameworks</a></p>
+      </section>
+    </AgendaSection>
+</SlideLayout>

@@ -1,0 +1,70 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+
+import AgendaSection from "../../../components/AgendaSection.astro"
+
+import Explainer from "../../../components/Explainer.svelte"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("signifly-svelte/2.setup",[
+    "settings.json",
+    "install.sh",
+    "App.svelte"
+])
+
+---
+
+<SlideLayout title="Setup" lang="da">
+    <AgendaSection header="Svelte" h2="Setup" p="jofh@kea.dk">
+    </AgendaSection>
+    <AgendaSection header="Plugins">
+        <section>
+            <h3>VS Code</h3>
+            <ol>
+                <li>Prettier - Code formatter</li>   
+            </ol>
+            
+        </section>
+        <section>
+            <h3>VS Code</h3>
+            <ol start="2">
+                <li>Svelte for VS Code</li>
+            </ol>
+            <p>Configure the Plugin</p>
+            <ol>
+                <li>Open settings (<kbd>Cmd + Shift + P)</kbd></li>
+                <li>Find: <code>Preferences: Open Settings (JSON)</code></li>
+                <li>add:</li>
+            </ol>
+            <Code code={snippets["settings.json"]} />
+        </section>
+        <section>
+             <h3>Dev Tools</h3>
+            <ol>
+                <li><a href="https://addons.mozilla.org/en-US/firefox/addon/svelte-devtools/">Firefox</a></li>
+                <li><a href="https://chrome.google.com/webstore/detail/svelte-devtools/ckolcbmkjpjmangdbmnkpjigpkddpogn">Chrome</a></li>
+            </ol>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Lightning Round" p="Install the two plugins" />
+    <AgendaSection header="Creating a new project">
+        <section>
+            <p><a href="https://svelte.dev/">https://svelte.dev/</a></p>
+            <Code code={snippets["install.sh"]}  lineNumbers="1-3|1|2|3"/>
+            <p class="fragment">This should be a no brainer (except for degit?)</p>
+        </section>
+        <section>
+            <p>If you're more into online editing</p>
+            <p><a href="https://svelte.dev/repl">https://svelte.dev/repl</a></p>
+        </section>
+    </AgendaSection>
+
+    <AgendaSection header="Start / Stop">
+        <section>
+            <p><code>npm run dev</code></p>
+            <p><kbd>ctrl + c</kbd></p>
+        </section>
+    </AgendaSection>
+</SlideLayout>

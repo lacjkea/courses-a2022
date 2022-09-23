@@ -1,18 +1,17 @@
 <script>
   //this is where we write our scripts
   //import other components etc
-  //but it's not like we're used to
 </script>
 
+<!-- look ma, no template-->
 <article class="feature">
   <h2>Markup</h2>
   <p>Any HTML goes here</p>
 </article>
+<div>And more than one root element</div>
 
 <style>
-  /* "Scoped styling" 
-All CSS written here will only "work" 
-for this component */
+  /* Scoped styling" */
   article {
     border: 1px solid #000;
   }

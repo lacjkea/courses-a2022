@@ -5,7 +5,7 @@ import AgendaSection from "../../../components/AgendaSection.astro"
 import codeFetcher from "../../../js/codeFetcher";
 import Code from "../../../components/Code.astro";
 
-const snippets = await codeFetcher("digital-design/4.custom-classes",[
+const snippets = await codeFetcher("signifly-svelte/4.custom-classes",[
    "API.svelte",
    "DefaultProps1.svelte",
    "DefaultProps2.svelte",
@@ -19,24 +19,9 @@ const snippets = await codeFetcher("digital-design/4.custom-classes",[
 
 ---
 
-<SlideLayout title="Custom Classes" lang="da">
-    <AgendaSection header="Custom Classes" p="and a tiny bit of JS">
-        <Goal>
-        <ol>
-            <li>Re-cap på props</li>
-            <li>Forstå hvordan default props virker</li>
-            <li>Forstå hvordan vi kan bygge components der bliver styret af deres "props"</li>
-            <li>Forstå hvordan Svelte arbejder med classes</li>
-        </ol>
-        </Goal>
-    </AgendaSection>
-   
-    <AgendaSection header="Hvad er drømmen?">
-        <section>
-            <p>Hvad er det optimale API for vores design system?</p>
-            <Code code={snippets["API.svelte"]} />
-            <p>Hvilken syntax ville du helst bruge?</p>
-        </section>
+<SlideLayout title="Custom Classes" h2="Bindings" lang="en">
+    <AgendaSection header="Custom Classes" p="Bindings">
+        
     </AgendaSection>
    
     <AgendaSection header="Classes fra props">

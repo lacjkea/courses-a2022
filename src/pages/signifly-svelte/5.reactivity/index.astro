@@ -1,0 +1,93 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import Goal from "../../../components/Goal.astro"
+import AgendaSection from "../../../components/AgendaSection.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+
+const snippets = await codeFetcher("signifly-svelte/5.reactivity",[
+   "events1.svelte",
+   "if.svelte",
+   "Nav.svelte",
+   "EachTutorial.svelte",
+   "Assignment.svelte",
+   "LifecycleHooks.svelte",
+])
+const snippetsPrev = await codeFetcher("signifly-svelte/2.setup",[
+   "App.svelte"
+])
+---
+
+<SlideLayout title="Reactivity" lang="en">
+    <AgendaSection header="Reactivity" p="and some Svelte magic">
+        
+    </AgendaSection>
+   
+   <AgendaSection header="Made With Svelte">
+        <section><p><a href="https://madewithsvelte.com/">https://madewithsvelte.com/</a></p></section>
+   </AgendaSection>
+    <AgendaSection header="Events">
+        <section>
+            <p><code  class="fragment strike">@click</code></p>
+            <p class="fragment"><code>on:event</code></p>
+        </section>
+        <section>
+            <Code code={snippets["events1.svelte"]} />
+        </section>
+    </AgendaSection>
+    <AgendaSection header="State">
+        <section>
+            <p>State in Svelte</p>
+            <ol>
+                <li>All <code>let</code> variables are statefull</li>
+            </ol>
+        </section>
+        <section>
+            <Code code={snippetsPrev["App.svelte"]} />
+        </section>
+        <section>
+            <p>State variables must only be changed through assignment</p>
+            <Code code={snippets["Assignment.svelte"]} />
+            <p>Other "bad" things</p>
+            <ul>
+                <li>Push</li>
+                <li>Pop</li>
+                <li>--</li>
+            </ul>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="<code>if/else</code>">
+        <section>
+            <Code code={snippets["if.svelte"]} />
+            <p><a href="https://svelte.dev/repl/91afe736bf9c4e20969c748e4598c46a?version=3.46.4">REPL</a></p>
+        </section>
+       
+    </AgendaSection>
+   
+    <AgendaSection header="<code>each</code>">
+        
+        <section>
+            <Code code={snippets["EachTutorial.svelte"]} stretch/>
+        </section>
+        
+    </AgendaSection>
+    
+    <AgendaSection header="Lifecycle hooks">
+        <section>
+            <Code code={snippets["LifecycleHooks.svelte"]} />
+            <ul class="fragment">
+                <li><code>onDestroy</code></li>
+                <li><code>beforeUpdate</code></li>
+                <li><code>afterUpdate</code></li>
+                <li><code>tick</code></li>
+            </ul>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="stores">
+        <section>
+            <p><a href="https://svelte.dev/tutorial/writable-stores">https://svelte.dev/tutorial/writable-stores</a></p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="Transition directive"></AgendaSection>
+    
+</SlideLayout>

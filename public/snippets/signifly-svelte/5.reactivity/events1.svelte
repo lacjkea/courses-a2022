@@ -10,8 +10,8 @@
   }
 </script>
 
-<button on:click={clicked}>Klik her</button>
+<button on:click={clicked}>Click here</button>
 
-<button on:animationend={animationEnded}>Eller her</button>
+<button on:animationend={animationEnded}>Or here</button>
 
-<button on:transitionend={transitionEnded}>Eller her</button>
+<button on:transitionend={transitionEnded}>Or here</button>

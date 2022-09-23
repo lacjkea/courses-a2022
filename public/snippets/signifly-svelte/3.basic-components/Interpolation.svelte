@@ -1,7 +1,7 @@
 <script>
-  let name = "Digitalt Design";
+  let name = "Signifly ♥️ Svelte";
   let year = new Date().getFullYear();
 </script>
 
-<h2>Vi roder med Svelte i {name}, fedt!</h2>
+<h2>I wonder if {name}?</h2>
 <footer>Copyright Me, {year}</footer>
