@@ -11,7 +11,12 @@ const snippets = await codeFetcher("signifly-svelte/5.reactivity",[
    "Nav.svelte",
    "EachTutorial.svelte",
    "Assignment.svelte",
+   "Assignment2.svelte",
+   "Statements.svelte",
+   "Binding.svelte",
    "LifecycleHooks.svelte",
+   "Dispatch.svelte",
+   "DispatchInner.svelte",
 ])
 const snippetsPrev = await codeFetcher("signifly-svelte/2.setup",[
    "App.svelte"
@@ -28,7 +33,7 @@ const snippetsPrev = await codeFetcher("signifly-svelte/2.setup",[
    </AgendaSection>
     <AgendaSection header="Events">
         <section>
-            <p><code  class="fragment strike">@click</code></p>
+            <p><code  class="fragment strike">@event</code></p>
             <p class="fragment"><code>on:event</code></p>
         </section>
         <section>
@@ -55,6 +60,9 @@ const snippetsPrev = await codeFetcher("signifly-svelte/2.setup",[
                 <li>--</li>
             </ul>
         </section>
+        <section>
+            <Code code={snippets["Assignment2.svelte"]} lineNumbers="1-14|2-4|6-9"/>
+        </section>
     </AgendaSection>
     <AgendaSection header="<code>if/else</code>">
         <section>
@@ -72,6 +80,16 @@ const snippetsPrev = await codeFetcher("signifly-svelte/2.setup",[
         
     </AgendaSection>
     
+    <AgendaSection header="watched / computed values">
+        <section>
+            <Code code={snippets["Statements.svelte"]} stretch/>
+        </section>
+    </AgendaSection>
+    
+    <AgendaSection header="Form bindings">
+        <section><Code code={snippets["Binding.svelte"]} stretch/></section>
+    </AgendaSection>
+
     <AgendaSection header="Lifecycle hooks">
         <section>
             <Code code={snippets["LifecycleHooks.svelte"]} />
@@ -83,11 +101,23 @@ const snippetsPrev = await codeFetcher("signifly-svelte/2.setup",[
             </ul>
         </section>
     </AgendaSection>
-    <AgendaSection header="stores">
+
+    <AgendaSection header="emitting">
+        <section>
+            <p>Vue $emits, Svelte dispatches</p>
+        </section>
+        <section>
+            <Code code={snippets["Dispatch.svelte"]} />
+            <Code code={snippets["DispatchInner.svelte"]} />
+        </section>
+    </AgendaSection>
+    <!-- <AgendaSection header="stores">
         <section>
             <p><a href="https://svelte.dev/tutorial/writable-stores">https://svelte.dev/tutorial/writable-stores</a></p>
         </section>
+    </AgendaSection> -->
+    <AgendaSection header="Transition directive">
+        <p><a href="https://svelte.dev/tutorial/in-and-out">https://svelte.dev/tutorial/in-and-out</a></p>
     </AgendaSection>
-    <AgendaSection header="Transition directive"></AgendaSection>
     
 </SlideLayout>

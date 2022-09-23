@@ -20,6 +20,14 @@ const snippets = await codeFetcher("signifly-svelte/1.introduction",[
     <AgendaSection header="Svelte" h2="a quick introduction" p="jofh@kea.dk">
       <section>
         <p>A brief history lesson</p>
+        <ol>
+          <li class="fragment">May 29, 2013 - React v1</li>
+          <li class="fragment">Feb ??, 2014 - Vue v1</li>
+          <li class="fragment">Nov 26, 2016 - Svelte v1</li>
+          <li class="fragment">Sep 30, 2016 - Vue v2</li>
+          <li class="fragment">...</li>
+          <li class="fragment">Sep 18, 2020 - Vue v3</li>
+        </ol>
       </section>
     </AgendaSection>
     <AgendaSection header="Svelte?">
@@ -49,7 +57,54 @@ const snippets = await codeFetcher("signifly-svelte/1.introduction",[
         <h2 data-id="h2">Svelte</h2>
         <Code dataId="calculator" code={snippets["Calculator.svelte"]} stretch />
       </section>
-      
+      <section>
+        <h1>Bundle sizes?</h1>
+      </section>
+      <section data-auto-animate>
+        <h3>React</h3>
+          <pre data-id="bundle-size">
+  vite v3.1.3 building for production...
+  ✓ 32 modules transformed.
+  dist/index.html                 0.38 KiB
+  dist/assets/index.0edd7966.js   140.15 KiB / gzip: 45.20 KiB          
+          </pre>
+        
+        </section>
+        <section data-auto-animate>
+        <h3>Vue</h3>
+        <pre data-id="bundle-size">
+  vite v3.1.3 building for production...
+  ✓ 11 modules transformed.
+  dist/index.html                 0.38 KiB
+  dist/assets/index.7a676d6b.js   52.64 KiB / gzip: 21.20 KiB
+          </pre>
+        
+      </section>
+      <section data-auto-animate>
+        <h3>Preact</h3>
+        <pre data-id="bundle-size">
+vite v3.1.3 building for production...
+✓ 7 modules transformed.
+dist/index.html                 0.38 KiB
+dist/assets/index.2274c12f.js   12.36 KiB / gzip: 4.98 KiB          
+        </pre>
+      </section>
+      <section data-auto-animate>
+        <h3>Svelte</h3>
+        <pre data-id="bundle-size">
+  vite v3.1.3 building for production...
+  ✓ 6 modules transformed.
+  dist/index.html                 0.38 KiB
+  dist/assets/index.ea967825.js   4.34 KiB / gzip: 2.02 KiB
+          </pre>
+      </section>
+      <section data-auto-animate>
+        <h3>Vanilla</h3>
+        <pre data-id="bundle-size">
+          544B
+        </pre>
+        <p>Non minified, including HTML!</p>
+      </section>
     </AgendaSection>
     <AgendaSection header="No virtual DOM">
       <section>
@@ -72,6 +127,26 @@ const snippets = await codeFetcher("signifly-svelte/1.introduction",[
     <AgendaSection h2="The competition">
       <section>
         <p><a href="https://2021.stateofjs.com/en-US/libraries/front-end-frameworks">https://2021.stateofjs.com/en-US/libraries/front-end-frameworks</a></p>
+      </section>
+      <section>
+        <table>
+          <tr>
+            <th>SPA</th>
+            <th>MPA</th>
+          </tr>
+          <tr>
+            <td>React</td>
+            <td>Next</td>
+          </tr>
+          <tr>
+            <td>Vue</td>
+            <td>Nuxt</td>
+          </tr>
+          <tr>
+            <td>Svelte</td>
+            <td>SvelteKit</td>
+          </tr>
+        </table>
       </section>
     </AgendaSection>
 </SlideLayout>

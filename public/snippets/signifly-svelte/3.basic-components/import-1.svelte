@@ -2,7 +2,7 @@
   //MyButton.svelte
 </script>
 
-<button class="primary">Klik på mig</button>
+<button class="primary">Click me</button>
 
 <style>
   .primary {

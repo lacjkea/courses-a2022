@@ -5,7 +5,7 @@
 
 <header>
   <h1>
-    Velkommen
+    Welcome
     <MyButton />
   </h1>
 </header>

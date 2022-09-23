@@ -5,7 +5,7 @@
 
 <header>
   <h1>
-    Velkommen
-    <MyButton>Tag og klik på mig, please</MyButton>
+    Welcome
+    <MyButton>Click me, please</MyButton>
   </h1>
 </header>

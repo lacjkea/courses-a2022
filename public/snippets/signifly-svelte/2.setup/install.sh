@@ -1,3 +1,4 @@
-npx degit sveltejs/template my-svelte-project
-cd my-svelte-project
+npm create vite@latest
+cd ...?
 npm install
+npm run dev
