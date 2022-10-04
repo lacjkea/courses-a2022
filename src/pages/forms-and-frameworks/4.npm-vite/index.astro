@@ -5,13 +5,19 @@ import Code from "../../../components/Code.astro";
 import Explainer from "../../../components/Explainer.svelte";
 import AgendaSection from "../../../components/AgendaSection.astro";
 import Goal from "../../../components/Goal.astro";
-const snippets = await codeFetcher("forms-and-frameworks/2.npm-vite",[
+const snippets = await codeFetcher("forms-and-frameworks/4.npm-vite",[
     "vite-scripts.json",
     "setup-script.sh",
     "vite-config.js",
     "package.json",
     "package-min.json",
-    "package-bloated.json"
+    "package-bloated.json",
+    "package-slides.json",
+    "package-slides-general.json",
+    "package-slides-dev.json",
+    "package-slides-dep.json",
+    "package-slides-scripts.json",
+    "package-scripts.json",
 ])
 /*
 STOP!!!
@@ -25,9 +31,7 @@ kan jeg lave en øvelse hvor de skal npm installe mit, jeg opdaterer deps og de 
 ---
 
 <SlideLayout title="NPM / Vite">
-    <section>
-        <h1>NPM / Vite</h1>
-    </section>
+    <AgendaSection header="NPM / Vite" />
     <section>
         <Goal>
             <ol>
@@ -38,11 +42,7 @@ kan jeg lave en øvelse hvor de skal npm installe mit, jeg opdaterer deps og de 
             </ol>
         </Goal>
     </section>
-    <section>
-        <section>
-            <h2>Modern Web Development</h2>
-            <p>A pursuit for speed and convenience (DX)</p>
-        </section>
+    <AgendaSection h2="Modern Web Development" p="A pursuit for speed and convenience (DX)">
         <section>
             <p>I do hope you all read <a href="https://medium.com/the-node-js-collection/modern-javascript-explained-for-dinosaurs-f695e9747b70">https://medium.com/the-node-js-collection/modern-javascript-explained-for-dinosaurs-f695e9747b70</a></p>
         </section>
@@ -161,7 +161,7 @@ kan jeg lave en øvelse hvor de skal npm installe mit, jeg opdaterer deps og de 
             <p>Everything can be done using NPM scripts and WebPack</p>
             <p>But we'll use Vite 2, a new addition to the tooling-landscape</p>
         </section>
-    </section>
+    </AgendaSection>
 
     <AgendaSection header="<code>npm</code>">
         <section>
@@ -264,93 +264,60 @@ kan jeg lave en øvelse hvor de skal npm installe mit, jeg opdaterer deps og de 
     <AgendaSection header="Exercise">
         <section>
             <h3>Let's play with global modules</h3>
-            <p>Go solve Task 1, 2 &amp; 3</p>
+            <p>Go solve Task 1 &amp; 2</p>
         </section>
     </AgendaSection>
 
-    <AgendaSection header="local modules" h3="Using NPM as a task runner" p="Automation">
+    <AgendaSection h2="Package Management #1">
         <section>
-            <h3>Warning</h3>
-            <p>I will highlight some of the more common processes</p>
-            <p>There will be many others</p>
-            <p>And the packages I've chosen, might not be exactly the same as those you'll encounter in the wild</p>
+            <h2><code>package.json</code></h2>
+            <p>A file that lists all the npm packages the project uses</p>
+            <p>Most projects will have one</p>
         </section>
-        <section>
-            <h3>Setting up NPM</h3>
-            <pre><code class="bash">npm init</code></pre>
-            <p>Will set up a project where we can use NPM modules</p>
-            <p>Run this in the same folder you run <code>git init</code> in</p>
-        </section>
-        <section>
-            <p>3+ ways to install modules</p>
-            <dl>
-                <del><dt>npm install -g xxx</dt>
-                <dd>Install a module globally</dd></del>
-                <dt>npm install --save-dev xxx</dt>
-                <dd>Install a module that is only used for development</dd>
-                <dt>npm install --save xxx</dt>
-                <dd>Install a module that is used in production</dd>
-            </dl>
-        </section>
-        <section>
-            <pre><code class="bash">npm init</code></pre> or 
-            <pre><code class="bash">npm init -y</code></pre>
-            <p>Will create a file called <code>package.json</code> for us</p>
-            <Code code={snippets["package.json"]} language="json" />
-        </section>
-        <section>
-            <p>Hint: If you setup git / GitHub first it will auto-fill some fields for you</p>
-        </section>
-
-        <section>
-            <h3><code>--save-dev / --save</code></h3>
-            <p>When we install a module locally we get a <code>node_modules</code> folder</p>
-            <p>And the module is added to our <code>package.json</code> file</p>
-            <pre><code class="bash">npm install --save-dev minify</code></pre>
-        </section>
-        <section>
-            <p>We can then create an entry in the "scripts" section of our package.json to run our modules</p>
-            <Code code={snippets["package-min.json"]} language="json" />
-        </section>
-        <section>
-        <p>And then we can run our scripts with</p>
-            <pre><code class="bash">npm run dev</code></pre>
-            <pre><code class="bash">npm run minify-js</code></pre>
-            <pre><code class="bash">npm run minify-html</code></pre>
-            <pre><code class="bash">npm run minify-css</code></pre>
-        </section>
-        <section>
-            <p><strong>We never push our node_modules folder to git!</strong></p>
-            <p class="fragment">add <code>node_modules/</code> to <kbd>.gitignore</kbd></p>
-        </section>
-
         <section>
             <h3>Re-installing</h3>
             <p>If we have a <code>package.json</code> file (let's say from a cloned repo)</p>
             <p>We can install all dependencies by running</p>
             <pre><code class="bash">npm install</code></pre>
-            <p class="fragment">Or if something went wrong, we can delete <code>node_modules</code> and re-install everything</p>
+            <p class="fragment">If something went wrong, we can delete "<code>node_modules</code>" and re-install everything</p>
         </section>
         <section>
-            <h3>Cleaning up</h3>
-            <p>Since we can always just install everything again, I often remove <code>node_modules</code> folders on my machine</p>
-            <p>For that I use a tool called <code>npkill</code></p>
-            <ol>
-                <li>In the terminal, navigate to where your projects are</li>
-                <li>Run <pre><code class="bash">npx npkill</code></pre></li>
-                <li>And delete node_modules with the interactive prompt</li>
-            </ol>
-            <p class="fragment"><code>npx</code> ?</p>
+            <p>Inside <code>package.json</code> (from my slides)</p>
+            <Code code={snippets["package-slides.json"]} language="json"/>
         </section>
         <section>
-            <h3>Bloated</h3>
-            <Code code={snippets["package-bloated.json"]} language="json" />
-            <p><a href="https://github.com/jonasholbech/courses-a2022/blob/main/public/snippets/forms-and-frameworks/2.npm-vite/package-bloated.json">GitHub</a></p>
+            <p>Inside <code>package.json</code>, general stuff</p>
+            <Code code={snippets["package-slides-general.json"]} language="json"/>
+            <p class="fragment">General stuff</p>
+        </section>
+        <section>
+            <p>Inside <code>package.json</code>, <code>devDependencies</code></p>
+            <Code code={snippets["package-slides-dev.json"]} language="json"/>
+            <p class="fragment">Dependencies needed for building / bundling stuff</p>
+        </section>
+        <section>
+            <p>Inside <code>package.json</code>, <code>dependencies</code></p>
+            <Code code={snippets["package-slides-dep.json"]} language="json"/>
+            <p class="fragment">Dependencies needed for the actual project / site / code</p>
+            <p class="fragment">This is likely where most of the stuff we will be doing ends up</p>
+        </section>
+        <section>
+            <p>Inside <code>package.json</code>, <code>scripts</code></p>
+            <Code code={snippets["package-slides-scripts.json"]} language="json"/>
+        </section>
+        <section>
+            <p>Each entry in the <code>scripts</code> section will allow us to call that command from the terminal using <code>npm run NAME</code></p>
+        </section>
+        <section>
+            <p>So:</p>
+            <Code code={snippets["package-scripts.json"]} language="json"/>
+            <p>Means we can run</p>
+            <p><code>npm run start</code></p>
+            <p><code>npm run build</code></p>
+            <p><code>npm run deploy</code></p>
         </section>
     </AgendaSection>
 
-    <AgendaSection header="Exercise" p="Go solve Task 4" />
-    
     <AgendaSection header="Vite Intro Exercise" p="10 minutes">
         <section>
             <ol>
@@ -364,6 +331,46 @@ kan jeg lave en øvelse hvor de skal npm installe mit, jeg opdaterer deps og de 
             </ol>
         </section>
     </AgendaSection>
+
+    <AgendaSection header="Installing stuff">
+        <section>
+            <p>3+ ways to install modules</p>
+            <dl>
+                <del><dt>npm install -g xxx</dt>
+                <dd>Install a module globally</dd></del>
+                <dt>npm install --save-dev xxx</dt>
+                <dd>Install a module that is only used for development</dd>
+                <dt>npm install --save xxx</dt>
+                <dd>Install a module that is used in production</dd>
+            </dl>
+        </section>
+        <section>
+            <h3><code>--save-dev / --save</code></h3>
+            <p>When we install a module locally we get a <code>node_modules</code> folder</p>
+            <p>And the module is added to our <code>package.json</code> file</p>
+            <pre><code class="bash">npm install --save-dev minify</code></pre>
+        </section>
+        <section>
+            <p>We can then create an entry in the "scripts" section of our package.json to run our modules</p>
+            <Code code={snippets["package-min.json"]} language="json" />
+        </section>
+        <section>
+            <p><strong>We never push our node_modules folder to git!</strong></p>
+            <p class="fragment">add <code>node_modules/</code> to <kbd>.gitignore</kbd></p>
+        </section>
+        <section>
+            <h3>Cleaning up</h3>
+            <p>Since we can always just install everything again, I often remove <code>node_modules</code> folders on my machine</p>
+            <p>For that I use a tool called <code>npkill</code></p>
+            <ol>
+                <li>In the terminal, navigate to where your projects are</li>
+                <li>Run <pre><code class="bash">npx npkill</code></pre></li>
+                <li>And delete node_modules with the interactive prompt</li>
+            </ol>
+            <p class="fragment"><code>npx</code> ?</p>
+        </section>
+    </AgendaSection>
+    
     <AgendaSection header="Vite">
         <section>
             <blockquote>Next Generation Frontend Tooling</blockquote>
@@ -387,19 +394,19 @@ kan jeg lave en øvelse hvor de skal npm installe mit, jeg opdaterer deps og de 
                 <li><a href="https://vitejs.dev/guide/features.html">and much more</a></li>
             </ul>
         </section>
-        <section>
+        <!-- <section>
             <h2>Installing vite, manually</h2>
             <pre><code class="bash">npm init
 npm install --save-dev vite</code></pre>
                 <p>The add the following to <code>package.json</code></p>
                 <Code code={snippets["vite-scripts.json"]} language="json"/>
-        </section>
+        </section> -->
         <section>
             <h2>Installing Vite, with a starter</h2>
             <pre><code class="bash">npm create vite@latest</code></pre>
             <p>Then follow the interactive installer</p>
         </section>
-        <section>
+        <!-- <section>
             <h3>When to use what</h3>
             <h4>Manual install</h4>
             <div class="fragment">
@@ -411,7 +418,7 @@ npm install --save-dev vite</code></pre>
                 
                 <p>Everytime you start a new project</p>
             </div>
-        </section>
+        </section> -->
         <section>
             <h3>Running a dev-server</h3>
             <p><kbd>npm run dev</kbd></p>
@@ -420,17 +427,6 @@ npm install --save-dev vite</code></pre>
             <h3>Creating an optimized build</h3>
             <p><kbd>npm run build</kbd></p>
             <p>This will create a <span class="fragment">minified/optimized,</span> <span class="fragment">transpiled, </span><span class="fragment">buzzworded</span> build in a folder called <code>dist</code></p>
-        </section>
-    </AgendaSection>
-
-    <AgendaSection header="Exercise" p="20 minutes">
-        <section>
-            <ol>
-                <li>Copy any old project (like your portfolio)</li>
-                <li>Setup NPM and Vite as per <a href="#/10/4">this slide</a></li>
-                <li>Try out the <kbd>dev</kbd> script and the <kbd>build</kbd> script</li>    
-                <li>Remember to take a look in  the dist folder</li>
-            </ol>
         </section>
     </AgendaSection>
 

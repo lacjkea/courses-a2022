@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "start": "astro dev",
+    "build": "npm-run-all -p --race live-server astro-build",
+    "deploy": "node deploy.js"
+  }
+}

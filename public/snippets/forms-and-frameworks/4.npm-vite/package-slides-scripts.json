@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "dev": "npm-run-all -p live-server start",
+    "live-server": "live-server -q --no-browser --open=public/snippets/",
+    "start": "astro dev",
+    "build": "npm-run-all -p --race live-server astro-build",
+    "astro-build": "astro build",
+    "preview": "astro preview",
+    "predeploy": "npm run build",
+    "deploy": "node deploy.js",
+    "postdeploy": "npm run createPDFs && npm run test",
+    "createPDFs": "npm-run-all -p --race dev startServerScanFolders",
+    "startServerScanFolders": "sleep 5 && node scanFolders.js",
+    "pdf": "decktape reveal --size=1280x1280 --chrome-arg=--disable-web-security ",
+    "test": "node test.js"
+  }
+}

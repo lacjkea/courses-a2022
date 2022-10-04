@@ -1,0 +1,32 @@
+{
+  "name": "@example/starter",
+  "version": "0.0.2",
+  "private": true,
+  "scripts": {
+    "dev": "npm-run-all -p live-server start",
+    "live-server": "live-server -q --no-browser --open=public/snippets/",
+    "start": "astro dev",
+    "build": "npm-run-all -p --race live-server astro-build",
+    "astro-build": "astro build",
+    "preview": "astro preview",
+    "predeploy": "npm run build",
+    "deploy": "node deploy.js",
+    "postdeploy": "npm run createPDFs && npm run test",
+    "createPDFs": "npm-run-all -p --race dev startServerScanFolders",
+    "startServerScanFolders": "sleep 5 && node scanFolders.js",
+    "pdf": "decktape reveal --size=1280x1280 --chrome-arg=--disable-web-security ",
+    "test": "node test.js"
+  },
+  "devDependencies": {
+    "astro": "^1.0.0-beta.53",
+    "decktape": "^3.4.1",
+    "dotenv": "^16.0.1",
+    "ftp-deploy": "^2.4.2",
+    "lighthouse": "^9.6.2",
+    "npm-run-all": "^4.1.5",
+    "save-dev": "^0.0.1-security"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^0.1.5"
+  }
+}
