@@ -6,8 +6,6 @@ import Explainer from "../../../components/Explainer.svelte";
 import AgendaSection from "../../../components/AgendaSection.astro";
 import Goal from "../../../components/Goal.astro";
 const snippets = await codeFetcher("forms-and-frameworks/4.npm-vite",[
-    "vite-scripts.json",
-    "setup-script.sh",
     "vite-config.js",
     "package.json",
     "package-min.json",
@@ -394,13 +392,6 @@ kan jeg lave en øvelse hvor de skal npm installe mit, jeg opdaterer deps og de 
                 <li><a href="https://vitejs.dev/guide/features.html">and much more</a></li>
             </ul>
         </section>
-        <!-- <section>
-            <h2>Installing vite, manually</h2>
-            <pre><code class="bash">npm init
-npm install --save-dev vite</code></pre>
-                <p>The add the following to <code>package.json</code></p>
-                <Code code={snippets["vite-scripts.json"]} language="json"/>
-        </section> -->
         <section>
             <h2>Installing Vite, with a starter</h2>
             <pre><code class="bash">npm create vite@latest</code></pre>
@@ -511,14 +502,6 @@ h1.textContent = isitfriday() ? "hell yeah": ":-(";
     <AgendaSection header="Exercise" p="Go solve 'The module tutorial' assignment" />
         
     <section>
-        <section>
-            <h3>A work in progress</h3>
-            <p>Setup a new project, quickly</p>
-            <Code code={snippets["setup-script.sh"]} language="bash"/>
-        </section>
-    </section>
-
-    <section>
         <h1>Problems!!!</h1>
     </section>
 
@@ -555,7 +538,7 @@ h1.textContent = isitfriday() ? "hell yeah": ":-(";
     <section class="small">
         <h3>Multiple HTML files?</h3>
         <p>Vite assumes 1, if you have more, we need to tell it</p>
-        <p><a href="https://vitejs.dev/guide/build.html#multi-page-app">https://vitejs.dev/guide/build.html#multi-page-app</a></p>
+        <p><a href="https://v2.vitejs.dev/guide/build.html#multi-page-app">https://v2.vitejs.dev/guide/build.html#multi-page-app</a></p>
         <ol>
             <li>create a <code>vite.config.js</code> file</li>
             <li>Add the following</li>
