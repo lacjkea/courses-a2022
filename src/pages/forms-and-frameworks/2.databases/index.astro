@@ -5,7 +5,7 @@ import Code from "../../../components/Code.astro";
 import Explainer from "../../../components/Explainer.svelte";
 import AgendaSection from "../../../components/AgendaSection.astro";
 import Goal from "../../../components/Goal.astro";
-const snippets = await codeFetcher("forms-and-frameworks/4.databases",[
+const snippets = await codeFetcher("forms-and-frameworks/2.databases",[
     "example.gql",
     "example.sql",
     "GET.js",
@@ -13,7 +13,7 @@ const snippets = await codeFetcher("forms-and-frameworks/4.databases",[
     "GET-expanded.js",
     "DELETE.js",
     "POST.js",
-    "PUT.js",
+    "PATCH.js",
 ])
 ---
 
@@ -22,7 +22,6 @@ const snippets = await codeFetcher("forms-and-frameworks/4.databases",[
     <section>
         <Goal>
             <ol>
-                <li>//TODO: fjern unødige headers</li>
                 <li>Have a shallow insight into various databases</li>
                 <li>See how REST operations are performed</li>
                 <li>Through JS</li>
@@ -88,7 +87,8 @@ const snippets = await codeFetcher("forms-and-frameworks/4.databases",[
         <section>
             <ol start="3">
             <li>To grab a specific resource, we append the <code>id</code> of the resource to the URL, like:<br>
-                <code class="highlight">https://api.com/users/1</code></li>
+                <code class="highlight">https://api.com/users/1</code> or<br />
+                <code class="highlight">https://api.com/users/?id=eq.1</code></li>
                 
             </ol>
         </section>
@@ -116,7 +116,7 @@ const snippets = await codeFetcher("forms-and-frameworks/4.databases",[
             <blockquote>In a RESTful Web service, <span class="fragment highlight-blue">requests</span> made to a resource's URI will elicit a <span class="fragment highlight-blue">response</span> that may be in XML, HTML, JSON or some other defined format. 
                 The response may confirm that some alteration has been made to the stored resource, and it may provide hypertext links to other related resources 
                 or collections of resources. Using HTTP, as is most common, the kind of operations available include those predefined by the 
-                CRUD HTTP methods <span class="fragment highlight-blue">GET, POST, PUT, DELETE</span> and so on.</blockquote>
+                CRUD HTTP methods <span class="fragment highlight-blue">GET, POST, PATCH, DELETE</span> and so on.</blockquote>
         </section>
         <section>
             <h3>In English please</h3>
@@ -126,7 +126,7 @@ const snippets = await codeFetcher("forms-and-frameworks/4.databases",[
                 <li>Previously, you've been using GET to read data</li>
                 <li>But there's also</li>
                 <li>POST for adding new data</li>
-                <li>PUT for updating data</li>
+                <li>PATCH (and PUT) for updating data</li>
                 <li>DELETE for ...</li>
             </ul>
         </section>
@@ -155,7 +155,7 @@ const snippets = await codeFetcher("forms-and-frameworks/4.databases",[
                     <ol>
                         <li>POST</li>
                         <li>GET</li>
-                        <li>PUT</li>
+                        <li>PATCH</li>
                         <li>DELETE</li>
                     </ol>
                 </div>
@@ -202,18 +202,17 @@ const snippets = await codeFetcher("forms-and-frameworks/4.databases",[
         </section>
     </AgendaSection>
 
-    <AgendaSection header="<code>PUT'ing data</code>">
+    <AgendaSection header="<code>PATCH'ing data</code>">
         <section>
-            <Code code={snippets["PUT.js"]} stretch lineNumbers="1-18|1-6|5,8|9|13" />
+            <Code code={snippets["PATCH.js"]} stretch lineNumbers="1-18|1-6|5,8|9|13" />
         </section>
     </AgendaSection>
     
     <section>
         <p>There are lots of services for this</p>
-        <p>restdb.io, mockapi.io, WordPress, ...</p>
-        <p>We will be using restdb.io</p>
-        <p><a href="https://restdb.io">restdb.io</a></p>
-        <p>There are some limitations on the free version, mainly "max. 1 API call per second"</p>
+        <p>restdb.io, mockapi.io, WordPress, supabase, firebase...</p>
+        <p>We will be using Supabase</p>
+        <p><a href="https://supabase.com/">https://supabase.com/</a></p>
     </section>
     <AgendaSection header="Let's revisit the goals" />
 </SlideLayout>

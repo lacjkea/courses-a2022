@@ -6,7 +6,7 @@ const id = 49;
 const postData = JSON.stringify(payLoad);
 
 fetch(`/endpoint/${id}`, {
-  method: "put",
+  method: "patch",
   headers: {
     "Content-Type": "application/json",
   },

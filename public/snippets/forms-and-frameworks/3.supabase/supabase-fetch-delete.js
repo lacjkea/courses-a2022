@@ -1,7 +1,7 @@
-fetch("someurl/SOME_ID", {
+fetch("someurl/?id=eq.SOME_ID", {
   method: "delete",
   headers: {
-    "x-apikey": "your-cors-api-key",
+    apikey: "your-anon-key",
   },
 })
   .then((res) => res.json())

@@ -1,7 +1,7 @@
 fetch("someurl", {
   method: "get",
   headers: {
-    "x-apikey": "your-cors-api-key",
+    apikey: "your-anon-key",
   },
 })
   .then((e) => e.json())

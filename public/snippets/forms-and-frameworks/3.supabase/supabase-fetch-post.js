@@ -9,7 +9,7 @@ fetch("someurl", {
   method: "post",
   headers: {
     "Content-Type": "application/json",
-    "x-apikey": "your-cors-api-key",
+    apikey: "your-anon-key",
   },
   body: postData,
 })

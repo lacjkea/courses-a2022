@@ -5,11 +5,11 @@ let data = {
 };
 let postData = JSON.stringify(data);
 
-fetch("someurl/SOME_ID", {
-  method: "put",
+fetch("someurl/?id=eq.SOME_ID", {
+  method: "patch",
   headers: {
     "Content-Type": "application/json",
-    "x-apikey": "your-cors-api-key",
+    apikey: "your-anon-key",
   },
   body: postData,
 })

@@ -1,0 +1,199 @@
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro"
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import AgendaSection from "../../../components/AgendaSection.astro";
+import Goal from "../../../components/Goal.astro";
+const snippets = await codeFetcher("forms-and-frameworks/3.supabase",[
+    "supabase-fetch-delete.js",
+    "supabase-fetch-post.js",
+    "supabase-fetch-patch.js",
+    "supabase-fetch-with-headers.js",
+])
+---
+
+<SlideLayout title="supabase">
+    <AgendaSection header="supabase" />
+    <section>
+        <Goal>
+            <ol>
+                <li>Know what the 4 HTTP methods GET, POST, PATCH &amp; DELETE does</li>
+                <li>Know how to use them</li>
+                <li>Be damn excited about what's to come</li>
+            </ol>
+        </Goal>
+    </section>
+   
+   <AgendaSection header="What is supabase">
+    <section class="left">
+        <h3>what is it?</h3>
+        <blockquote>
+            <p style="font-size: 5rem; margin:0;padding:0;">Build in a weekend.</p>
+            <p style="font-size: 5rem; margin:0;padding:0; color: limegreen">Scale to millions.</p>
+            <p>Supabase is an open source Firebase alternative. Start your project with a Postgres database, Authentication, instant APIs, Edge Functions, Realtime subscriptions, and Storage.</p>
+        </blockquote>
+    </section>
+    <section>
+        <ul>
+            <li>supabase.com is a BAAS (backend as a service)</li>
+            <li>It's, among other things, a JSON / GraphQL / API database</li>
+            <li>But essentially, it's just a JSON storage where you define your data structure</li>
+            <li>It has a ton of awesome features</li>
+        </ul>
+    </section>
+    <section>
+        <h2 style="color:hotpink">I'm brand new at this!!</h2>
+    </section>
+</AgendaSection>
+
+<AgendaSection header="Exercise #1">
+    <section>
+        <ol>
+            <li>Signup for an account at <a href="https://supabase.com">https://supabase.com</a></li>
+            <li>Create a project</li>
+            <li>You might have to create an "organization" first</li>
+            <li>Set the location to Frankfurt or something closer</li>
+        </ol>
+    </section>
+</AgendaSection>
+
+<AgendaSection header="A quick tour of supabase">
+    <section>
+        <ol>
+            <li>Home</li>
+            <li>Table Editor</li>
+            <li>Authentication</li>
+            <li>Storage</li>
+            <li>API</li>
+            <li>Settings</li>
+        </ol>
+    </section>
+</AgendaSection>
+<AgendaSection header="A quick introduction to data modelling">
+    <section>
+        <p>Lets draw some relations</p>
+        <p><small>Relations are hard, and not required</small></p>
+        <div class="fragment small">
+            <p>Concepts:</p>
+            <ul>
+                <li>Table</li>
+                <li>Relation</li>
+                <li>Primary Key</li>
+                <li>one-to-many</li>
+                <li>many-to-one</li>
+                <li>one-to-one</li>
+                <li>many-to-many</li>
+                <li>Foreign key</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <p>And let's build a table in supabase</p>
+    </section>
+</AgendaSection>
+<AgendaSection header="Exercise #2">
+    <section>
+        <h3>Go build a table in supabase</h3>
+        <p>Keep it relatively simple</p>
+        <p>e.g. few fields, simple data types</p>
+    </section>
+</AgendaSection>
+<section>
+    <h3>Asking for data</h3>
+    <p>This is a little confusing initially</p>
+    <p>Let's take a look at <kbd>The API Tab =&gt; and our database =&gt; and then "Bash"</kbd></p>
+</section>
+<AgendaSection header="<code>GET</code>">
+    <section>
+        <h3>Sending the API key and our first REST request</h3>
+        <Code language="javascript" code={snippets["supabase-fetch-with-headers.js"]} />
+    </section>
+    <section>
+        <h3>Insomnia</h3>
+        <ul>
+            <li>Insomnia is a "request testing tool" <small class="fragment">like Postman</small></li>
+            <li>It allows us to test our database, without writing code</li>
+            <li>When it works, it can generate the code for us!</li>
+            <li>Let's try to setup a request</li>
+        </ul>
+    </section>
+</AgendaSection>
+<AgendaSection header="Exercise #3">
+    <section>
+        <ol>
+            <li>Setup a GET request in Insomnia to fetch the data from your own table</li>
+        </ol>
+        <iframe src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=1200" width="300" height="400"></iframe>
+    </section>
+</AgendaSection>
+
+<AgendaSection header="<code>POST</code>">
+    <section>
+        <p>This is how we POST (save) data to supabase</p>
+        <Code stretch language="javascript" code={snippets["supabase-fetch-post.js"]} />
+    </section>
+    <section>
+        <p>And this is how it looks in Insomnia</p>
+        <img data-src="/assets/forms-and-frameworks/3.supabase/insomnia-post-body.png" alt="">
+        <img data-src="/assets/forms-and-frameworks/3.supabase/insomnia-post-headers.png" alt="">
+    </section>
+</AgendaSection>
+<AgendaSection header="Exercise #4">
+    <section>
+        <ol>
+            <li>See if you can make a POST request to your database</li>
+            <li>Check you GET request to see your new data</li>
+        </ol>
+        <iframe src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=1200" width="300" height="400"></iframe>
+    </section>
+    <section>
+        <h2>Demonstration for #4?</h2>
+    </section>
+</AgendaSection>
+<AgendaSection header="<code>DELETE</code>">
+    <section>
+        <Code language="javascript" code={snippets["supabase-fetch-delete.js"]} />
+    </section>
+</AgendaSection>
+<AgendaSection header="Exercise #5">
+    <section>
+        <ol>
+            <li>See if you can make a DELETE request in Insomnia</li>
+            <li>Note that you need to specify which item to delete, so the url will look something like this:</li>
+            <li><code>.../rest/v1/todos?id=eq.3</code></li>
+        </ol>
+        <iframe src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=1200" width="300" height="400"></iframe>
+    </section>
+    <section>
+        <h2>Demonstration for #5</h2>
+        <p>?</p>
+    </section>
+</AgendaSection>
+
+<AgendaSection header="<code>PATCH</code>">
+    <section>
+        <Code language="javascript" code={snippets["supabase-fetch-patch.js"]} />
+    </section>
+</AgendaSection>
+
+<AgendaSection header="Exercise #6">
+    <section>
+        <ol>
+            <li>See if you can make a PATCH request to your database</li>
+        </ol>
+        <iframe src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=1200" width="300" height="400"></iframe>
+  </section>
+  <section>
+    <h2>Demonstration #6</h2>
+    <p>?</p>
+    </section>
+</AgendaSection>
+    <AgendaSection header="Exporting code">
+        <section>
+            <img data-src="/assets/forms-and-frameworks/3.supabase/insomnia-export-code.png" alt="">
+        </section>
+    </AgendaSection>
+    <AgendaSection header="let's build something" p="If we have the time"></AgendaSection>
+    <AgendaSection header="Let's revisit the goals" />
+</SlideLayout>
