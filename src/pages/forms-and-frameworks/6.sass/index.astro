@@ -12,7 +12,21 @@ const snippets = await codeFetcher("forms-and-frameworks/6.sass",[
 ---
 
 <SlideLayout title="SASS">
-    <AgendaSection header="SASS" h3="Syntactically Awesome Style Sheets" p="CSS as it should (will) be" />
+    <AgendaSection header="SASS" h3="Syntactically Awesome Style Sheets"/>
+    <section class="left">
+        <p>CSS as it</p>
+        <p>&nbsp;
+        <span style="position:relative; height:50px;" >
+            <span class="fragment fade-in" style="position:absolute;" data-fragment-index="0">
+            will
+            </span>
+            <span class="fragment fade-out" style="position:absolute;" data-fragment-index="0">
+              should
+            </span>
+        </span></p>
+        <p>be</p>
+        
+    </section>
     <section>
         <Goal>
             <ol>
@@ -96,14 +110,13 @@ const snippets = await codeFetcher("forms-and-frameworks/6.sass",[
 
     <AgendaSection header="How do we install it?">
         <section>
-            <h2>Two ways <span class="fragment">(that we care about)</span></h2>
+            <h2>One way <span class="fragment">(that we care about)</span></h2>
             <ol>
-                <li><code>npm</code></li>
                 <li><code>Vite</code></li>
             </ol>
         </section>
     </AgendaSection>
-    <AgendaSection header="SASS through NPM">
+    <!-- <AgendaSection header="SASS through NPM">
         <section>
             <p>For just converting SASS</p>
             <p><a href="https://www.npmjs.com/package/sass">https://www.npmjs.com/package/sass</a></p>
@@ -119,7 +132,7 @@ npm install --save-dev sass
         <section>
             <p>But we don't need that if we're using Vite</p>
         </section>
-    </AgendaSection>
+    </AgendaSection> -->
     <AgendaSection header="SASS through Vite">
         <section>
             <h3>SASS through Vite</h3>
