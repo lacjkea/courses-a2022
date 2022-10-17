@@ -18,6 +18,8 @@ urlsToParse.forEach((url) => {
   const folder = parts.at(-2);
   //TODO: check if it overwrites (i think so)
   //check if we need to recreate the pdf
+  console.log("PDF's disabled, scanFolders.js line 21");
+  return;
   if (!existsSync(`./pdfs/${folder}/${file}.pdf`)) {
     console.log(`creating ./pdfs/${folder}/${file}.pdf`);
     createPDF(folder, file);
@@ -46,7 +48,7 @@ function createPDF(folder, file) {
         console.log(`stderr: ${stderr}`);
         return;
       }
-      //console.log(`stdout: ${stdout}`);
+      console.log(`stdout: ${stdout}`);
     }
   );
 }

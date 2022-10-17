@@ -16,9 +16,10 @@
     "postdeploy": "npm run createPDFs && npm run test",
     "createPDFs": "npm-run-all -p --race dev startServerScanFolders",
     "startServerScanFolders": "sleep 5 && node scanFolders.js",
-    "pdf": "decktape reveal --size=1280x1280 --chrome-arg=--disable-web-security ",
+    "pdf": "decktape reveal --size=1280x1280 --chrome-arg=--disable-web-security --chrome-arg=--allow-external-pages ",
     "_test": "lighthouse ",
-    "test": "node test.js"
+    "test": "node test.js",
+    "debugPDF": "decktape reveal --page-load-timeout=60000 --size=1280x1280 --chrome-arg=--disable-web-security --chrome-arg=--allow-external-pages http://localhost:3000/react/6.forms/ ./6forms.pdf"
   },
   "devDependencies": {
     "astro": "^1.0.0-beta.53",

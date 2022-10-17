@@ -1,5 +1,50 @@
-https://reactrouter.com/docs/en/v6/getting-started/installation
+---
+import SlideLayout from "../../../layouts/SlideLayout.astro";
+import AgendaSection from "../../../components/AgendaSection.astro";
+
+import Goal from "../../../components/Goal.astro";
+import Explainer from "../../../components/Explainer.svelte";
+import codeFetcher from "../../../js/codeFetcher";
+import Code from "../../../components/Code.astro";
+const snippets = await codeFetcher("react/10.react-router",[
+    
+])
+
+---
+
+<SlideLayout title="React Router">
+    <section>
+        <h1>React</h1>
+        <img src='/assets/react/0.need-to-know-js/react.png'  alt="" />
+    </section>
+    <Goal>
+        <ol>
+            <li>Understand how <code>useContext</code> works</li>
+            <li>Understand how <code>useReducer</code> works</li>
+            <li>Understand how <code>useContext</code> works with <code>useReducer</code></li>
+            <li>Understand what <code>useMemo</code> does</li>
+        </ol>
+    </Goal>
+
+    <AgendaSection header="TODO">
+        <section>
+           <p>
+            https://reactrouter.com/docs/en/v6/getting-started/installation
 
 https://create-react-app.dev/docs/code-splitting/
 
 https://reactjs.org/docs/code-splitting.html#route-based-code-splitting
+
+           </p>
+        </section>
+       
+    </AgendaSection>
+    
+
+    
+
+    <AgendaSection header="+3/4">
+        
+</AgendaSection>
+</SlideLayout>
+
