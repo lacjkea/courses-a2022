@@ -16,18 +16,17 @@ urlsToParse.forEach((url) => {
   const parts = url.split("/");
   const file = parts.at(-1);
   const folder = parts.at(-2);
-  //TODO: check if it overwrites (i think so)
   //check if we need to recreate the pdf
-  console.log("PDF's disabled, scanFolders.js line 21");
-  return;
+  /* console.log("PDF's disabled, scanFolders.js line 21");
+  return; */
   if (!existsSync(`./pdfs/${folder}/${file}.pdf`)) {
-    console.log(`creating ./pdfs/${folder}/${file}.pdf`);
+    //console.log(`creating ./pdfs/${folder}/${file}.pdf`);
     createPDF(folder, file);
   } else {
     const pdfStats = statSync(`./pdfs/${folder}/${file}.pdf`);
     const astroStats = statSync(`./src/pages/${folder}/${file}/index.astro`);
     if (pdfStats.mtime > astroStats.mtime) {
-      /*  console.log(
+      /* console.log(
         `skipping ./pdfs/${folder}/${file}.pdf, it exists and pdf is newer`
       ); */
     } else {
@@ -37,8 +36,12 @@ urlsToParse.forEach((url) => {
   }
 });
 function createPDF(folder, file) {
+  console.log(`starting PDF ${folder} ${file}`);
+  console.log(
+    `npm run pdf -- http://localhost:3000/${folder}/${file}?decktape ./pdfs/${folder}/${file}.pdf`
+  );
   exec(
-    `npm run pdf -- http://localhost:3000/${folder}/${file} ./pdfs/${folder}/${file}.pdf`,
+    `npm run pdf -- http://localhost:3000/${folder}/${file}?decktape ./pdfs/${folder}/${file}.pdf`,
     (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);

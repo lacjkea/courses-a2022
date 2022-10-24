@@ -2,7 +2,7 @@
 import SlideLayout from "../../../layouts/SlideLayout.astro";
 import Goal from "../../../components/Goal.astro";
 import AgendaSection from "../../../components/AgendaSection.astro";
-import Explainer from "../../../components/Explainer.svelte";
+//import Explainer from "../../../components/Explainer.svelte";
 import codeFetcher from "../../../js/codeFetcher";
 import Code from "../../../components/Code.astro";
 
@@ -56,7 +56,7 @@ const snippets = await codeFetcher("react/6.forms",[
       </section>
       <section>
         <ul class="striped">
-            <li>If you pass a ref object to React with <code>&lt;div ref={`{myRef}`}/></code>, React will set its <code>.current</code> property to the corresponding DOM node whenever that node changes.</li>
+            <li>If you pass a ref object to React with <code>&lt;div ref={`{myRef}`}/&gt;</code>, React will set its <code>.current</code> property to the corresponding DOM node whenever that node changes.</li>
             <li class="fragment">We use it when we really need to go into the DOM</li>
             <li class="fragment">Like for forms</li>
         </ul>
@@ -85,7 +85,7 @@ const snippets = await codeFetcher("react/6.forms",[
       <section>
         <Code code={snippets["useRef.js"]} />
       </section>
-      <section>
+      <section class="no-print">
         <p>Using <code>useRef</code> as a "global variable"</p>
         <p>If the component is rerendered, the id is persisted</p>
         <iframe src="https://codesandbox.io/embed/timer-useref-f2030l?fontsize=14&hidenavigation=1&theme=dark"
@@ -93,8 +93,7 @@ const snippets = await codeFetcher("react/6.forms",[
      title="Timer useRef"
      
    ></iframe>
-   <p>allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"</p>
+   <!-- if it messes up, reembed, removed a lot -->
       </section>
   </AgendaSection>
   <section>

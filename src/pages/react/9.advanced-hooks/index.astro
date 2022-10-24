@@ -3,7 +3,7 @@ import SlideLayout from "../../../layouts/SlideLayout.astro";
 import AgendaSection from "../../../components/AgendaSection.astro";
 
 import Goal from "../../../components/Goal.astro";
-import Explainer from "../../../components/Explainer.svelte";
+//import Explainer from "../../../components/Explainer.svelte";
 import codeFetcher from "../../../js/codeFetcher";
 import Code from "../../../components/Code.astro";
 const snippets = await codeFetcher("react/9.advanced-hooks",[
@@ -108,7 +108,7 @@ const snippets = await codeFetcher("react/9.advanced-hooks",[
         <section>
             <Code code={snippets["useReducer.js"]} />
         </section>
-        <section>
+        <section class="no-print">
             <iframe src="https://codesandbox.io/embed/usereducer-1-icds6u?fontsize=14&hidenavigation=1&theme=dark"
      style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
      title="useReducer #1"

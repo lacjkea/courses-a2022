@@ -15,11 +15,11 @@
     "deploy": "node deploy.js",
     "postdeploy": "npm run createPDFs && npm run test",
     "createPDFs": "npm-run-all -p --race dev startServerScanFolders",
-    "startServerScanFolders": "sleep 5 && node scanFolders.js",
-    "pdf": "decktape reveal --size=1280x1280 --chrome-arg=--disable-web-security --chrome-arg=--allow-external-pages ",
+    "startServerScanFolders": "sleep 15 && node scanFolders.js",
+    "pdf": "decktape reveal --load-pause=5000 --size=1280x1280 --chrome-arg=--disable-web-security --chrome-arg=--allow-external-pages ",
     "_test": "lighthouse ",
     "test": "node test.js",
-    "debugPDF": "decktape reveal --page-load-timeout=60000 --size=1280x1280 --chrome-arg=--disable-web-security --chrome-arg=--allow-external-pages http://localhost:3000/react/6.forms/ ./6forms.pdf"
+    "debugPDF": "decktape reveal --load-pause=5000 --page-load-timeout=20000 --size=1280x1280 --chrome-arg=--disable-web-security --chrome-arg=--allow-external-pages http://localhost:3000/react/6.forms/?decktape ./6forms.pdf"
   },
   "devDependencies": {
     "astro": "^1.0.0-beta.53",
