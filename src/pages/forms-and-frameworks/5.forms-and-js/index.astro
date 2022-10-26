@@ -2,7 +2,6 @@
 import SlideLayout from "../../../layouts/SlideLayout.astro"
 import codeFetcher from "../../../js/codeFetcher";
 import Code from "../../../components/Code.astro";
-import Explainer from "../../../components/Explainer.svelte";
 import AgendaSection from "../../../components/AgendaSection.astro";
 import Goal from "../../../components/Goal.astro";
 const snippets = await codeFetcher("forms-and-frameworks/5.forms-and-js",[
@@ -12,7 +11,8 @@ const snippets = await codeFetcher("forms-and-frameworks/5.forms-and-js",[
     "reportValidity.js",
     "checkValidity.js",
     "validity.js",
-    "js-from-day-one.js"
+    "js-from-day-one.js",
+    "js-from-day-one-config.js"
 ])
 ---
 
@@ -299,17 +299,13 @@ const snippets = await codeFetcher("forms-and-frameworks/5.forms-and-js",[
   </section>
   <section>
     <ul>
-      <li>Create the table/endpoint</li>
-      <!-- <li>
-        <img data-src="/assets/forms-and-frameworks/6.forms-and-js/formcase.png" alt="">
-      </li> -->
       <li>Make post work</li>
       <li>How should the validation work/feel</li>
 
     </ul>
     <div class="fragment">
     <p>The JS from day one</p>
-      <Code code={snippets["js-from-day-one.js"]} />
+    <p><a href="https://github.com/jonasholbech/tv-shows-1">https://github.com/jonasholbech/tv-shows-1</a></p>
     </div>
   </section>
 </section>

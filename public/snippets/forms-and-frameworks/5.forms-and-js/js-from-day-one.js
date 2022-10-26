@@ -1,77 +1,65 @@
-import "./style.css";
-const APIKEY = "606d5d99f5535004310074edx";
-const endpoint = "https://frontendspring20-9cc3.restdb.io/rest/superheroes";
+import { url, headers } from "./config.js";
 
-function get() {
-  fetch(endpoint, {
+async function getShows() {
+  const options = {
     method: "GET",
-    headers: {
-      "x-apikey": APIKEY,
-    },
-  })
-    .then((res) => res.json())
-    .then(showStuff);
+    headers: headers,
+  };
+
+  const res = await fetch(url, options);
+  const data = await res.json();
+  return data;
 }
 
-function showStuff(superheroes) {
-  console.log(superheroes);
-  superheroes.forEach((hero) => {
+function addShow() {
+  const options = {
+    method: "POST",
+    headers: headers,
+    body: '{"genres":["Fantasy"],"seasons":4,"director":"me","rating":4.7,"ongoing":true,"name":"House of JS"}',
+  };
+
+  fetch(url, options)
+    .then((res) => res.json())
+    .then((data) => {
+      showData();
+    });
+}
+function updateShow() {}
+function deleteShow(id) {
+  const options = {
+    method: "DELETE",
+    headers: headers,
+  };
+  console.log(id);
+
+  fetch(url + "?id=eq." + id, options)
+    .then((response) => response.json())
+    .then((response) => {
+      showData();
+    })
+    .catch((err) => console.error(err));
+}
+
+async function init() {
+  const button = document.querySelector("nav button.addShow");
+  button.addEventListener("click", addShow);
+  showData();
+}
+async function showData() {
+  const data = await getShows();
+  console.log(data);
+  document.querySelector("main").innerHTML = "";
+  data.forEach((item) => {
     const template = document.querySelector("template").content;
     const copy = template.cloneNode(true);
-    copy.querySelector("h2").textContent = hero.real_name;
-    copy.querySelector("h3").textContent = hero.alias;
-    copy.querySelector("p").textContent = hero.dob;
-    copy.querySelector("button").addEventListener("click", () => {
-      deleteIt(hero._id);
+    copy.querySelector("h2").textContent = item.name;
+    copy.querySelector(".seasons").textContent = item.seasons;
+    copy.querySelector(".director").textContent = item.director;
+    const button = copy.querySelector("button");
+    button.addEventListener("click", () => {
+      deleteShow(item.id);
     });
-    document.querySelector("#app").appendChild(copy);
+    document.querySelector("main").appendChild(copy);
   });
 }
-
-function put() {
-  const obj = {
-    real_name: "Clark Kent",
-    alias: "Superman",
-    dob: "1978-01-01",
-  };
-  fetch(endpoint + "/5e98b5515053da750002a5d5", {
-    method: "put",
-    headers: {
-      "Content-Type": "application/json",
-      "x-apikey": APIKEY,
-    },
-    body: JSON.stringify(obj),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data));
-}
-function post() {
-  const hero = {
-    real_name: "Lord JS Von Doom",
-    alias: "Jonas",
-    dob: "2000-01-01",
-  };
-  fetch(endpoint, {
-    method: "POST",
-    headers: {
-      "x-apikey": APIKEY,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(hero),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data));
-}
-
-function deleteIt(id) {
-  fetch(endpoint + "/" + id, {
-    method: "delete",
-    headers: {
-      "x-apikey": APIKEY,
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data));
-}
-document.querySelector("button").addEventListener("click", put);
-get();
+init();
