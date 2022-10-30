@@ -108,15 +108,13 @@ const snippets = await codeFetcher("react/1.introduction",[
         <img style="background:rgba(255,255,255,0.4)" data-src="/assets/react/1.introduction/tooling.png" alt="" />
     </section>
     <section>
-        <h3><code>create-react-app</code></h3>
-        <p>which is why we use CRA</p>
-        <p>
-        <a href="https://github.com/facebook/create-react-app"
-            >https://github.com/facebook/create-react-app</a
-        >
-        </p>
-        <p class="fragment">Vite can also handle React, but there are a few annoyances</p>
-        <!-- <p>//TODO: Vite? https://medium.com/codex/you-should-choose-vite-over-cra-for-react-apps-heres-why-47e2e7381d13</p> -->
+        <h2>Two options for us</h2>
+        <ul>
+            <li><a href="https://github.com/facebook/create-react-app"
+                >create-react-app</a></li>
+                <li>Vite</li>
+        </ul>
+        <p class="fragment">CRA is a tool, just like Vite that handles a lot of stuff for us</p>
     </section>
     <section>
         <h2>Warnings</h2>
@@ -150,21 +148,21 @@ const snippets = await codeFetcher("react/1.introduction",[
         <section>
     
             <ol>
-                <li style="padding-bottom:1rem;">ESLint: a linting-tool for JS. Warns about common syntax issues (like == vs ===)</li>
-                <li style="padding-bottom:1rem;">Import Cost: every time you import some code, it tells you how much code is imported in KB</li>
+                <li style="padding-bottom:1rem;"><code>ESLint</code>: a linting-tool for JS. Warns about common syntax issues (like == vs ===)</li>
+                <li style="padding-bottom:1rem;"><code>Import Cost</code>: every time you import some code, it tells you how much code is imported in KB</li>
             </ol>
         </section>
         <section>
             <ol start={3}>
-                <li style="padding-bottom:1rem;">React Developer Tools: Adds react inspecting/debugging in Chrome/FireFox, priceless</li>
-                <li style="padding-bottom:1rem;">ES7 React/Redux/GraphQL/React-Native snippets: Adds small Emmet-snippets to VSCode, so you can type e.g <code>rfce</code> to get a full React component</li>
-                <li>get-svg-icons: Just a quick little way of getting prototype SVG icons in your project</li>
+                <li style="padding-bottom:1rem;"><code>React Developer Tools</code>: Adds react inspecting/debugging in Chrome/FireFox, priceless</li>
+                <li style="padding-bottom:1rem;"><code>ES7 React/Redux/GraphQL/React-Native snippets</code>: Adds small Emmet-snippets to VSCode, so you can type e.g <code>rfce</code> to get a full React component</li>
+                <li><code>get-svg-icons</code>: Just a quick little way of getting prototype SVG icons in your project</li>
             </ol>
         </section>
         <section>
             <ol start={6}>
-                <li style="padding-bottom: 1rem;">React Style Helper: autocomplete for classes &amp; CSS modules</li>
-                <li style="padding-bottom: 1rem;">VSCode React Refactor: "Click to split code"</li>
+                <li style="padding-bottom: 1rem;"><code>React Style Helper</code>: autocomplete for classes &amp; CSS modules</li>
+                <li style="padding-bottom: 1rem;"><code>VSCode React Refactor</code>: "Click to split code"</li>
             </ol>
         </section>
     </AgendaSection>
@@ -186,10 +184,15 @@ const snippets = await codeFetcher("react/1.introduction",[
                 <li><code>npx create-react-app myproject</code></li>
                 <li>Follow the instructions</li>
             </ol>
+            <p>Or</p>
+            <ol>
+                <li><code>npm create vite@latest</code></li>
+                <li>Follow the instructions</li>
+            </ol>
             
         </section>
         <section>
-            <p>And then, it's just <code>npm run start</code> to start you live server</p>
+            <p>And then, it's just <code>npm run start</code> for CRA, <code>npm run dev</code> for Vite to start you live server</p>
             <p>and <code>npm run build</code> to generate the static version</p>
             <p>Which can be deployed to e.g. Netlify</p>
         </section>
@@ -257,6 +260,13 @@ const snippets = await codeFetcher("react/1.introduction",[
             <p>We'll deal with some options later</p>
             <p>For now, all you need to know is that:</p>
             <p><code>class=""</code> is <code>className=""</code> in React</p>
+        </section>
+    </AgendaSection>
+    <AgendaSection header="File Extension">
+        <section>
+            <p>CRA uses .js</p>
+            <p>Vite uses .jsx</p>
+            <p>Time to make a choice</p>
         </section>
     </AgendaSection>
     <AgendaSection header="+3/4">
