@@ -104,35 +104,7 @@
       </p>
       <p>(meaning the function runs again)</p>
     </section>
-    <section>
-      <h4>a "stateful" component</h4>
-      <p>Stateful components consists of a few things</p>
-      <ol>
-        <li>
-          We import <code>useState</code><br />
-          <pre><code class="js">import {useState} from "react";</code></pre>
-        </li>
-        <li>
-          <code>useState</code> is a function that, once called returns an array
-          with two things, a state variable, and an "updater function"
-        </li>
-        <li>
-          When calling <code>useState</code> we pass the initial value for our
-          state variable<br />
-          <pre><code class="js">const [myVar, myUpdater] = useState(initialValue)</code></pre>
-        </li>
-      </ol>
-    </section>
-    <section>
-      <ol start="4">
-        <li>
-          We use the "updater function" to modify state to force a re-render
-        </li>
-        <li>
-          We use the "state variable" in our UI, as a condition, or simply data
-        </li>
-      </ol>
-    </section>
+   
     <section>
       <p>
         Remember, every time "state" or "props" change, the UI is updated. So all
