@@ -2,7 +2,6 @@
 import SlideLayout from "../../../layouts/SlideLayout.astro"
 import Goal from "../../../components/Goal.astro"
 import AgendaSection from "../../../components/AgendaSection.astro"
-import Explainer from "../../../components/Explainer.svelte"
 import codeFetcher from "../../../js/codeFetcher";
 import Code from "../../../components/Code.astro";
 
@@ -49,6 +48,15 @@ const snippets = await codeFetcher("react/4.mini-todo-list",[
         </ol>
     </section>
 
+    <section>
+      <h2>Drop-In Exercise</h2>
+      <p><small>for when we/I need a break</small></p>
+      <iframe
+                style="background: white; height: 300px"
+                width="100%"
+                height="100%"
+                data-src="/assets/react/4.mini-todo-list/todolist.html"></iframe>
+    </section>
     <AgendaSection header="Uni-directional data-flow">
         <section>
             <h3>Uni-directional data flow</h3>
