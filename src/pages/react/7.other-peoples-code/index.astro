@@ -32,8 +32,10 @@ const snippets = await codeFetcher("react/7.other-peoples-code",[
     </section>
     <section>
       <p>One of my favorite things in React</p>
-      <blockquote class="fragment"><p>Good Artists Copy; Great Artists Steal<p>
-      <footer>by <cite><a href="https://quoteinvestigator.com/2013/03/06/artists-steal/">disputed</a></cite></footer</blockquote>
+      <blockquote class="fragment"><p>Good Artists Copy; Great Artists Steal</p>
+      <footer>by 
+        <cite><a href="https://quoteinvestigator.com/2013/03/06/artists-steal/">disputed</a></cite>
+      </footer>
       </blockquote>
       <blockquote class="fragment"><p>Hell is other people's code</p>
         <footer>
@@ -76,6 +78,7 @@ const snippets = await codeFetcher("react/7.other-peoples-code",[
     <section>
       <h3>Components</h3>
       <p><a href="https://reactjsexample.com/">A collection of components</a></p>
+      <p><a href="https://github.com/brillout/awesome-react-components">Another collection of components</a></p>
       <p>
         <a href="https://www.npmjs.com/package/react-spinners">React-spinners</a>
       </p>
@@ -121,18 +124,11 @@ const snippets = await codeFetcher("react/7.other-peoples-code",[
   <AgendaSection header="Exercise #1">
     <section class="small">
       <p>Exercise: Pick one, make it work</p>
+      <p>Run <code>npm create vite@latest</code> again to create a new project</p>
+      <div class="flex-grid">
+        <div class="col-8 left">
+      <h4>Easier</h4>
       <ul>
-        <li>
-          <a href="https://www.npmjs.com/package/react-card-flip"
-            >https://www.npmjs.com/package/react-card-flip</a>
-        </li>
-        <li>
-          <a href="https://github.com/brillout/awesome-react-components"
-            >https://github.com/brillout/awesome-react-components</a>
-        </li>
-        <li>
-          <a href="https://reactjsexample.com/">A collection of components</a>
-        </li>
         <li>
           <a href="https://www.npmjs.com/package/react-loading-skeleton"
             >react-loading-skeleton</a>
@@ -145,22 +141,39 @@ const snippets = await codeFetcher("react/7.other-peoples-code",[
             >react-id-swiper</a>
         </li>
         <li>
-          <a href="https://github.com/gorangajic/react-svg-morph/"
-            >React SVG Morph</a>
-        </li>
-        <li>
           <a
             href="https://www.npmjs.com/package/@sandstreamdev/react-swipeable-list"
             >react-swipable-list</a>
         </li>
       </ul>
-      <p>Run <code>npm create vite@latest</code> again to create a new project</p>
+      <h4>Harder</h4>
+      <ul>
+        <li>
+          <a href="https://www.npmjs.com/package/react-card-flip"
+            >https://www.npmjs.com/package/react-card-flip</a>
+        </li>
+      </ul>
+      <h4>???</h4>
+      <ul>
+        <li>
+          <a href="https://github.com/brillout/awesome-react-components"
+            >https://github.com/brillout/awesome-react-components</a>
+        </li>
+        <li>
+          <a href="https://reactjsexample.com/">A collection of components</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-4 left">
+      
       <iframe
         class="gs4"
         src="https://jonasholbech.github.io/stopwatch-react/?transparent=true&time=1200"
         width="300"
         height="400"
       ></iframe>
+    </div>
+    </div>
     </section>
   </AgendaSection>
 
